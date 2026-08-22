@@ -6,7 +6,26 @@ In the present repository you will be able to find all the building and assembly
 > _"Was immer du tun kannst oder träumst es zu können, fang damit an. Kühnheit hat Genie, Macht und Magie in sich." - Johann Wolfgang von Goethe_
 
 ## Contents
-- [Team Members](https://github.com/pandao/editor.md "Heading link")
+- [Team Members](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#team-members)
+- [Hardware Design](https)
+ - [Design Process](https)
+ - [Assembly Process](https)
+ - [Elements](https)
+   - [Spike Kit](https)
+   - [Electronics](https)
+- [Software Design](https)
+ - [Image and Color Processing](https)
+    - [Image Capturing](https)
+	- [Creating Red and Green masks](https)
+	- [Final Image](https)
+	- [Distance from the cones](https)
+ - [Robot Movement](https)
+   - [Smart Robot Servo Configuration](https)
+   - [Robot Orientation](https)
+   - [Route Determination](https)
+  - [Data Sending](https)
+- [Impact](https)
+- [Our Journey](https))
 - [Hardware Design](https)
   - [Design Process](https)
   - [Assembly Process](https)
@@ -29,4 +48,13 @@ In the present repository you will be able to find all the building and assembly
 
 # *Team Members*
 - Isaac Camargo
+![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/775a4106-e3e2-4c4f-919d-1946a50a8b13.jpg)
+> Mi chiquito pechocho
+
+- Fernanda Leon
+![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/e168a51f-258d-4fb5-9f0c-e48285d9942f.jpg)
+> Bebetita de su bebetito y solo de bebetito
+
+# *Hardware Design*
+## *Design Process*
 
