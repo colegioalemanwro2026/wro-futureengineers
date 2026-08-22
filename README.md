@@ -3,7 +3,7 @@
 
 ## Introduction
 In the present repository you will be able to find all the building and assembly of the Autonomous Robot constructed by the *Team Eule Tech* for the Future Engineers category in the *World Robot Olympiad (WRO)* 2026 Season. This project was brought to fruition through months of hard work and unforgettable experiences, representing our passion for robotics and for achieving our greatest dreams. 
-_"Was immer du tun kannst oder träumst es zu können, fang damit an. Kühnheit hat Genie, Macht und Magie in sich." - Johann Wolfgang von Goethe_
+> _"Was immer du tun kannst oder träumst es zu können, fang damit an. Kühnheit hat Genie, Macht und Magie in sich." - Johann Wolfgang von Goethe_
 
 ## Contents
 - Team Eule Tech Members
