@@ -11,7 +11,7 @@ In the present repository you will be able to find all the building and assembly
  - [Design Process](https)
  - Assembly Process
  - Elements
-  - Spike Kit
-  - Electronics
+   - Spike Kit
+   - Electronics
 - Software Design
  - Image and Color Processing
