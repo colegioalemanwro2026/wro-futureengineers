@@ -27,4 +27,6 @@ In the present repository you will be able to find all the building and assembly
 - [Impact](https)
 - [Our Journey](https)
 
-## Team Members
+# *Team Members*
+- Isaac Camargo
+
