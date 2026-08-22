@@ -6,12 +6,23 @@ In the present repository you will be able to find all the building and assembly
 > _"Was immer du tun kannst oder träumst es zu können, fang damit an. Kühnheit hat Genie, Macht und Magie in sich." - Johann Wolfgang von Goethe_
 
 ## Contents
-- [Team Eule Tech Members](https://github.com/pandao/editor.md "Heading link")
+- [Team Members](https://github.com/pandao/editor.md "Heading link")
 - [Hardware Design](https)
  - [Design Process](https)
- - Assembly Process
- - Elements
-   - Spike Kit
-   - Electronics
-- Software Design
- - Image and Color Processing
+ - [Assembly Process](https)
+ - [Elements](https)
+   - [Spike Kit](https)
+   - [Electronics](https)
+- [Software Design](https)
+ - [Image and Color Processing](https)
+   - [Image Capturing](https)
+	- [Creating Red and Green masks](https)
+	- [Final Image](https)
+	- [Distance from the cones](https)
+ - [Robot Movement](https)
+   - [Smart Robot Servo Configuration](https)
+   - [Robot Orientation](https)
+   - [Route Determination](https)
+ - [Data Sending](https)
+- [Impact](https)
+- [Our Journey](https)
