@@ -7,8 +7,8 @@ In the present repository you will be able to find all the building and assembly
 
 ## Contents
 - [Team Members](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#team-members)
-- [Hardware Design](https)
- - [Design Process](https)
+- [Hardware Design](https://github.com/colegioalemanwro2026/wro-futureengineers#hardware-design)
+ - [Design Process](https://github.com/colegioalemanwro2026/wro-futureengineers#design-process)
  - [Assembly Process](https)
  - [Elements](https)
    - [Spike Kit](https)
@@ -57,4 +57,3 @@ In the present repository you will be able to find all the building and assembly
 
 # *Hardware Design*
 ## *Design Process*
-
