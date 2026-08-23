@@ -102,20 +102,6 @@ A dedicated **camera mount structure** was designed to:
 
 ---
 
-## Final Architecture Summary
-
-| Subsystem | Component | Role |
-|-----------|-----------|------|
-| **Chassis & Drivetrain** | LEGO SPIKE Prime + Nezha structural parts | Frame, wheels, drive motor, steering servo |
-| **Power** | VEX IQ 2nd Gen Li-Ion battery | 7.4V supply for motors & regulators |
-| **Main Controller** | Arduino Uno R4 WiFi | Sensor fusion, motor control, wireless telemetry |
-| **Vision** | Arduino Nicla Vision (wired via USB/Serial) | Real-time track detection & classification |
-| **Motor Driver** | L298N (HW-095) | Drives DC motor & steering servo |
-| **Proximity** | HC-SR04 ultrasonic sensor | Wall/obstacle detection |
-| **Camera Mount** | Custom 3D-printed bracket | Fixed optimal FOV angle, vibration damping |
-
----
-
 ## Design Philosophy
 
 Every iteration was driven by **reliability under competition conditions**:
