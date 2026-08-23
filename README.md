@@ -57,7 +57,6 @@ In the present repository you will be able to find all the building and assembly
 
 # *Hardware Design*
 ## *Design Process*
-# Design Process
 
 Our robot is built primarily from a combination of **LEGO SPIKE Prime Set** and **Nezha 48 in 1 Inventor's Kit** components, including the drive motor, wheels, steering servo, and chassis structure. Power is supplied by a **VEX IQ Education Kit (2nd Gen) battery**, with custom electronics enabling full autonomous functionality.
 
