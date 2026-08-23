@@ -57,3 +57,7 @@ In the present repository you will be able to find all the building and assembly
 
 # *Hardware Design*
 ## *Design Process*
+
+Nuestro robot está compuesto mayormente de una combinación de piezas del LEGO Spike Prime Set y el Nezha 48 in 1 Inventor's Kit, incluyendo el motor, ruedas, servomotor y chasis en general, también de una batería del VEX IQ Education Kit Second Generation y finalmente los electrónicos que permiten su funcionamiento.
+
+Sin embargo, el robot pasó por diferentes cambios de estructura y componentes hasta lograr llegar a su forma final. Al principio, se planeó construir el robot enteramente del kit de Nezha, incluyendo un Expansion Board para poder utilizar un Microbit, al igual que sensores del mismo kit para su funcionamiento. 
