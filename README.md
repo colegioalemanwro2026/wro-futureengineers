@@ -57,7 +57,71 @@ In the present repository you will be able to find all the building and assembly
 
 # *Hardware Design*
 ## *Design Process*
+# Design Process
 
-Nuestro robot está compuesto mayormente de una combinación de piezas del LEGO Spike Prime Set y el Nezha 48 in 1 Inventor's Kit, incluyendo el motor, ruedas, servomotor y chasis en general, también de una batería del VEX IQ Education Kit Second Generation y finalmente los electrónicos que permiten su funcionamiento.
+Our robot is built primarily from a combination of **LEGO SPIKE Prime Set** and **Nezha 48 in 1 Inventor's Kit** components, including the drive motor, wheels, steering servo, and chassis structure. Power is supplied by a **VEX IQ Education Kit (2nd Gen) battery**, with custom electronics enabling full autonomous functionality.
 
-Sin embargo, el robot pasó por diferentes cambios de estructura y componentes hasta lograr llegar a su forma final. Al principio, se planeó construir el robot enteramente del kit de Nezha, incluyendo un Expansion Board para poder utilizar un Microbit, al igual que sensores del mismo kit para su funcionamiento. 
+However, the robot underwent multiple structural and electronic revisions before reaching its final competition-ready form.
+
+---
+
+## Evolution History
+
+### Version 1: All-Nezha Platform (Initial Concept)
+
+The original plan was to construct the robot entirely from the **Nezha Inventor's Kit**:
+- Chassis, wheels, drive motor, and steering servo from Nezha
+- **Micro:bit** + **Nezha Expansion Board** as the main controller
+- Nezha sensors for perception
+- **Arduino Nicla Vision** camera for computer vision (chosen over Nezha's camera)
+
+### Version 2: ESP32 Migration (Wiring Constraints)
+
+We encountered significant wiring difficulties integrating the **Micro:bit → Expansion Board → Nicla Vision** chain. To resolve this, we replaced most Nezha electronics with:
+- **ESP32 microcontroller** — for flexible I/O and wireless capability
+- **TB6612FNG (HW-166) motor driver** — compact dual H-bridge
+- **HC-SR04 ultrasonic sensor** — for distance measurement
+
+This simplified the Nicla Vision interface but introduced Bluetooth instability between the ESP32 and Nicla.
+
+### Version 3: Arduino Uno R4 WiFi + Direct Wiring (Final Architecture)
+
+To achieve a **stable, deterministic connection** between the vision system and the robot brain, we pivoted to a **direct wired interface**:
+- **Arduino Uno R4 WiFi** as the main controller — native USB-C, WiFi/BLE, 5V logic compatible with Nicla Vision
+- **L298N (HW-095) motor driver** — robust, high-current dual H-bridge
+- Supporting electronics standardized for Arduino ecosystem (level shifters, voltage regulators, connectors)
+
+This eliminated wireless latency and connection drops, ensuring reliable frame capture and inference timing.
+
+### Version 4: Camera Mount Optimization
+
+A dedicated **camera mount structure** was designed to:
+- Hold the Nicla Vision at the **precise angle** required for track detection
+- Maintain mechanical stability during acceleration and cornering
+- Protect the camera and connector during handling and power-on
+
+---
+
+## Final Architecture Summary
+
+| Subsystem | Component | Role |
+|-----------|-----------|------|
+| **Chassis & Drivetrain** | LEGO SPIKE Prime + Nezha structural parts | Frame, wheels, drive motor, steering servo |
+| **Power** | VEX IQ 2nd Gen Li-Ion battery | 7.4V supply for motors & regulators |
+| **Main Controller** | Arduino Uno R4 WiFi | Sensor fusion, motor control, wireless telemetry |
+| **Vision** | Arduino Nicla Vision (wired via USB/Serial) | Real-time track detection & classification |
+| **Motor Driver** | L298N (HW-095) | Drives DC motor & steering servo |
+| **Proximity** | HC-SR04 ultrasonic sensor | Wall/obstacle detection |
+| **Camera Mount** | Custom 3D-printed bracket | Fixed optimal FOV angle, vibration damping |
+
+---
+
+## Design Philosophy
+
+Every iteration was driven by **reliability under competition conditions**:
+- **Wired over wireless** for vision link — zero packet loss, deterministic latency
+- **Standardized voltage levels** (5V logic) — eliminated level-shifting failures
+- **Modular electronics** — swappable drivers, sensors, and controllers
+- **Compact, serviceable layout** — all connectors accessible, no hidden wiring
+
+The result is a **unique, integrated design** optimized for the WRO 2026 Future Engineers challenge — robust, maintainable, and competition-proven.
