@@ -1,107 +1,87 @@
-# Engineering Documentation - Team Eule Tech
+# Documentación de Ingeniería - Team Eule Tech
 ![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/Engineering%20(1).png)
 
-## Introduction
-In the present repository you will be able to find all the building and assembly of the Autonomous Robot constructed by the *Team Eule Tech* for the Future Engineers category in the *World Robot Olympiad (WRO)* 2026 Season. This project was brought to fruition through months of hard work and unforgettable experiences, representing our passion for robotics and for achieving our greatest dreams. 
+
+## Introducción
+En el presente repositorio podrán encontrar toda la construcción y ensamblaje del Robot Autónomo construido por el *Team Eule Tech* para la categoría Future Engineers en la temporada 2026 de la *World Robot Olympiad (WRO)*. Este proyecto se materializó tras meses de arduo trabajo y experiencias inolvidables, representando nuestra pasión por la robótica y por alcanzar nuestros más grandes sueños.
 > _"Was immer du tun kannst oder träumst es zu können, fang damit an. Kühnheit hat Genie, Macht und Magie in sich." - Johann Wolfgang von Goethe_
 
-## Contents
+
+## Contenido
+- [Integrantes del Team](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#integrantes-del-equipo)
+- [Diseño de Hardware](https://github.com/colegioalemanwro2026/wro-futureengineers#diseño-de-hardware)
+ - [Proceso de Diseño](https://github.com/colegioalemanwro2026/wro-futureengineers#proceso-de-diseño)
+ - [Proceso de Ensamblaje](https)
+ - [Elementos](https)
+   - [Kit SPIKE](https)
+   - [Electrónica](https)
+- [Diseño de Software](https)
+ - [Procesamiento de Imagen y Color](https)
+    - [Captura de Imagen](https)
+	- [Creación de Máscaras Roja y Verde](https)
+	- [Imagen Final](https)
+	- [Distancia a los Conos](https)
+ - [Movimiento del Robot](https)
+   - [Configuración Smart Robot Servo](https)
+   - [Orientación del Robot](https)
+   - [Determinación de Ruta](https)
+  - [Envío de Datos](https)
+- [Impacto](https)
+- [Nuestro Recorrido](https))
+- [Diseño de Hardware](https)
+  - [Proceso de Diseño](https)
+  - [Proceso de Ensamblaje](https)
+  - [Elementos](https)
+    - [Kit SPIKE](https)
+    - [Electrónica](https)
+- [Diseño de Software](https)
+  - [Procesamiento de Imagen y Color](https)
+    - [Captura de Imagen](https)
+	- [Creación de Máscaras Roja y Verde](https)
+	- [Imagen Final](https)
+	- [Distancia a los Conos](https)
+  - [Movimiento del Robot](https)
+    - [Configuración Smart Robot Servo](https)
+    - [Orientación del Robot](https)
+    - [Determinación de Ruta](https)
+  - [Envío de Datos](https)
+- [Impacto](https)
+- [Nuestro Recorrido](https)
 ---
-- [Team Members](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#team-members)
-- [Hardware Design](https://github.com/colegioalemanwro2026/wro-futureengineers#hardware-design)
- - [Design Process](https://github.com/colegioalemanwro2026/wro-futureengineers#design-process)
- - [Assembly Process](https)
- - [Elements](https)
-   - [Spike Kit](https)
-   - [Electronics](https)
-- [Software Design](https)
- - [Image and Color Processing](https)
-    - [Image Capturing](https)
-	- [Creating Red and Green masks](https)
-	- [Final Image](https)
-	- [Distance from the cones](https)
- - [Robot Movement](https)
-   - [Smart Robot Servo Configuration](https)
-   - [Robot Orientation](https)
-   - [Route Determination](https)
-  - [Data Sending](https)
-- [Impact](https)
-- [Our Journey](https))
-- [Hardware Design](https)
-  - [Design Process](https)
-  - [Assembly Process](https)
-  - [Elements](https)
-    - [Spike Kit](https)
-    - [Electronics](https)
-- [Software Design](https)
-  - [Image and Color Processing](https)
-    - [Image Capturing](https)
-	- [Creating Red and Green masks](https)
-	- [Final Image](https)
-	- [Distance from the cones](https)
-  - [Robot Movement](https)
-    - [Smart Robot Servo Configuration](https)
-    - [Robot Orientation](https)
-    - [Route Determination](https)
-  - [Data Sending](https)
-- [Impact](https)
-- [Our Journey](https)
----
-# *Team Members*
+# *Integrantes del Equipo*
 - Isaac Camargo
 ![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/775a4106-e3e2-4c4f-919d-1946a50a8b13.jpg)
 > Mi chiquito pechocho
 
-- Fernanda Leon
+
+- Fernanda León
 ![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/e168a51f-258d-4fb5-9f0c-e48285d9942f.jpg)
 > Bebetita de su bebetito y solo de bebetito
 ---
-# *Hardware Design*
-## *Design Process*
+# *Diseño de Hardware*
+## *Proceso de Diseño*
 
-Our robot is built primarily from a combination of **LEGO SPIKE Prime Set** and **Nezha 48 in 1 Inventor's Kit** components, including the drive motor, wheels, steering servo, and chassis structure. Power is supplied by a **VEX IQ Education Kit (2nd Gen) battery**, with custom electronics enabling full autonomous functionality.
+Nuestro robot está construido principalmente a partir de una combinación de componentes del **LEGO SPIKE Prime Set** y el **Nezha 48 in 1 Inventor's Kit**, incluyendo el motor de tracción, ruedas, servomotor de dirección y estructura del chasis. La alimentación proviene de una **batería VEX IQ Education Kit (2ª generación)**, con electrónica personalizada que habilita la funcionalidad autónoma completa.
 
-However, the robot underwent multiple structural and electronic revisions before reaching its final competition-ready form.
 
-### Version 1: All-Nezha Platform (Initial Concept)
+Sin embargo, el robot pasó por múltiples revisiones estructurales y electrónicas antes de alcanzar su forma final lista para competencia.
 
-The original plan was to construct the robot entirely from the **Nezha Inventor's Kit**:
-- Chassis, wheels, drive motor, and steering servo from Nezha
-- **Micro:bit** + **Nezha Expansion Board** as the main controller
-- Nezha sensors for perception
-- **Arduino Nicla Vision** camera for computer vision (chosen over Nezha's camera)
 
-### Version 2: ESP32 Migration (Wiring Constraints)
+### Versión 1: 
+El plan original era construir el robot completamente con el **Kit de Inventor Nezha**, es decir, Chasis, ruedas, motor de tracción y servomotor de dirección de Nezha, utilizar un **Micro:bit** combinado con un **Expansion Board Nezha** como controlador principal, sensores Nezha para percepción y una cámara **Arduino Nicla Vision** para visión artificial (elegida sobre la cámara de Nezha).
 
-We encountered significant wiring difficulties integrating the **Micro:bit → Expansion Board → Nicla Vision** chain. To resolve this, we replaced most Nezha electronics with:
-- **ESP32 microcontroller** — for flexible I/O and wireless capability
-- **TB6612FNG (HW-166) motor driver** — compact dual H-bridge
-- **HC-SR04 ultrasonic sensor** — for distance measurement
 
-This simplified the Nicla Vision interface but introduced Bluetooth instability between the ESP32 and Nicla.
+### Versión 2:
+Enfrentamos dificultades significativas de cableado al integrar la cadena **Micro:bit → Expansion Board → Nicla Vision**. Para resolverlo, reemplazamos la mayoría de la electrónica Nezha por: un **Microcontrolador ESP32**, un **Controlador TB6612FNG (HW-166)** (Puente H Dual) y un **Sensor ultrasónico HC-SR04**. Esto simplificó la interfaz con la Nicla Vision, pero introdujo inestabilidad en el Bluetooth entre el ESP32 y la Nicla.
 
-### Version 3: Arduino Uno R4 WiFi + Direct Wiring (Final Architecture)
 
-To achieve a **stable, deterministic connection** between the vision system and the robot brain, we pivoted to a **direct wired interface**:
-- **Arduino Uno R4 WiFi** as the main controller — native USB-C, WiFi/BLE, 5V logic compatible with Nicla Vision
-- **L298N (HW-095) motor driver** — robust, high-current dual H-bridge
-- Supporting electronics standardized for Arduino ecosystem (level shifters, voltage regulators, connectors)
+### Versión 3:
+Para lograr una conexión estable entre el sistema de visión y el cerebro del robot, pivoteamos a una **interfaz cableada directa**, con el **Arduino Uno R4 WiFi** como controlador principal, el cual es compatible con la Nicla Vision,**Controlador L298N (HW-095)** (Puente H Dual Robusto) y demás electrónica de soporte estandarizada para Arduino. Esto eliminó la intermitencia inalámbrica y las caídas de conexión, asegurando captura de frames y tiempos de inferencia correctos.
 
-This eliminated wireless latency and connection drops, ensuring reliable frame capture and inference timing.
 
-### Version 4: Camera Mount Optimization
+### Versión 4: Se diseñó una estructura de montaje dedicada al sostén de la Nicla Vision en el ángulo preciso requerido para detección de pista, con la habilidad de mantener estabilidad mecánica durante la tracción y curvas, así como proteger la cámara y su conector durante manipulación y encendido. Cada modificación se realizó con un resultado único y compacto en mente, llegando así al diseño final que se presenta en la competencia.
 
-A dedicated **camera mount structure** was designed to:
-- Hold the Nicla Vision at the **precise angle** required for track detection
-- Maintain mechanical stability during acceleration and cornering
-- Protect the camera and connector during handling and power-on
+## Proceso de Ensamblaje
 
-Every iteration was driven by **reliability under competition conditions**:
-- **Wired over wireless** for vision link — zero packet loss, deterministic latency
-- **Standardized voltage levels** (5V logic) — eliminated level-shifting failures
-- **Modular electronics** — swappable drivers, sensors, and controllers
-- **Compact, serviceable layout** — all connectors accessible, no hidden wiring
-
-The result is a **unique, integrated design** optimized for the WRO 2026 Future Engineers challenge — robust, maintainable, and competition-proven.
 
 
