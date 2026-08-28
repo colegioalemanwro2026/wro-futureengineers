@@ -64,8 +64,6 @@ However, the robot underwent multiple structural and electronic revisions before
 
 ---
 
-## Evolution History
-
 ### Version 1: All-Nezha Platform (Initial Concept)
 
 The original plan was to construct the robot entirely from the **Nezha Inventor's Kit**:
@@ -99,10 +97,6 @@ A dedicated **camera mount structure** was designed to:
 - Maintain mechanical stability during acceleration and cornering
 - Protect the camera and connector during handling and power-on
 
----
-
-## Design Philosophy
-
 Every iteration was driven by **reliability under competition conditions**:
 - **Wired over wireless** for vision link — zero packet loss, deterministic latency
 - **Standardized voltage levels** (5V logic) — eliminated level-shifting failures
@@ -110,3 +104,5 @@ Every iteration was driven by **reliability under competition conditions**:
 - **Compact, serviceable layout** — all connectors accessible, no hidden wiring
 
 The result is a **unique, integrated design** optimized for the WRO 2026 Future Engineers challenge — robust, maintainable, and competition-proven.
+
+
