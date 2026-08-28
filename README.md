@@ -6,6 +6,7 @@ In the present repository you will be able to find all the building and assembly
 > _"Was immer du tun kannst oder träumst es zu können, fang damit an. Kühnheit hat Genie, Macht und Magie in sich." - Johann Wolfgang von Goethe_
 
 ## Contents
+---
 - [Team Members](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#team-members)
 - [Hardware Design](https://github.com/colegioalemanwro2026/wro-futureengineers#hardware-design)
  - [Design Process](https://github.com/colegioalemanwro2026/wro-futureengineers#design-process)
@@ -45,7 +46,7 @@ In the present repository you will be able to find all the building and assembly
   - [Data Sending](https)
 - [Impact](https)
 - [Our Journey](https)
-
+---
 # *Team Members*
 - Isaac Camargo
 ![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/775a4106-e3e2-4c4f-919d-1946a50a8b13.jpg)
@@ -54,15 +55,13 @@ In the present repository you will be able to find all the building and assembly
 - Fernanda Leon
 ![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/e168a51f-258d-4fb5-9f0c-e48285d9942f.jpg)
 > Bebetita de su bebetito y solo de bebetito
-
+---
 # *Hardware Design*
 ## *Design Process*
 
 Our robot is built primarily from a combination of **LEGO SPIKE Prime Set** and **Nezha 48 in 1 Inventor's Kit** components, including the drive motor, wheels, steering servo, and chassis structure. Power is supplied by a **VEX IQ Education Kit (2nd Gen) battery**, with custom electronics enabling full autonomous functionality.
 
 However, the robot underwent multiple structural and electronic revisions before reaching its final competition-ready form.
-
----
 
 ### Version 1: All-Nezha Platform (Initial Concept)
 
