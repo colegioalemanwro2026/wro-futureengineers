@@ -64,11 +64,11 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 Nuestro robot está construido principalmente a partir de una combinación de componentes del **LEGO SPIKE Prime Set** y el **Nezha 48 in 1 Inventor's Kit**, incluyendo el motor de tracción, ruedas, servomotor de dirección y estructura del chasis. La alimentación proviene de una **batería VEX IQ Education Kit (2ª generación)**, con electrónica personalizada que habilita la funcionalidad autónoma completa.
 
 
-Sin embargo, el robot pasó por múltiples revisiones estructurales y electrónicas antes de alcanzar su forma final lista para competencia.
+Sin embargo, el robot pasó por múltiples revisiones estructurales y electrónicas antes de alcanzar su forma final y lista para competencia.
 
 
 ### Versión 1: 
-El plan original era construir el robot completamente con el **Kit de Inventor Nezha**, es decir, Chasis, ruedas, motor de tracción y servomotor de dirección de Nezha, utilizar un **Micro:bit** combinado con un **Expansion Board Nezha** como controlador principal, sensores Nezha para percepción y una cámara **Arduino Nicla Vision** para visión artificial (elegida sobre la cámara de Nezha).
+El plan original era construir el robot completamente con el **Kit de Inventor Nezha**, es decir, chasis, ruedas, motor de tracción y servomotor de dirección de Nezha, utilizar un **Micro:bit** combinado con un **Expansion Board Nezha** como controlador principal, sensores Nezha para percepción y una cámara **Arduino Nicla Vision** para visión artificial (elegida sobre la cámara de Nezha).
 
 
 ### Versión 2:
@@ -76,7 +76,7 @@ Enfrentamos dificultades significativas de cableado al integrar la cadena **Micr
 
 
 ### Versión 3:
-Para lograr una conexión estable entre el sistema de visión y el cerebro del robot, pivoteamos a una **interfaz cableada directa**, con el **Arduino Uno R4 WiFi** como controlador principal, el cual es compatible con la Nicla Vision,**Controlador L298N (HW-095)** (Puente H Dual Robusto) y demás electrónica de soporte estandarizada para Arduino. Esto eliminó la intermitencia inalámbrica y las caídas de conexión, asegurando captura de frames y tiempos de inferencia correctos. Cada modificación se realizó con un resultado único y compacto en mente, llegando así al diseño final que se presenta en la competencia.
+Para lograr una conexión estable entre el sistema de visión y el cerebro del robot, migramos a una interfaz cableada directa, con el **Arduino Uno R4 WiFi** como controlador principal, el cual es compatible con la Nicla Vision,**Controlador L298N (HW-095)** (Puente H Dual Robusto) y demás electrónica de soporte estandarizada para Arduino. Esto eliminó la intermitencia inalámbrica y las caídas de conexión, asegurando captura de frames y tiempos de inferencia correctos. Cada modificación se realizó con un resultado único y compacto en mente, llegando así al diseño final que se presenta en la competencia.
 
 ## Proceso de Ensamblaje
 
