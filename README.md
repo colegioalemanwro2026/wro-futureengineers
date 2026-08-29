@@ -251,3 +251,4 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 ---
 
 # Diseño de Software
+## Procesamiento de Imagen y Color
