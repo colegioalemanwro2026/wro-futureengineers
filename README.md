@@ -13,7 +13,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
  - [Proceso de Diseño](https://github.com/colegioalemanwro2026/wro-futureengineers#proceso-de-diseño)
  - [Proceso de Ensamblaje](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#proceso-de-ensamblaje)
  - [Elementos](https)
-   - [Kit SPIKE](https)
+   - [Piezas Estructurales](https)
    - [Electrónica](https)
 - [Diseño de Software](https)
  - [Procesamiento de Imagen y Color](https)
@@ -92,4 +92,80 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 
 ![Esquema de conexiones](schemes/wiringdiagram.png)
 
-## Elementos
+---
+# Elementos
+
+## Piezas Estructurales (Kits)
+
+> **Nota:** Todas las piezas estructurales provienen de los kits indicados; no se fabricaron piezas personalizadas mediante impresión 3D.
+
+### LEGO SPIKE Prime Set
+
+- **Vigas y ángulos (beams & angular beams)** — Estructura principal del chasis y soportes de montaje
+- **Ejes y pasadores (axles & pins)** — Uniones rígidas entre submódulos (axle pins Technic)
+- **Ruedas y neumáticos** — Par trasero motriz y par direccional delantero
+- **Engranajes y bujes** — Transmisión del motor de tracción a ruedas traseras
+- **Placas y frames** — Base de soporte para batería VEX IQ y nivel intermedio de electrónica
+
+### Nezha 48 in 1 Inventor's Kit
+- **Chasis modular y brackets** — Estructura base del Case 26 adaptada; soportes de motor y servomotor
+- **Ruedas y sistema de dirección** — Componentes del mecanismo Ackermann/cremallera original
+- **Motor DC Nezha** — *Versión inicial* (reemplazado en iteración final por motor compatible L298N)
+- **Servomotor Nezha** — *Versión inicial* (reemplazado en iteración final por servomotor compatible L298N)
+- **Expansion Board para Micro:bit** — *Versión inicial* (eliminada en migración a Arduino)
+
+### VEX IQ Education Kit (2ª Generación)
+- **Batería Li-Ion 7.4 V 2000 mAh** — Fuente de energía principal para motores y reguladores
+- **Sistema de gestión de carga** — Conector y circuito de carga integrado
+
+## Electrónica
+
+### Control Principal
+- **Arduino Uno R4 WiFi** — Microcontrolador principal (Renesas RA4M1 + ESP32-S3)
+  - Lógica 5 V nativa, USB-C, WiFi/BLE integrado
+  - Función: fusión de sensores, control de motores, telemetría, comunicación serie con Nicla Vision
+
+### Visión Artificial
+- **Arduino Nicla Vision** — Cámara inteligente (STM32H747 + sensor de imagen 2 MP)
+  - Interfaz: USB-C / UART serie directa con Arduino Uno R4 WiFi
+  - Función: detección de pista (conos rojos/verdes), clasificación en tiempo real, envío de datos de posición
+
+### Control de Motores
+- **Controlador L298N (HW-095)** — Puente H dual de alta corriente
+  - Canales: 2 (motor DC tracción + servomotor dirección)
+  - Voltaje de operación: 5–35 V | Corriente: 2 A continuos (pico 3 A)
+  - Función: accionamiento de motor de tracción y servomotor de dirección desde señales PWM del Arduino
+
+### Sensores
+- **HC-SR04 Ultrasonic Sensor** — Medición de distancia a obstáculos/paredes
+  - Rango: 2–400 cm | Resolución: 3 mm | Alimentación: 5 V
+  - Montaje: frontal en parachoques, ángulo fijo para detección temprana
+
+### Conversión y Distribución de Potencia
+- **Regulador buck (step-down) 7.4 V → 5 V / 3 A** — Alimentación de Arduino, Nicla, sensores y lógica L298N
+- **Regulador LDO 5 V → 3.3 V** — *Si aplica* para periféricos 3.3 V
+- **Bornes de distribución / protoboard compacta** — Conexión ordenada de líneas de potencia y tierra
+
+### Conectividad y Cableado
+- **Cable USB-C (Arduino ↔ Nicla Vision)** — Enlace de datos y alimentación; longitud ajustada con *strain relief*
+- **Cables jumper / silicona AWG22** — Señales PWM, I/O digital, comunicación serie
+- **Abrazaderas y canaletas impresas 3D (opcional)** — Gestión de cableado en módulo intermedio
+
+### Fijación Mecánica
+- **Ejes pasadores LEGO Technic / Nezha (axle pins)** — Uniones estructurales desmontables entre módulos
+- **Cinta 3M VHB 5952 (1.1 mm, acrílico)** — Fijación de PCBs, reguladores y módulos sin orificios roscados
+- **Arandelas de goma EPDM (2 mm)** — Amortiguación pasiva en soporte de cámara
+
+---
+
+## Resumen de Especificaciones Clave
+
+| Parámetro | Valor |
+|-----------|-------|
+| **Dimensiones (L×An×Al)** | ~250 × 180 × 160 mm (configuración competencia) |
+| **Peso total** | ~1.1 kg (con batería) |
+| **Voltaje nominal** | 7.4 V (batería) / 5 V (lógica) |
+| **Consumo pico** | ~2.5 A (arranque motor + visión activa) |
+| **Autonomía estimada** | 45–60 min (pruebas continuas) |
+| **Comunicación visión–control** | Serie UART @ 115200 baudios (cableado) |
+| **Frecuencia bucle control** | 50 Hz (PWM motores) / 30 Hz (inferencia visión) |
