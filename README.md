@@ -79,6 +79,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 ## Piezas Estructurales (Kits)
 
 > **Nota:** Todas las piezas estructurales provienen de los kits indicados; no se fabricaron piezas personalizadas mediante impresión 3D.
+
 ![](other/lego-spike-kit.webp)
 ### LEGO SPIKE Prime Set (45678)
 - **Referencia:** LEGO Education SPIKE™ Prime Set — Set 45678
