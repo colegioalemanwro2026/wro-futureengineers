@@ -1,0 +1,101 @@
+<svg width="100%" viewBox="0 0 680 890" role="img">
+<title>Diagrama tipo Fritzing del robot WRO</title>
+<desc>Arduino Uno R4 WiFi, tres sensores ultrasónicos, puente H L298N con motor DC, servo, cámara Nicla Vision, protoboard y batería VEX IQ con dos botones independientes, conectados por cables de colores</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<!-- SENSORES -->
+<g fill="#E1F5EE" stroke="#0F6E56"><rect x="85" y="30" width="140" height="60" rx="6" stroke-width="1"/>
+<circle cx="130" cy="58" r="12" fill="#ffffff" stroke="#0F6E56" stroke-width="1"/>
+<circle cx="180" cy="58" r="12" fill="#ffffff" stroke="#0F6E56" stroke-width="1"/>
+<text x="155" y="80" text-anchor="middle" font-size="12" fill="#085041">Izquierdo</text></g>
+<g fill="#E1F5EE" stroke="#0F6E56"><rect x="270" y="30" width="140" height="60" rx="6" stroke-width="1"/>
+<circle cx="315" cy="58" r="12" fill="#ffffff" stroke="#0F6E56" stroke-width="1"/>
+<circle cx="365" cy="58" r="12" fill="#ffffff" stroke="#0F6E56" stroke-width="1"/>
+<text x="340" y="80" text-anchor="middle" font-size="12" fill="#085041">Delantero</text></g>
+<g fill="#E1F5EE" stroke="#0F6E56"><rect x="455" y="30" width="140" height="60" rx="6" stroke-width="1"/>
+<circle cx="500" cy="58" r="12" fill="#ffffff" stroke="#0F6E56" stroke-width="1"/>
+<circle cx="550" cy="58" r="12" fill="#ffffff" stroke="#0F6E56" stroke-width="1"/>
+<text x="525" y="80" text-anchor="middle" font-size="12" fill="#085041">Derecho</text></g>
+
+<!-- Cables TRIG/ECHO sensores -> arduino -->
+<path d="M120 90 L200 190" fill="none" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M140 90 L215 190" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M305 90 L320 190" fill="none" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M325 90 L335 190" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M490 90 L440 190" fill="none" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M510 90 L455 190" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- ARDUINO -->
+<g fill="#EEEDFE" stroke="#534AB7"><rect x="210" y="190" width="260" height="110" rx="8" stroke-width="1"/>
+<rect x="220" y="196" width="240" height="8" rx="2" fill="#534AB7" opacity="0.5"/>
+<rect x="220" y="296" width="240" height="8" rx="2" fill="#534AB7" opacity="0.5"/>
+<text x="340" y="252" text-anchor="middle" font-size="14" font-weight="500" fill="#26215C">Arduino Uno R4 WiFi</text></g>
+
+<!-- Cables ENA/IN1/IN2 arduino -> L298N -->
+<path d="M240 300 L100 400" fill="none" stroke="#378ADD" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M260 300 L130 400" fill="none" stroke="#639922" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M280 300 L160 400" fill="none" stroke="#D4537E" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Cable TX arduino -> Nicla Vision -->
+<path d="M350 300 L310 400" fill="none" stroke="#27500A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Cable señal arduino -> servo -->
+<path d="M430 300 L440 400" fill="none" stroke="#EF9F27" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- L298N -->
+<g fill="#FAECE7" stroke="#993C1D"><rect x="60" y="400" width="180" height="80" rx="6" stroke-width="1"/>
+<rect x="72" y="412" width="40" height="40" rx="3" fill="#993C1D" opacity="0.5"/>
+<text x="180" y="429" text-anchor="middle" font-size="14" font-weight="500" fill="#4A1B0C">L298N</text>
+<text x="180" y="447" text-anchor="middle" font-size="12" fill="#712B13">ENA4 IN1·6 IN2·5</text></g>
+
+<!-- Nicla Vision -->
+<g fill="#FAEEDA" stroke="#854F0B"><rect x="270" y="400" width="90" height="100" rx="6" stroke-width="1"/>
+<circle cx="315" cy="425" r="10" fill="#ffffff" stroke="#854F0B" stroke-width="1"/>
+<text x="315" y="469" text-anchor="middle" font-size="12" fill="#412402">Nicla</text>
+<text x="315" y="484" text-anchor="middle" font-size="12" fill="#412402">Vision</text></g>
+
+<!-- Servo -->
+<g fill="#FBEAF0" stroke="#993556"><rect x="425" y="415" width="30" height="16" fill="#993556" opacity="0.5"/>
+<rect x="400" y="400" width="80" height="60" rx="6" stroke-width="1"/>
+<text x="440" y="435" text-anchor="middle" font-size="12" fill="#4B1528">Servo</text></g>
+
+<!-- Cables L298N -> Motor -->
+<path d="M100 480 L90 560" fill="none" stroke="#E24B4A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M120 480 L110 560" fill="none" stroke="#2C2C2A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Cable Nicla GND -> protoboard -->
+<path d="M310 500 L310 560" fill="none" stroke="#2C2C2A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- Motor -->
+<g fill="#FAECE7" stroke="#993C1D"><rect x="60" y="560" width="150" height="70" rx="14" stroke-width="1"/>
+<text x="135" y="594" text-anchor="middle" font-size="14" font-weight="500" fill="#4A1B0C">Motor DC</text>
+<text x="135" y="610" text-anchor="middle" font-size="12" fill="#712B13">GeekServo</text></g>
+
+<!-- Protoboard con dots -->
+<g fill="#F1EFE8" stroke="#5F5E5A"><rect x="270" y="560" width="170" height="150" rx="6" stroke-width="1"/>
+<text x="355" y="584" text-anchor="middle" font-size="12" fill="#444441">Protoboard</text>
+<circle cx="355" cy="640" r="9" fill="#ffffff" stroke="#5F5E5A" stroke-width="1.5"/>
+<text x="355" y="665" text-anchor="middle" font-size="12" fill="#444441">Botón + resistencia</text>
+<text x="355" y="680" text-anchor="middle" font-size="12" fill="#444441">Transistores</text>
+</g>
+
+<!-- Canal de alimentación (izquierda) -->
+<!-- Rojo A: Arduino -->
+<path d="M170 760 L15 760 L15 280 L210 280" fill="none" stroke="#E24B4A" stroke-width="1.5"/>
+<circle cx="15" cy="650" r="13" fill="#ffffff" stroke="#E24B4A" stroke-width="2"/>
+<text x="15" y="654" text-anchor="middle" font-size="12" fill="#791F1F">A</text>
+<!-- Rojo B: L298N -->
+<path d="M190 760 L35 760 L35 440 L60 440" fill="none" stroke="#E24B4A" stroke-width="1.5"/>
+<circle cx="35" cy="600" r="13" fill="#ffffff" stroke="#E24B4A" stroke-width="2"/>
+<text x="35" y="604" text-anchor="middle" font-size="12" fill="#791F1F">B</text>
+<!-- Negro: GND compartido -->
+<path d="M210 760 L50 760 L50 290 L210 290" fill="none" stroke="#2C2C2A" stroke-width="1.5"/>
+<path d="M50 460 L60 460" fill="none" stroke="#2C2C2A" stroke-width="1.5"/>
+
+<!-- Batería VEX IQ -->
+<g fill="#EAF3DE" stroke="#3B6D11"><rect x="150" y="760" width="320" height="70" rx="8" stroke-width="1"/>
+<text x="310" y="799" text-anchor="middle" font-size="14" font-weight="500" fill="#173404">Batería VEX IQ</text></g>
+
+<!-- Leyenda -->
+<text x="40" y="855" font-size="12" fill="#5F5E5A">A = botón Arduino (ON/OFF)  ·  B = botón puente H (motor ON/OFF)</text>
+<text x="40" y="872" font-size="12" fill="#5F5E5A">Naranja TRIG · Gris ECHO · Amarillo servo · Azul/Verde/Rosa ENA·IN1·IN2 · Rojo/Negro alimentación</text>
+</svg>
