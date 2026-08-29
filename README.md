@@ -80,7 +80,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 
 > **Nota:** Todas las piezas estructurales provienen de los kits indicados; no se fabricaron piezas personalizadas mediante impresión 3D.
 
-![](other/lego-spike-kit.webp)
+![](other/lego-spike-kit.png)
 ### LEGO SPIKE Prime Set (45678)
 - **Referencia:** LEGO Education SPIKE™ Prime Set — Set 45678
 - **Año de lanzamiento:** 2020 | **Piezas:** 528 (oficial) / 532 (inventario real)
@@ -103,7 +103,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
   - **Construcción:** +400 piezas de bloques compatibles LEGO/Fischer, ruedas, engranajes, ejes
   - **Programación:** MakeCode, JavaScript, Python, C++
 - **Especificaciones de la Expansion Board:** 60×82×28 mm, carcasa ABS ignífuga, protocolos IIC/UART/SPI
-- **Uso en el robot (versión inicial, luego reemplazada):** Chasis base (Case 26 Obstacle Avoidance Car),  Expansion Board para micro:bit, sensores Nezha. **En versión final:** Solo se conservan piezas estructurales (vigas, brackets, ruedas, engranajes) y electrónicas del kit (motor DC y servomotor); toda la electrónica Nezha fue reemplazada.
+- **Uso en el robot (versión inicial):** Chasis base (Case 26 Obstacle Avoidance Car),  Expansion Board para micro:bit, sensores Nezha. **En versión final:** Solo se conservan piezas estructurales (vigas, brackets, ruedas, engranajes) y electrónicas del kit (motor DC y servomotor); toda la electrónica Nezha fue reemplazada.
 
 ![](other/battery-vex.webp)
 ### VEX IQ Education Kit (2ª Generación) — Solo Batería
@@ -188,9 +188,40 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 ![](other/protoboard.jpg)
 
 **Protoboard / Protoboard compacta** (placa de pruebas de 400/830 puntos o PCB perforada)
-- **Uso:** Distribución de líneas de potencia (5 V, 7.4 V, GND), conexiones de señales PWM, I2C, UART, montaje de reguladores, capacitores de desacoplo (100 µF electrolítico + 0.1 µF cerámico por rail), bornes de tornillo para batería.
+- **Uso:** Distribución de líneas de potencia (5 V, 7.4 V, GND), conexiones de señales PWM, I2C, UART, capacitores de desacoplo (100 µF electrolítico + 0.1 µF cerámico por rail)
 
-### Interfaz de Usuario (Front Panel)
+![](other/protoboard.jpg)
+
+**Capacitor Electrolítico de Aluminio | 100 µF / 25 V (105 °C, Low ESR)**
+- **Capacitancia nominal**: 100 µF (±20 % estándar)
+- **Voltaje nominal**: 25 V (mínimo 16 V; 25 V recomendado para rails de 5 V y 7.4 V con margen 2×)
+- **Tipo**: Radial through-hole, diámetro 6.3–8 mm × altura 11–12 mm, paso 2.5–3.5 mm
+- **ESR**: 0.3–0.8 Ω a 100 kHz, 25 °C (series Low ESR: FC, FM, YXF, UPW)
+- **Corriente de rizado**: 200–400 mA rms a 100 kHz, 105 °C
+- **Temperatura de operación**: -40 °C a +105 °C
+- **Vida útil**: 1000–2000 horas a 105 °C con voltaje nominal
+- **Polaridad**: Polarizado — terminal largo = positivo (+), banda blanca = negativo (-)
+- **Montaje**: Through-hole (PTH)
+- **Función en el robot**: Reservorio de carga en cada rail de potencia (7.4 V, 5 V, 3.3 V). Se encuentra en la entrada de potencia de cada módulo (bornes VCC del L298N). Provee reserva durante picos de arranque de motor.
+
+![](other/protoboard.jpg)
+
+**Capacitor Cerámico Multicapa (MLCC) — 0.1 µF (100 nF) / 25 V / X7R / 0805**
+- **Capacitancia nominal**: 0.1 µF = 100 nF (código 104)
+- **Tolerancia**: ±10 % (K) o ±20 % (M)
+- **Voltaje nominal**: 25 V (mínimo 16 V; 25 V da margen para rails de 5 V y 7.4 V)
+- **Dieléctrico**: X7R (variación ±15 % de -55 °C a +125 °C)
+- **Caja / Footprint**: 0805 (2.0 × 1.25 mm) preferido para soldadura manual; 0603 (1.6 × 0.8 mm) si hay restricción de espacio
+- **ESR**: < 0.05 Ω a 1 MHz
+- **ESL**: ~0.5–1 nH (muy bajo)
+- **Frecuencia efectiva**: > 1 MHz hasta 100+ MHz — filtra ruido de conmutación (buck, PWM, MCU)
+- **Corriente de rizado**: > 500 mA (limitada por calentamiento dieléctrico)
+- **Temperatura de operación**: -55 °C a +125 °C
+- **Polaridad**: No polarizado
+- **Montaje**: SMD (0805/0603)
+- **Función en el robot**: High-frequency decoupling en cada rail (5 V, 3.3 V) junto a cada circuito integrado. Se coloca **uno por pin de alimentación** (VCC-GND) del IC: Arduino Uno R4 WiFi, Nicla Vision, lógica del L298N, HC-SR04.
+
+### Encendido/Apagado
 
 ![](other/pulsador.jpg)
 
@@ -198,27 +229,24 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 - **Tipo:** Momentáneo (SPST-NO), 50 mA @ 12 V DC
 - **Fuerza de accionamiento:** ~160–250 gf
 - **Vida útil:** 100,000–1,000,000 ciclos
-- **Función:** Reset de software / cambio de modo / inicio de rutina autónoma
+- **Función:** Reset de software / inicio de rutina autónoma
 
 ![](other/switch.webp)
 
 **Interruptor deslizante / toggle negro (Slide Switch / Toggle Switch, SPDT o DPDT, panel mount o PCB)**
 - **Rating típico:** 3–6 A @ 120 V AC / 28 V DC
-- **Función:** Encendido/apagado principal del robot. Corta línea o enciende batería VEX y Puente H
+- **Función:** Encendido/apagado principal del robot. Corta línea o realiza conexión entre batería VEX y Puente H
 
-### Transistor de Potencia (Cilíndrico TO-220)
-**Regulador lineal 7805 (L7805CV / LM7805CT / KA7805) — Paquete TO-220-3**
-- **Función:** Regulador lineal fijo +5 V / 1.5 A (si se usa como alternativa al buck para baja corriente) **O BIEN**
-- **Alternativa — MOSFET N-channel de potencia (ej. IRFZ44N, STP36NF06L, IRLZ44N) — Paquete TO-220:**
-  - **V_DSS:** 55–60 V | **I_D:** 30–50 A (con disipador) | **R_DS(on):** ~0.02–0.05 Ω @ V_GS=10 V
-  - **Función:** Switch de alta corriente para motor / carga inductiva, driven por PWM del Arduino (con gate driver o directamente si logic-level)
-- **Identificación:** Cuerpo negro cilíndrico/rectangular TO-220, 3 patas, marking láser "7805" o código de parte MOSFET
-- **Nota:** En el robot actual, la conversión 7.4 V → 5 V se realiza preferentemente por **buck switching** (mayor eficiencia, menos calor). El 7805/MOSFET TO-220 se documenta como componente disponible / usado en prototipos previos.
 
 ### Fijación Mecánica
+
+![](other/piezas-axl.jpg)
+
 - **Ejes pasadores LEGO Technic / Nezha (Axle pins, 3L/5L/7L, gris/negro):** Uniones estructurales rígidas, desmontables, alineadas por diseño entre los 3 módulos
-- **Cinta 3M VHB 5952 (1.1 mm, acrílico de alta cohesión):** Fijación de PCBs (Arduino, L298N, reguladores, protoboard), módulos sin orificios roscados. Resistente a vibración, ciclos térmicos (-40 a +90 °C), manipulación repetida. Área de contacto dimensionada >4× peso del módulo.
-- **Arandelas de goma EPDM (2 mm):** Amortiguación pasiva en soporte de cámara (3 puntos entre soporte LEGO y chasis)
+
+![](other/cinta.jpg)
+
+- **Cinta 3M VHB 5952 (1.1 mm, acrílico de alta cohesión):** Fijación de PCBs (Arduino, L298N, sensores, protoboard), módulos sin orificios roscados. Resistente a vibración, ciclos térmicos (-40 a +90 °C), manipulación repetida. Área de contacto dimensionada >4× peso del módulo.
 
 ---
 
