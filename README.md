@@ -80,6 +80,7 @@ Para lograr una conexión estable entre el sistema de visión y el cerebro del r
 
 ## Proceso de Ensamblaje
 
-![](wiring-diagram.svg)
+
+![Diagrama de Conexiones](wiring-diagram.svg)
 
 
