@@ -1,4 +1,4 @@
-<svg width="100%" viewBox="0 0 680 890" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 890" role="img">
 <title>Diagrama tipo Fritzing del robot WRO</title>
 <desc>Arduino Uno R4 WiFi, tres sensores ultrasónicos, puente H L298N con motor DC, servo, cámara Nicla Vision, protoboard y batería VEX IQ con dos botones independientes, conectados por cables de colores</desc>
 <defs>
