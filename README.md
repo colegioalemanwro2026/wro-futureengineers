@@ -190,7 +190,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 **Protoboard / Protoboard compacta** (placa de pruebas de 400/830 puntos o PCB perforada)
 - **Uso:** Distribución de líneas de potencia (5 V, 7.4 V, GND), conexiones de señales PWM, I2C, UART, capacitores de desacoplo (100 µF electrolítico + 0.1 µF cerámico por rail)
 
-![](other/protoboard.jpg)
+![](other/cap-electrolit.jpg)
 
 **Capacitor Electrolítico de Aluminio | 100 µF / 25 V (105 °C, Low ESR)**
 - **Capacitancia nominal**: 100 µF (±20 % estándar)
@@ -204,7 +204,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 - **Montaje**: Through-hole (PTH)
 - **Función en el robot**: Reservorio de carga en cada rail de potencia (7.4 V, 5 V, 3.3 V). Se encuentra en la entrada de potencia de cada módulo (bornes VCC del L298N). Provee reserva durante picos de arranque de motor.
 
-![](other/protoboard.jpg)
+![](other/cap-ceramico.jpg)
 
 **Capacitor Cerámico Multicapa (MLCC) — 0.1 µF (100 nF) / 25 V / X7R / 0805**
 - **Capacitancia nominal**: 0.1 µF = 100 nF (código 104)
