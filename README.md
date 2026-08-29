@@ -1,5 +1,5 @@
 # Documentación de Ingeniería - Team Eule Tech
-![](assets/Engineering(1))
+![](assets/Engineering(1).png)
 
 
 ## Introducción
