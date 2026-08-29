@@ -100,7 +100,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 > **Nota:** Todas las piezas estructurales provienen de los kits indicados; no se fabricaron piezas personalizadas mediante impresión 3D.
 
 ### LEGO SPIKE Prime Set
-
+![](other/lego-education-spike-prime.jpg)
 - **Vigas y ángulos (beams & angular beams)** — Estructura principal del chasis y soportes de montaje
 - **Ejes y pasadores (axles & pins)** — Uniones rígidas entre submódulos (axle pins Technic)
 - **Ruedas y neumáticos** — Par trasero motriz y par direccional delantero
