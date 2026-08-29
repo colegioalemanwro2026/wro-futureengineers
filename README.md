@@ -13,7 +13,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
  - [Proceso de Diseño](https://github.com/colegioalemanwro2026/wro-futureengineers#proceso-de-diseño)
  - [Proceso de Ensamblaje](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#proceso-de-ensamblaje)
  - [Elementos](https)
-   - [Piezas Estructurales](https)
+   - [Piezas Estructurales (Kits)](https)
    - [Electrónica](https)
 - [Diseño de Software](https)
  - [Procesamiento de Imagen y Color](https)
@@ -28,25 +28,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
   - [Envío de Datos](https)
 - [Impacto](https)
 - [Nuestro Recorrido](https))
-- [Diseño de Hardware](https)
-  - [Proceso de Diseño](https)
-  - [Proceso de Ensamblaje](https)
-  - [Elementos](https)
-    - [Kit SPIKE](https)
-    - [Electrónica](https)
-- [Diseño de Software](https)
-  - [Procesamiento de Imagen y Color](https)
-    - [Captura de Imagen](https)
-	- [Creación de Máscaras Roja y Verde](https)
-	- [Imagen Final](https)
-	- [Distancia a los Conos](https)
-  - [Movimiento del Robot](https)
-    - [Configuración Smart Robot Servo](https)
-    - [Orientación del Robot](https)
-    - [Determinación de Ruta](https)
-  - [Envío de Datos](https)
-- [Impacto](https)
-- [Nuestro Recorrido](https)
+
 ---
 # *Integrantes del Equipo*
 - Isaac Camargo
@@ -92,14 +74,13 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 
 ![Esquema de conexiones](schemes/wiringdiagram.png)
 
----
 # Elementos
 
 ## Piezas Estructurales (Kits)
 
 > **Nota:** Todas las piezas estructurales provienen de los kits indicados; no se fabricaron piezas personalizadas mediante impresión 3D.
 
-![](other/lego-spike-kit,webp)
+![](other/lego-spike-kit.webp)
 ### LEGO SPIKE Prime Set (45678)
 - **Referencia:** LEGO Education SPIKE™ Prime Set — Set 45678
 - **Año de lanzamiento:** 2020 | **Piezas:** 528 (oficial) / 532 (inventario real)
@@ -138,8 +119,6 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
   - **Compatibilidad:** Funciona con IQ Robot Brain 1ª y 2ª gen
 - **Uso en el robot:** Fuente de energía principal para motores (vía L298N) e interruptor (5 V para lógica)
 
----
-
 ## Electrónica
 
 ### Control Principal
@@ -174,6 +153,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 ### Control de Motores
 
 ![](other/puente-h.webp)
+
 **L298N Dual H-Bridge Motor Driver (HW-095 / MDU-1049)**
 - **Chip:** STMicroelectronics L298N (Monolithic IC, Multiwatt15 / PowerSO-20)
 - **Topología:** Puente H dual (2 canales independientes)
@@ -191,6 +171,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 ### Sensores
 
 ![](other/sensor-hc-sr04.webp)
+
 **HC-SR04 Ultrasonic Distance Sensor**
 - **Principio:** Sonar ultrasónico 40 kHz (time-of-flight)
 - **Rango teórico:** 2 cm – 400 cm (práctico: 2–80 cm óptimo)
@@ -205,12 +186,14 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 ### Conversión y Distribución de Potencia
 
 ![](other/protoboard.jpg)
+
 **Protoboard / Protoboard compacta** (placa de pruebas de 400/830 puntos o PCB perforada)
 - **Uso:** Distribución de líneas de potencia (5 V, 7.4 V, GND), conexiones de señales PWM, I2C, UART, montaje de reguladores, capacitores de desacoplo (100 µF electrolítico + 0.1 µF cerámico por rail), bornes de tornillo para batería.
 
 ### Interfaz de Usuario (Front Panel)
 
 ![](other/pulsador.jpg)
+
 **Pulsador táctil negro (Tactile Pushbutton, 6×6 mm o 12×12 mm, through-hole / SMD)**
 - **Tipo:** Momentáneo (SPST-NO), 50 mA @ 12 V DC
 - **Fuerza de accionamiento:** ~160–250 gf
@@ -218,6 +201,7 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 - **Función:** Reset de software / cambio de modo / inicio de rutina autónoma
 
 ![](other/switch.webp)
+
 **Interruptor deslizante / toggle negro (Slide Switch / Toggle Switch, SPDT o DPDT, panel mount o PCB)**
 - **Rating típico:** 3–6 A @ 120 V AC / 28 V DC
 - **Función:** Encendido/apagado principal del robot. Corta línea o enciende batería VEX y Puente H
@@ -238,3 +222,4 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 
 ---
 
+# Diseño de Software
