@@ -1,5 +1,5 @@
 # Documentación de Ingeniería - Team Eule Tech
-![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/Engineering%20(1).png)
+![](assets/Engineering(1))
 
 
 ## Introducción
