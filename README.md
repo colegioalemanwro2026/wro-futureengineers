@@ -11,7 +11,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 - [Integrantes del Team](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#integrantes-del-equipo)
 - [Diseño de Hardware](https://github.com/colegioalemanwro2026/wro-futureengineers#diseño-de-hardware)
  - [Proceso de Diseño](https://github.com/colegioalemanwro2026/wro-futureengineers#proceso-de-diseño)
- - [Proceso de Ensamblaje](https)
+ - [Proceso de Ensamblaje](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#proceso-de-ensamblaje)
  - [Elementos](https)
    - [Kit SPIKE](https)
    - [Electrónica](https)
@@ -80,8 +80,6 @@ Para lograr una conexión estable entre el sistema de visión y el cerebro del r
 
 ## Proceso de Ensamblaje
 
-# Proceso de Ensamblaje
-
 El ensamblaje del robot se llevó a cabo de manera modular y progresiva, construyendo desde la base (chasis y tren de tracción) hacia la superficie (electrónica de control y visión), siguiendo una estrategia "bottom-up" que permitió validar cada etapa antes de integrar la siguiente.
 
 El primer paso consistió en la construcción del módulo inferior. Partimos de referencias de vehículos autónomos de evasión de obstáculos, tomando como base principal el **Case 26 — The Obstacle Avoidance Car 2** del Kit Nezha, el cual adaptamos y modificamos para cumplir con los requisitos de la competencia. Este módulo integra el chasis principal construido con piezas de LEGO SPIKE Prime y Nezha, el motor de tracción trasera, el servomotor de dirección, las ruedas con su sistema de transmisión, y la batería VEX IQ Education Kit de segunda generación montada sobre un soporte de LEGO.
@@ -94,4 +92,4 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 
 ![Esquema de conexiones](schemes/wiringdiagram.png)
 
-
+## Elementos
