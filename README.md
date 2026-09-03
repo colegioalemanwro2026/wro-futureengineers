@@ -45,30 +45,33 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 
 Nuestro robot está construido en el chasis principalmente a partir de una combinación de piezas del **LEGO SPIKE Prime Set** y el **Nezha 48 in 1 Inventor's Kit**, incluyendo el motor de tracción, ruedas, servomotor de dirección y estructura. La alimentación proviene de una **batería VEX IQ Education Kit (2ª generación)**, con electrónica personalizada que habilita la funcionalidad autónoma completa.
 
-Nuestro robot pasó por múltiples revisiones estructurales y electrónicas antes de alcanzar su forma final y lista para competencia, las cuales están divididas en 3 versiones:
+Nuestro robot pasó por múltiples revisiones estructurales y electrónicas antes de alcanzar su forma final y lista para competencia, las cuales están divididas en 4 versiones:
 
-### Versión 1: 
-El plan original se basó construir el robot completamente con el **Kit de Inventor Nezha**, es decir, chasis, ruedas, motor de tracción y servomotor de dirección de Nezha, utilizar un **Micro:bit** combinado con un **Expansion Board Nezha** como controlador principal, sensores Nezha para percepción y una cámara **Arduino Nicla Vision** para visión artificial (elegida sobre la cámara de Nezha).
-
+### Versión 1:
+El plan original se basó en construir el robot completamente con el Kit de Inventor Nezha (chasis, ruedas, motor de tracción y servomotor de dirección) gracias a la facilidad de construcción de sus piezas. Usamos una Micro:bit junto con una Placa de Expansión Nezha como controlador principal, sensores Nezha para detectar el entorno y una cámara Arduino Nicla Vision para visión artificial. Elegimos esta cámara sobre la de Nezha debido a su reconocimiento de objetos preciso y eficiente.
 
 ### Versión 2:
-Enfrentamos dificultades significativas de cableado al integrar la cadena **Micro:bit → Expansion Board → Nicla Vision**. Para resolverlo, reemplazamos la mayoría de la electrónica Nezha por: un **Microcontrolador ESP32**, un **Controlador TB6612FNG (HW-166)** (Puente H Dual) y un **Sensor ultrasónico HC-SR04**. Esto simplificó la interfaz con la Nicla Vision, pero introdujo inestabilidad en el Bluetooth entre el ESP32 y la Nicla.
-
+Enfrentamos dificultades significativas de cableado al intentar conectar la Micro:bit → Placa de Expansión Nezha → Nicla Vision debido a la diferencia de puertos RJ45 y Micro USB respectivamente. Para resolverlo, reemplazamos la mayoría de la electrónica Nezha por un Microcontrolador ESP32, un Controlador TB6612FNG (HW-166) (Puente H Dual) y Sensores ultrasónicos HC-SR04. Esto simplificó la conexión con la Nicla Vision, pero nos dimos cuenta de que el controlador principal necesitaba una entrada de 5V constantes y mayor rango de voltaje, con los cuales el ESP32 y el Puente H Dual no contaban.
 
 ### Versión 3:
-Para lograr una conexión estable entre el sistema de visión y el cerebro del robot, migramos a una interfaz cableada directa, con el **Arduino Uno R4 WiFi** como controlador principal, el cual es compatible con la Nicla Vision,**Controlador L298N (HW-095)** (Puente H Dual Robusto) y demás electrónica de soporte estandarizada para Arduino. Esto eliminó la intermitencia inalámbrica y las caídas de conexión, asegurando captura de frames y tiempos de inferencia correctos. Cada modificación se realizó con un resultado único y compacto en mente, llegando así al diseño final que se presenta en la competencia.
+Para lograr una conexión cableada estable entre el sistema de visión y el cerebro del robot, migramos en un principio al Arduino Uno. Aunque cumplía con los 5V necesarios, elegimos finalmente el Arduino Uno R4 WiFi como el controlador principal fijo, el cual tiene mayor rango de voltaje, es totalmente compatible con la Nicla Vision y va de la mano en potencia con un Controlador L298N (HW-095) (Puente H Dual Robusto) y demás electrónica de soporte estandarizada para Arduino. Esto eliminó cualquier complicación por falta de voltaje, asegurando la captura correcta de imágenes en la cámara y mayor seguridad en el circuito.
+
+### Versión 4:
+En último lugar, con la finalidad de perfeccionar la comunicación y evitar problemas como el reinicio de los componentes al no distribuirse correctamente la energía cuando los motores exigían mucha fuerza, se incluyeron en el circuito unas Baterías de Litio 18650 recargables con su respectivo Módulo de Carga de Baterías de Litio (TP4056 / HW-373) y un Módulo Elevador de Voltaje StepUp HW-045 (MT3608). Esto estabilizó la comunicación entre componentes y eliminó cualquier problema de bajas de voltaje a futuro. Cada modificación se realizó con un resultado único y compacto en mente, llegando así al diseño final que se presenta en la competencia.
 
 ## Proceso de Ensamblaje
 
 El ensamblaje del robot se llevó a cabo de manera modular y progresiva, construyendo desde la base (chasis y tren de tracción) hacia la superficie (electrónica de control y visión) siguiendo una metodología de análisis y gestión "bottom-up", la cual al consistir en empezar partiendo del proceso o sistema más pequeño hasta el más trabajado, permitió validar cada etapa antes de integrar la siguiente.
 
-El primer paso consistió en la construcción del módulo inferior. Partimos de referencias de vehículos autónomos de evasión de obstáculos, tomando como base principal el [**Case 26 — The Obstacle Avoidance Car 2**](https://wiki.elecfreaks.com/en/microbit/building-blocks/nezha-inventors-kit-v2/the-smart-obstacle-avoidance-car-2/) del Kit Nezha, el cual adaptamos y modificamos para cumplir con los requisitos de la competencia. Este módulo integra el chasis principal construido con piezas de LEGO SPIKE Prime y Nezha, el motor de tracción trasera, el servomotor de dirección, las ruedas con su sistema de transmisión, y la batería VEX IQ Education Kit de segunda generación montada sobre un soporte de LEGO, elegida debido a la capaci 7.4 V a 2000 mA pomejor opcion motor dc servo y 3 sensores d
+El primer paso consistió en la construcción del módulo inferior. Partimos de referencias de vehículos autónomos de evasión de obstáculos, tomando como base principal el [**Case 26 — The Obstacle Avoidance Car 2**](https://wiki.elecfreaks.com/en/microbit/building-blocks/nezha-inventors-kit-v2/the-smart-obstacle-avoidance-car-2/) del Kit Nezha, el cual adaptamos y modificamos para cumplir con los requisitos de la competencia. Este módulo integra el chasis principal construido con piezas de LEGO SPIKE Prime y Nezha, el motor de tracción trasera, el servomotor de dirección, las ruedas con su sistema de transmisión, los sensores y la batería VEX IQ Education Kit de segunda generación montada sobre un soporte de LEGO, elegida debido a la capacidad de Voltaje tan fuerte y beneficiaria que posee, que va de 7.4 V a 2000 mA.
 
-Una vez definida la arquitectura electrónica final (tras la migración desde Micro:bit/Nezha hacia Arduino Uno R4 WiFi y Controlador L298N) se diseñó un nivel superior dedicado para alojar toda la electrónica sobre el soporte de batería ya existente. En este módulo intermedio se aplicaron tres criterios fundamentales: una gestión de cableado ordenada, separación física entre fuentes de potencia (motores) y señal (sensores, comunicación) para minimizar interferencias electromagnéticas; accesibilidad total a conectores USB-C de Arduino y Nicla para la configuración de códigos en la práctica.
+Una vez definida la arquitectura electrónica final (tras la migración desde Micro:bit/Nezha hacia Arduino Uno R4 WiFi y Controlador L298N) se diseñó un nivel superior dedicado para alojar toda la electrónica sobre el soporte de batería ya existente. En este módulo intermedio se aplicaron tres criterios fundamentales: una gestión de cableado ordenada, separación física entre fuentes de potencia (motores) y señal (sensores, comunicación) para minimizar interferencias electromagnéticas; accesibilidad total a conectores USB-C de Arduino y MicroUSB Nicla para la configuración de códigos en la práctica.
 
-En tercer lugar, se fabricó un soporte dedicado para la Nicla Vision hecho de piezas LEGO del mismo Kit, que mantiene la cámara en el ángulo óptico preciso de 22° respecto a la horizontal (validado mediante pruebas de campo); garantiza estabilidad dinámica entre el soporte y el chasis; y protege el conector USB-C, evitando tensiones en el puerto durante la manipulación y el encendido del robot.
+En tercer lugar, se fabricó un soporte dedicado para la Nicla Vision hecho de piezas LEGO del mismo Kit, que mantiene la cámara en el ángulo óptico preciso de 10° respecto a la horizontal (validado mediante pruebas de campo); garantiza estabilidad dinámica entre el soporte y el chasis; y protege las conexiones hacia el Arduino, evitando tensiones en el puerto durante la manipulación y el encendido del robot.
 
-La unificación de los tres módulos se logró mediante ejes pasadores (Axle pins) LEGO Technic/Nezha junto con cinta 3M VHB 5952 (1,1 mm) para la fijación de PCBs, reguladores y módulos sin orificios de tornillo, resistente a vibración, ciclos térmicos y manipulación repetida. Este enfoque modular permitió iterar independientemente en cada nivel, lo que permitió realizar los cambios antes mencionados, y el cual puede representarse en el siguiente esquema:
+Y luego, al añadir las baterías de Litio para mayor estabilidad de comunicación, se pegaron a una estructura hecha de LEGO en la cara trasera del robot, en paralelo, con el fin de generar mayor potencia a la Cámara Nicla y al Arduino, y no ocupar espacio que es necesario para las conexiones. Así como el módulo elevador de voltaje,
+
+La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LEGO Technic/Nezha junto con cinta 3M VHB 5952 (1,1 mm) para la fijación de PCBs, reguladores y módulos sin orificios de tornillo, resistente a vibración, ciclos térmicos y manipulación repetida. Este enfoque modular permitió iterar independientemente en cada nivel, lo que permitió realizar los cambios antes mencionados, y el cual puede representarse en el siguiente esquema:
 
 ![Esquema de conexiones](schemes/wiringdiagram.png)
 
@@ -116,6 +119,20 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
   - **Dimensiones/peso:** ~0.23 kg
   - **Compatibilidad:** Funciona con IQ Robot Brain 1ª y 2ª gen
 - **Uso en el robot:** Fuente de energía principal para motores (vía L298N) e interruptor (5 V para lógica)
+
+![](other/)
+### Batería de Iones de Litio (Li-Ion) 18650 — Flycat 3.7 V (2 Unidades en el Sistema)
+- **Formato / Tamaño**: 18650 (Cilíndrica, $18\text{ mm}$ de diámetro $\times 65\text{ mm}$ de longitud)
+- **Química**: Iones de Litio (Li-Ion)
+- **Voltaje nominal**: $3.7\text{ V}$ por celda ($7.4\text{ V}$ nominal total en configuración en serie / $3.7\text{ V}$ en paralelo)
+- **Voltaje de carga máxima**: $4.2\text{ V}$ por celda
+- **Voltaje de corte por descarga**: $2.75\text{ V}$ - $3.0\text{ V}$ por celda (mínimo seguro)
+- **Capacidad nominal declarada**: Marca Flycat $7800\text{ mAh}$ (Capacidad comercial/etiqueta)
+- **Corriente máxima de descarga**: $1\text{C}$ – $2\text{C}$ en descarga continua habitual para celdas estándar de robótica
+- **Vida útil**: ~500 ciclos de carga/descarga completa
+- **Polaridad**: Terminal positivo plano/convexo (+) y terminal negativo plano (-)
+- **Peso aprox.**: ~$45\text{ g}$ por celda
+- **Función en el robot**: Fuente principal de almacenamiento de energía recargable del robot. Proveen la corriente requerida por el driver de motores L298N (potencia) y el módulo elevador MT3608 (lógica) para garantizar total autonomía.
 
 ## Electrónica
 
@@ -218,6 +235,20 @@ La unificación de los tres módulos se logró mediante ejes pasadores (Axle pin
 - **Polaridad**: No polarizado
 - **Montaje**: SMD (0805/0603)
 - **Función en el robot**: High-frequency decoupling en cada rail (5 V, 3.3 V) junto a cada circuito integrado. Se coloca **uno por pin de alimentación** (VCC-GND) del IC: Arduino Uno R4 WiFi, Nicla Vision, lógica del L298N, HC-SR04.
+
+![](other/)
+**Módulo Elevador de Voltaje Step-Up — MT3608 (HW-045)**
+- **Módulo / IC**: MT3608 (HW-045)
+- **Voltaje de entrada**: $2.0\text{ V}$ a $24\text{ V}$ (para 2 celdas Li-Ion en serie/paralelo o individuales)
+- **Voltaje de salida**: $2.0\text{ V}$ a $28\text{ V}$ (regulable mediante potenciómetro de precisión 3296)
+- **Corriente máxima de salida**: $2\text{ A}$ (máxima pico; corriente continua recomendada $\le 1.2\text{ A}$ - $1.5\text{ A}$)
+- **Frecuencia de conmutación**: $1.2\text{ MHz}$ (permite alta eficiencia y filtrado compacto)
+- **Eficiencia máxima**: Hasta $93\text{ \%}$
+- **Protección integrada**: Protección contra sobrecalentamiento térmico y límite de corriente ciclo a ciclo
+- **Ajuste**: Potenciómetro de multivueltas (girar en sentido antihorario para elevar voltaje)
+- **Dimensiones / Tamaño**: $36\text{ mm} \times 17\text{ mm} \times 14\text{ mm}$
+- **Montaje / Conexión**: Pines de soldadura mediante terminales VIN+ / VIN- (Entrada) y VOUT+ / VOUT- (Salida)
+- **Función en el robot**: Eleva y regula el voltaje entregado por las baterías de litio a un nivel estable ($5\text{ V}$ - $9\text{ V}$) para alimentar la línea de lógica y evitar reinicios del Arduino Uno R4 WiFi y la Nicla Vision cuando los motores consumen picos de corriente.
 
 ### Encendido/Apagado
 
