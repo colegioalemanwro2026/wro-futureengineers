@@ -43,21 +43,29 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 # *Diseño de Hardware*
 ## *Proceso de Diseño*
 
-Nuestro robot está construido en el chasis principalmente a partir de una combinación de piezas del **LEGO SPIKE Prime Set** y el **Nezha 48 in 1 Inventor's Kit**, incluyendo el motor de tracción, ruedas, servomotor de dirección y estructura. La alimentación proviene de una **batería VEX IQ Education Kit (2ª generación)**, con electrónica personalizada que habilita la funcionalidad autónoma completa.
+Nuestro robot está construido en el chasis principalmente a partir de una combinación de piezas del **LEGO SPIKE Prime Set** y el **Nezha 48 in 1 Inventor's Kit**, incluyendo el motor de tracción, ruedas, servomotor de dirección y estructura. La alimentación proviene de una **batería VEX IQ Education Kit (2ª generación)** y unas **baterías de Iones de Litio (Li-Ion) 18650** con electrónica personalizada que habilita la funcionalidad autónoma completa.
 
 Nuestro robot pasó por múltiples revisiones estructurales y electrónicas antes de alcanzar su forma final y lista para competencia, las cuales están divididas en 4 versiones:
 
 ### Versión 1:
 El plan original se basó en construir el robot completamente con el Kit de Inventor Nezha (chasis, ruedas, motor de tracción y servomotor de dirección) gracias a la facilidad de construcción de sus piezas. Usamos una Micro:bit junto con una Placa de Expansión Nezha como controlador principal, sensores Nezha para detectar el entorno y una cámara Arduino Nicla Vision para visión artificial. Elegimos esta cámara sobre la de Nezha debido a su reconocimiento de objetos preciso y eficiente.
 
+![](other/arduino-uno-r4.jpg)
+
 ### Versión 2:
 Enfrentamos dificultades significativas de cableado al intentar conectar la Micro:bit → Placa de Expansión Nezha → Nicla Vision debido a la diferencia de puertos RJ45 y Micro USB respectivamente. Para resolverlo, reemplazamos la mayoría de la electrónica Nezha por un Microcontrolador ESP32, un Controlador TB6612FNG (HW-166) (Puente H Dual) y Sensores ultrasónicos HC-SR04. Esto simplificó la conexión con la Nicla Vision, pero nos dimos cuenta de que el controlador principal necesitaba una entrada de 5V constantes y mayor rango de voltaje, con los cuales el ESP32 y el Puente H Dual no contaban.
+
+![](other/arduino-uno-r4.jpg)
 
 ### Versión 3:
 Para lograr una conexión cableada estable entre el sistema de visión y el cerebro del robot, migramos en un principio al Arduino Uno. Aunque cumplía con los 5V necesarios, elegimos finalmente el Arduino Uno R4 WiFi como el controlador principal fijo, el cual tiene mayor rango de voltaje, es totalmente compatible con la Nicla Vision y va de la mano en potencia con un Controlador L298N (HW-095) (Puente H Dual Robusto) y demás electrónica de soporte estandarizada para Arduino. Esto eliminó cualquier complicación por falta de voltaje, asegurando la captura correcta de imágenes en la cámara y mayor seguridad en el circuito.
 
+![](other/arduino-uno-r4.jpg)
+
 ### Versión 4:
 En último lugar, con la finalidad de perfeccionar la comunicación y evitar problemas como el reinicio de los componentes al no distribuirse correctamente la energía cuando los motores exigían mucha fuerza, se incluyeron en el circuito unas Baterías de Litio 18650 recargables con su respectivo Módulo de Carga de Baterías de Litio (TP4056 / HW-373) y un Módulo Elevador de Voltaje StepUp HW-045 (MT3608). Esto estabilizó la comunicación entre componentes y eliminó cualquier problema de bajas de voltaje a futuro. Cada modificación se realizó con un resultado único y compacto en mente, llegando así al diseño final que se presenta en la competencia.
+
+![](other/arduino-uno-r4.jpg)
 
 ## Proceso de Ensamblaje
 
@@ -121,7 +129,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Uso en el robot:** Fuente de energía principal para motores (vía L298N) e interruptor (5 V para lógica)
 
 ![](other/baterias-lit.jpg)
-### Batería de Iones de Litio (Li-Ion) 18650 — Flycat 3.7 V (2 Unidades en el Sistema)
+### Baterías de Iones de Litio (Li-Ion) 18650 — Flycat 3.7 V (2 Unidades en el Sistema)
 - **Formato / Tamaño**: 18650 (Cilíndrica, $18\text{ mm}$ de diámetro $\times 65\text{ mm}$ de longitud)
 - **Química**: Iones de Litio (Li-Ion)
 - **Voltaje nominal**: $3.7\text{ V}$ por celda ($7.4\text{ V}$ nominal total en configuración en serie / $3.7\text{ V}$ en paralelo)
@@ -276,8 +284,13 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 ![](other/cinta.jpg)
 
 - **Cinta 3M VHB 5952 (1.1 mm, acrílico de alta cohesión):** Fijación de PCBs (Arduino, L298N, sensores, protoboard), módulos sin orificios roscados. Resistente a vibración, ciclos térmicos (-40 a +90 °C), manipulación repetida. Área de contacto dimensionada >4× peso del módulo.
-
 ---
-
 # Diseño de Software
 ## Procesamiento de Imagen y Color
+
+---
+# Impacto
+
+---
+# Nuestro Recorrido
+
