@@ -120,7 +120,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
   - **Compatibilidad:** Funciona con IQ Robot Brain 1ª y 2ª gen
 - **Uso en el robot:** Fuente de energía principal para motores (vía L298N) e interruptor (5 V para lógica)
 
-![](other/baterias-lit)
+![](other/baterias-lit.jpg)
 ### Batería de Iones de Litio (Li-Ion) 18650 — Flycat 3.7 V (2 Unidades en el Sistema)
 - **Formato / Tamaño**: 18650 (Cilíndrica, $18\text{ mm}$ de diámetro $\times 65\text{ mm}$ de longitud)
 - **Química**: Iones de Litio (Li-Ion)
@@ -236,7 +236,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Montaje**: SMD (0805/0603)
 - **Función en el robot**: High-frequency decoupling en cada rail (5 V, 3.3 V) junto a cada circuito integrado. Se coloca **uno por pin de alimentación** (VCC-GND) del IC: Arduino Uno R4 WiFi, Nicla Vision, lógica del L298N, HC-SR04.
 
-![](other/elevador)
+![](other/elevador.jpg)
 **Módulo Elevador de Voltaje Step-Up — MT3608 (HW-045)**
 - **Módulo / IC**: MT3608 (HW-045)
 - **Voltaje de entrada**: $2.0\text{ V}$ a $24\text{ V}$ (para 2 celdas Li-Ion en serie/paralelo o individuales)
