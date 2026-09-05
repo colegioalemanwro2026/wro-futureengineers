@@ -36,12 +36,12 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 # *Integrantes del Equipo*
 
 - Isaac Camargo (Programador)
-![](t-photos/personal/isaac-pic.jpg)
+![](t-photos/isaac-pic.jpg)
 > Guten Tag! Soy Isaac Camargo, tengo 16 años y junto a mi compañera Fer estoy muy feliz de poder participar en esta competencia. Todo nuestro trayevto ha sido pura diversión y aprendizaje y estoy seguro de que gracias a esto, daremos lo mejor de nosotros en cada encuentro de la WRO. Bis bald!
 
 
 - Fernanda León (Mecánica)
-![](t-photos/personal/fer-pic.jpg)
+![](t-photos/fer-pic.jpg)
 > Hallo! Soy Fernanda León, tengo 17 años y me emociona tener la oportunidad de participar junto a Isaac en esta competencia. Nuestro esfuerzo durante tanto tiempo finalmente valdrá la pena y daremos lo mejor de nosotros en todo momento. Tschüssi!
 
 ---
