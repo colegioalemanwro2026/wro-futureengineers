@@ -82,7 +82,7 @@ En tercer lugar, se fabricó un soporte dedicado para la Nicla Vision hecho de p
 
 Y luego, al añadir las baterías de Litio para mayor estabilidad de comunicación, se pegaron a una estructura hecha de LEGO en la cara trasera del robot, en paralelo, con el fin de generar mayor potencia a la Cámara Nicla y al Arduino, y no ocupar espacio que es necesario para las conexiones. Así como el módulo elevador de voltaje,
 
-La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LEGO Technic/Nezha junto con cinta 3M VHB 5952 (1,1 mm) para la fijación de PCBs, reguladores y módulos sin orificios de tornillo, resistente a vibración, ciclos térmicos y manipulación repetida. Este enfoque modular permitió iterar independientemente en cada nivel, lo que permitió realizar los cambios antes mencionados, y el cual puede representarse en el siguiente esquema:
+La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LEGO Technic/Nezha junto con cinta 3M VHB 5952 (1,1 mm) para la fijación de PCBs, reguladores y módulos sin orificios de tornillo, resistente a vibración, ciclos térmicos y manipulación repetida. Este enfoque modular permitió modificar independientemente en cada nivel, lo que permitió realizar los cambios antes mencionados, y el cual puede representarse en el siguiente esquema:
 
 ![Esquema de conexiones](schemes/wiring-diagramm.jpg)
 
@@ -103,7 +103,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
   - **Conectividad:** Bluetooth LE, USB-C (en Hub), cables inteligentes
 - **Elementos estructurales:** +500 piezas LEGO Technic™ (vigas, ángulos, ejes, pasadores, engranajes, ruedas, neumáticos, plates, frames) en paleta de colores fresca
 - **Almacenamiento:** Caja resistente con bandejas de clasificación
-- **Uso en el robot:** Chasis principal, estructura de soporte de batería, ejes pasadores para unión de módulos
+- **Uso en el robot: Chasis principal, estructura de soporte de batería, ejes pasadores para unión de módulos**
 
 ![](other/nezha-kit.webp)
 ### Nezha 48 in 1 Inventor's Kit (ELECFREAKS micro:bit)
@@ -115,7 +115,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
   - **Construcción:** +400 piezas de bloques compatibles LEGO/Fischer, ruedas, engranajes, ejes
   - **Programación:** MakeCode, JavaScript, Python, C++
 - **Especificaciones de la Expansion Board:** 60×82×28 mm, carcasa ABS, protocolos IIC/UART/SPI
-- **Uso en el robot (versión inicial):** Chasis base (Case 26 Obstacle Avoidance Car),  Expansion Board para micro:bit, sensores Nezha. **En versión final:** Solo se conservan piezas estructurales (vigas, brackets, ruedas, engranajes) y electrónicas del kit (motor DC y servomotor); toda la electrónica Nezha fue reemplazada.
+- **Uso en el robot (versión inicial): Chasis base (Case 26 Obstacle Avoidance Car),  Expansion Board para micro:bit, sensores Nezha. **En versión final:** Solo se conservan piezas estructurales (vigas, brackets, ruedas, engranajes) y electrónicas del kit (motor DC y servomotor); toda la electrónica Nezha fue reemplazada.**
 
 ![](other/battery-vex.webp)
 ### VEX IQ Education Kit (2ª Generación) — Solo Batería
@@ -129,7 +129,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
   - **Indicador:** 4 LEDs verdes (barra de carga) + botón de estado
   - **Dimensiones/peso:** ~0.23 kg
   - **Compatibilidad:** Funciona con IQ Robot Brain 1ª y 2ª gen
-- **Uso en el robot:** Fuente de energía principal para motores (vía L298N) e interruptor (5 V para lógica)
+- **Uso en el robot: Fuente de energía principal para motores (vía L298N) e interruptor (5 V para lógica)**
 
 ![](other/baterias-lit.jpg)
 ### Baterías de Iones de Litio (Li-Ion) 18650 — Flycat 3.7 V (2 Unidades en el Sistema)
@@ -143,7 +143,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Vida útil**: 500 ciclos de carga/descarga completa
 - **Polaridad**: Terminal positivo plano/convexo (+) y terminal negativo plano (-)
 - **Peso aprox.**: 45 g por celda
-- **Función en el robot**: Fuente principal de almacenamiento de energía recargable del robot. Proveen la corriente requerida por el driver de motores L298N (potencia) y el módulo elevador MT3608 (lógica) para garantizar total autonomía.
+- **Función en el robot: Fuente principal de almacenamiento de energía recargable del robot. Proveen la corriente requerida por el driver de motores L298N (potencia) y el módulo elevador MT3608 (lógica) para garantizar total autonomía.**
 
 ## Electrónica
 
@@ -159,7 +159,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **USB:** USB-C (hasta 21 V PD input, HID support)
 - **I/O:** 14 pines digitales, 6 entradas analógicas (14-bit ADC), 6 PWM, 1 DAC (12-bit), CAN Bus, I2C (Qwiic), SPI, UART
 - **Extras:** Matriz LED 12×8, RTC, VRTC pin (batería backup), pin OFF
-- **Función en el robot:** Controlador principal — fusión de sensores, control PWM de motores (L298N), comunicación serie UART con Nicla Vision @ 115200 baudios, bucle de control 50 Hz
+- **Función en el robot: Controlador principal — fusión de sensores, control PWM de motores (L298N), comunicación serie UART con Nicla Vision @ 115200 baudios, bucle de control 50 Hz**
 
 ### Visión Artificial
 
@@ -174,7 +174,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Alimentación:** 3.7 V Li-Po (cargador MAX17262 integrado) o MicroUSB 5 V
 - **Dimensiones:** 22.86 × 22.86 mm | **Temp. operación:** -20 °C a +70 °C
 - **Interfaces:** I2C (conector ESLOV), SPI, UART, GPIO, ADC, JTAG, castellated pins
-- **Función en el robot:** Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado MicroUSB protegido, ángulo fijo 10°.
+- **Función en el robot: Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado MicroUSB protegido, ángulo fijo 10°.**
 
 ### Control de Motores
 
@@ -192,7 +192,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Regulador 5 V integrado:** 78M05 (activo con jumper si VCC ≤ 12 V; provee 5 V @ 1 A para lógica/MCU)
 - **Pines de control:** IN1–IN4 (dirección), ENA/ENB (PWM velocidad)
 - **Dimensiones módulo:** 43×43×27 mm | **Peso:** ~25–33 g
-- **Función en el robot:** Acciona motor DC de tracción (canal A) y servomotor de dirección (canal B) desde PWM del Arduino. Alimentado desde batería VEX 7.4 V.
+- **Función en el robot: Acciona motor DC de tracción (canal A) y servomotor de dirección (canal B) desde PWM del Arduino. Alimentado desde batería VEX 7.4 V.**
 
 ### Sensores
 
@@ -207,14 +207,14 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Corriente:** <15 mA activa, <2 mA reposo
 - **Pines:** VCC, Trig (input, pulso 10 µs), Echo (output, pulso ancho = tiempo vuelo), GND
 - **Dimensiones:** 45×20×15 mm | **Peso:** 9 g
-- **Función en el robot:** Detección frontal de paredes/obstáculos, montado en parachoques con ángulo fijo.
+- **Función en el robot: Detección frontal de paredes/obstáculos, montado en parachoques con ángulo fijo.**
 
 ### Conversión y Distribución de Potencia
 
 ![](other/protoboard.jpg)
 
 **Protoboard / Protoboard compacta** (placa de pruebas de 400/830 puntos o PCB perforada)
-- **Uso:** Distribución de líneas de potencia (5 V, 7.4 V, GND), conexiones de señales PWM, I2C, UART, capacitores de desacoplo (100 µF electrolítico + 0.1 µF cerámico por rail)
+- **Uso en el robot: Distribución de líneas de potencia (5 V, 7.4 V, GND), conexiones de señales PWM, I2C, UART, capacitores de desacoplo (100 µF electrolítico + 0.1 µF cerámico por rail)**
 
 ![](other/cap-electrolit.jpg)
 
@@ -228,7 +228,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Vida útil**: 1000–2000 horas a 105 °C con voltaje nominal
 - **Polaridad**: Polarizado — terminal largo = positivo (+), banda blanca = negativo (-)
 - **Montaje**: Through-hole (PTH)
-- **Función en el robot**: Reservorio de carga en cada rail de potencia (7.4 V, 5 V, 3.3 V). Se encuentra en la entrada de potencia de cada módulo (bornes VCC del L298N). Provee reserva durante picos de arranque de motor.
+- **Función en el robot: Reservorio de carga en cada rail de potencia (7.4 V, 5 V, 3.3 V). Se encuentra en la entrada de potencia de cada módulo (bornes VCC del L298N). Provee reserva durante picos de arranque de motor.**
 
 ![](other/cap-ceramico.jpg)
 
@@ -245,7 +245,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Temperatura de operación**: -55 °C a +125 °C
 - **Polaridad**: No polarizado
 - **Montaje**: SMD (0805/0603)
-- **Función en el robot**: High-frequency decoupling en cada rail (5 V, 3.3 V) junto a cada circuito integrado. Se coloca **uno por pin de alimentación** (VCC-GND) del IC: Arduino Uno R4 WiFi, Nicla Vision, lógica del L298N, HC-SR04.
+- **Función en el robot: High-frequency decoupling en cada rail (5 V, 3.3 V) junto a cada circuito integrado. Se coloca **uno por pin de alimentación** (VCC-GND) del IC: Arduino Uno R4 WiFi, Nicla Vision, lógica del L298N, HC-SR04**
 
 ![](other/elevador.jpg)
 
@@ -260,7 +260,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Ajuste**: Potenciómetro de multivueltas (girar en sentido antihorario para elevar voltaje)
 - **Dimensiones / Tamaño**: 36 mm \ 17 mm \ 14 mm
 - **Montaje / Conexión**: Pines de soldadura mediante terminales VIN+ / VIN- (Entrada) y VOUT+ / VOUT- (Salida)
-- **Función en el robot**: Eleva y regula el voltaje entregado por las baterías de litio a un nivel estable (5 V - 9 V) para alimentar la línea de lógica y evitar reinicios del Arduino Uno R4 WiFi y la Nicla Vision cuando los motores consumen picos de corriente.
+- **Función en el robot: Eleva y regula el voltaje entregado por las baterías de litio a un nivel estable (5 V - 9 V) para alimentar la línea de lógica y evitar reinicios del Arduino Uno R4 WiFi y la Nicla Vision cuando los motores consumen picos de corriente.**
 
 ### Encendido/Apagado
 
@@ -270,13 +270,13 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Tipo:** Momentáneo (SPST-NO), 50 mA @ 12 V DC
 - **Fuerza de accionamiento:** ~160–250 gf
 - **Vida útil:** 100,000–1,000,000 ciclos
-- **Función:** Reset de software / inicio de rutina autónoma
+- **Función en el robot: Reset de software / inicio de rutina autónoma**
 
 ![](other/switch.webp)
 
 **Interruptor deslizante / toggle negro (Slide Switch / Toggle Switch, SPDT o DPDT, panel mount o PCB)**
 - **Rating típico:** 3–6 A @ 120 V AC / 28 V DC
-- **Función:** Encendido/apagado principal del robot. Corta línea o realiza conexión entre batería VEX y Puente H
+- **Función en el robot: Encendido/apagado principal del robot. Corta línea o realiza conexión entre batería VEX y Puente H**
 
 
 ### Fijación Mecánica
@@ -322,6 +322,8 @@ $$
 
 Los sensores laterales se utilizan principalmente para mantener el robot alineado dentro de la pista, mientras que el sensor frontal permite detectar obstáculos o esquinas e iniciar las maniobras correspondientes.
 
+![](v-photos/v-components/componentes1.jpg)
+
 Las mediciones inválidas, causadas por ecos ausentes o distancias fuera del rango útil del sensor, son descartadas para evitar que datos incorrectos afecten la navegación.
 
 ---
@@ -329,6 +331,8 @@ Las mediciones inválidas, causadas por ecos ausentes o distancias fuera del ran
 # Comunicación con la IMU y Módulos Externos
 
 El robot se comunica con un módulo **Nicla Vision** mediante comunicación serial UART.
+
+![](v-photos/v-components/componentes2.jpg)
 
 La IMU proporciona información sobre la orientación del robot, permitiendo al controlador conocer su dirección durante el recorrido. La información se transmite utilizando un formato como:
 
@@ -402,6 +406,8 @@ Finalmente, la corrección calculada se transforma en un ángulo para el servo y
 ---
 
 # Control de la Misión
+
+![](v-photos/v-components/componentes3.jpg)
 
 ## Máquina de Estados Finitos
 
@@ -501,5 +507,4 @@ A lo largo de los años, en conjunto con otros jóvenes con alta destreza en la 
 Del mismo modo, realizamos entrevistas en programas de radio, televisión y medios digitales para compartir nuestra visión sobre las soluciones robóticas ante los retos cotidianos. Esta trayectoria también nos ha brindado la oportunidad de crear lazos imborrables con compañeros de otros equipos tanto en la Copa Ka’i como en la WRO 2025. A pesar de haber pertenecido a distintas categorías, lo que nos fortalece e inspira a soñar en grande es el mismo amor y entusiasmo por la robótica que compartimos como equipo.
 
 ---
-# ¡Muchísimas Gracias!
-## Team Eule Tech WRO FE 2026
+# ¡Muchísimas Gracias! - Team Eule Tech WRO FE 2026
