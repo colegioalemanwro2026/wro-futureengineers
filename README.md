@@ -15,22 +15,22 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
  - [Elementos](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#elementos)
    - [Piezas Estructurales (Kits)](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#piezas-estructurales-kits)
    - [Electrónica](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#electr%C3%B3nica)
-- [Diseño del Software](https)
- - [Arquitectura del Sistema](https)
- - [Adquisición de Datos de los Sensores](https)
-   - [Medición de Distancia con Sensores Ultrasónicos](https)
- - [Comunicación con la IMU y Módulos Externos](https)
- - [Estimación de Estado mediante un Filtro de Kalman](https)
- - [Control del Robot](https)
-   - [Controlador LQR para la Dirección](https)
- - [Control de la Misión](https)
-   - [Máquina de Estados Finitos](https)
- - [Control del Motor y la Dirección](https)
-   - [Control del Motor](https)
-   - [Control del Servo de Dirección](https)
- - [Telemetría y Depuración](https)
- - [Impacto](https)
- - [Nuestro Recorrido](https)
+- [Diseño del Software](https://github.com/colegioalemanwro2026/wro-futureengineers#dise%C3%B1o-del-software)
+ - [Arquitectura del Sistema](https://github.com/colegioalemanwro2026/wro-futureengineers#arquitectura-del-sistema)
+ - [Adquisición de Datos de los Sensores](https://github.com/colegioalemanwro2026/wro-futureengineers#adquisici%C3%B3n-de-datos-de-los-sensores)
+   - [Medición de Distancia con Sensores Ultrasónicos](https://github.com/colegioalemanwro2026/wro-futureengineers#medici%C3%B3n-de-distancia-con-sensores-ultras%C3%B3nicos)
+ - [Comunicación con la IMU y Módulos Externos](https://github.com/colegioalemanwro2026/wro-futureengineers#comunicaci%C3%B3n-con-la-imu-y-m%C3%B3dulos-externos)
+ - [Estimación de Estado mediante un Filtro de Kalman](https://github.com/colegioalemanwro2026/wro-futureengineers#estimaci%C3%B3n-de-estado-mediante-un-filtro-de-kalman)
+ - [Control del Robot](https://github.com/colegioalemanwro2026/wro-futureengineers#control-del-robot)
+   - [Controlador LQR para la Dirección](https://github.com/colegioalemanwro2026/wro-futureengineers#controlador-lqr-para-la-direcci%C3%B3n)
+ - [Control de la Misión](https://github.com/colegioalemanwro2026/wro-futureengineers#control-de-la-misi%C3%B3n)
+   - [Máquina de Estados Finitos](https://github.com/colegioalemanwro2026/wro-futureengineers#m%C3%A1quina-de-estados-finitos)
+ - [Control del Motor y la Dirección](https://github.com/colegioalemanwro2026/wro-futureengineers#control-del-motor-y-la-direcci%C3%B3n)
+   - [Control del Motor](https://github.com/colegioalemanwro2026/wro-futureengineers#control-del-motor)
+   - [Control del Servo de Dirección](https://github.com/colegioalemanwro2026/wro-futureengineers#control-del-servo-de-direcci%C3%B3n)
+ - [Telemetría y Depuración](https://github.com/colegioalemanwro2026/wro-futureengineers#telemetr%C3%ADa-y-depuraci%C3%B3n)
+ - [Impacto](https://github.com/colegioalemanwro2026/wro-futureengineers#impacto)
+ - [Nuestro Recorrido](https://github.com/colegioalemanwro2026/wro-futureengineers#nuestro-recorrido)
 
 ---
 # *Integrantes del Equipo*
@@ -174,7 +174,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Alimentación:** 3.7 V Li-Po (cargador MAX17262 integrado) o MicroUSB 5 V
 - **Dimensiones:** 22.86 × 22.86 mm | **Temp. operación:** -20 °C a +70 °C
 - **Interfaces:** I2C (conector ESLOV), SPI, UART, GPIO, ADC, JTAG, castellated pins
-- **Función en el robot:** Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado MicroUSB protegido, ángulo fijo 10
+- **Función en el robot:** Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado MicroUSB protegido, ángulo fijo 10°.
 
 ### Control de Motores
 
@@ -248,18 +248,19 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Función en el robot**: High-frequency decoupling en cada rail (5 V, 3.3 V) junto a cada circuito integrado. Se coloca **uno por pin de alimentación** (VCC-GND) del IC: Arduino Uno R4 WiFi, Nicla Vision, lógica del L298N, HC-SR04.
 
 ![](other/elevador.jpg)
+
 **Módulo Elevador de Voltaje Step-Up — MT3608 (HW-045)**
 - **Módulo / IC**: MT3608 (HW-045)
-- **Voltaje de entrada**: $2.0\text{ V}$ a $24\text{ V}$ (para 2 celdas Li-Ion en serie/paralelo o individuales)
-- **Voltaje de salida**: $2.0\text{ V}$ a $28\text{ V}$ (regulable mediante potenciómetro de precisión 3296)
-- **Corriente máxima de salida**: $2\text{ A}$ (máxima pico; corriente continua recomendada $\le 1.2\text{ A}$ - $1.5\text{ A}$)
-- **Frecuencia de conmutación**: $1.2\text{ MHz}$ (permite alta eficiencia y filtrado compacto)
-- **Eficiencia máxima**: Hasta $93\text{ \%}$
+- **Voltaje de entrada**: 2.0 V a 24 V (para 2 celdas Li-Ion en serie/paralelo o individuales)
+- **Voltaje de salida**: 2.0 V a 28 V (regulable mediante potenciómetro de precisión 3296)
+- **Corriente máxima de salida**: 2 A (máxima pico; corriente continua recomendada 1.2 A - 1.5 A)
+- **Frecuencia de conmutación**: 1.2\ MHz (permite alta eficiencia y filtrado compacto)
+- **Eficiencia máxima**: Hasta 93 %
 - **Protección integrada**: Protección contra sobrecalentamiento térmico y límite de corriente ciclo a ciclo
 - **Ajuste**: Potenciómetro de multivueltas (girar en sentido antihorario para elevar voltaje)
-- **Dimensiones / Tamaño**: $36\text{ mm} \times 17\text{ mm} \times 14\text{ mm}$
+- **Dimensiones / Tamaño**: 36 mm \ 17 mm \ 14 mm
 - **Montaje / Conexión**: Pines de soldadura mediante terminales VIN+ / VIN- (Entrada) y VOUT+ / VOUT- (Salida)
-- **Función en el robot**: Eleva y regula el voltaje entregado por las baterías de litio a un nivel estable ($5\text{ V}$ - $9\text{ V}$) para alimentar la línea de lógica y evitar reinicios del Arduino Uno R4 WiFi y la Nicla Vision cuando los motores consumen picos de corriente.
+- **Función en el robot**: Eleva y regula el voltaje entregado por las baterías de litio a un nivel estable (5 V - 9 V) para alimentar la línea de lógica y evitar reinicios del Arduino Uno R4 WiFi y la Nicla Vision cuando los motores consumen picos de corriente.
 
 ### Encendido/Apagado
 
@@ -482,18 +483,23 @@ Esta información fue utilizada durante las pruebas para facilitar la depuració
 ---
 # Impacto
 El objetivo central de nuestro proyecto fue desarrollar e implementar un sistema autónomo capaz de realizar un reconocimiento y evasión de objetos exitosa en un entorno dinámico, utilizando componentes electrónicos basados en Arduino y visión artificial. Aunque a primera vista la tarea de reconocimiento y evasión puede parecer fundamental, demostramos que un robot puede ejecutarla de manera robusta y consistente. Más allá de cumplir con los requisitos técnicos de la competencia, esta solución tecnológica es escalable y podría aplicarse en robots de servicio para el beneficio humano, por ejemplo, en entornos domésticos, de asistencia o industriales donde la navegación segura es primordial.
+
 A lo largo de este desafío, hemos experimentado un crecimiento significativo en múltiples áreas clave para nuestra formación como futuros ingenieros. Por un lado, nos enfrentamos a constantes desafíos, especialmente durante las pruebas y alteraciones en el diseño mecánico. Esto nos obligó a desarrollar una mentalidad fuerte y analítica; en lugar de frustrarnos, aprendimos a abordar los infortunios de manera calmada y decidida, diagnosticando la causa raíz e implementando soluciones prácticas y continuas basadas en la experiencia.
+
 Asimismo, para lograr la estabilidad del sistema, tuvimos que profundizar en conceptos avanzados. Esto incluyó la integración de algoritmos de visión por computador para el procesamiento de imágenes en tiempo real y la comunicación paralela eficiente entre la unidad de procesamiento principal y el microcontrolador Arduino, lo que amplió drásticamente nuestro conocimiento en programación, control y electrónica. De igual forma, cada componente del robot fue estructurado y adaptado por nosotros utilizando piezas y sistemas de bloques de construcción tipo "legos", lo que nos impulsó a potenciar nuestra creatividad e imaginación. No solo resolvimos problemas de manera funcional, sino que mediante este ensamblaje modular conceptualizamos soluciones físicas que optimizaron el rendimiento, la robustez y el mantenimiento de nuestro robot.
+
 En conclusión, el desarrollo de este proyecto para la categoría Future Engineers ha sido un viaje transformador que nos ha permitido aplicar la teoría a la práctica, aprender de cada fracaso y consolidarnos como un equipo capaz de afrontar problemas complejos. Independientemente del resultado final en la competencia, el aprendizaje y el crecimiento experimentado han sentado las bases para nuestro futuro profesional en la ingeniería.
 
 ---
 
 # Nuestro Recorrido
 El inicio de esta aventura estuvo marcado por la participación en la competencia “Copa Ka’i 2024”, un evento que representó el primer acercamiento de nuestro Colegio Alemán de Maracaibo al mundo de la robótica. En este proceso inicial fuimos seleccionados un grupo específico de estudiantes, entre quienes nos encontramos nosotros, Isaac y Fernanda. Nos esforzamos día y noche por comprender los conceptos técnicos que aún nos generaban dudas, perfeccionar nuestro robot y dar lo mejor en este nuevo camino. Aunque no alcanzamos una premiación en dicha competencia, las experiencias vividas fueron determinantes y nos motivaron a afrontar un nuevo desafío: la WRO 2025.
+
 En dicha edición, participamos en distintas modalidades dentro de las Regionales del Estado Zulia, donde uno de nuestros integrantes compitió en Misiones Robóticas y el otro en Futuros Innovadores. Tras un gran trabajo, dedicación y un crecimiento constante de nuestra pasión por la robótica, y a pesar de no haber clasificado a la instancia nacional, decidimos no rendirnos. Por el contrario, unimos fuerzas para consolidar un equipo de dos personas donde la comunicación y la pasión se complementan a la perfección. Esto nos ha permitido llegar hasta el día de hoy participando en las competencias regionales de Nueva Esparta y del Zulia, siempre listos para nuevos retos y aprendizajes que forjarán nuestro futuro.
+
 A lo largo de los años, en conjunto con otros jóvenes con alta destreza en la robótica, hemos desarrollado una profunda pasión y un sólido conjunto de conocimientos en el área, los cuales impulsan nuestros planes a futuro y nos permiten ser parte activa del progreso tecnológico. Durante nuestra preparación para la Copa Ka’i 2024, mantuvimos una participación dinámica que incluyó diversas labores sociales, tales como charlas y demostraciones de nuestro proyecto en escuelas interesadas en integrar la robótica en sus programas académicos, fomentando así el aprendizaje y la innovación en la comunidad.
 Del mismo modo, realizamos entrevistas en programas de radio, televisión y medios digitales para compartir nuestra visión sobre las soluciones robóticas ante los retos cotidianos. Esta trayectoria también nos ha brindado la oportunidad de crear lazos imborrables con compañeros de otros equipos tanto en la Copa Ka’i como en la WRO 2025. A pesar de haber pertenecido a distintas categorías, lo que nos fortalece e inspira a soñar en grande es el mismo amor y entusiasmo por la robótica que compartimos como equipo.
 
 ---
-¡Muchísimas Gracias!
-Team Eule Tech WRO FE 2026
+# ¡Muchísimas Gracias!
+## Team Eule Tech WRO FE 2026
