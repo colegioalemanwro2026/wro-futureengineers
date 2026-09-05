@@ -41,7 +41,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 
 
 - Fernanda León (Mecánica)
-![](t-photos/personal/fer-pic.jpg)
+![]([t-photos/personal/fer-pic.jpg](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/t-photos%20/personal/fer-pic.jpg))
 > Hallo! Soy Fernanda León, tengo 17 años y me emociona tener la oportunidad de participar junto a Isaac en esta competencia. Nuestro esfuerzo durante tanto tiempo finalmente valdrá la pena y daremos lo mejor de nosotros en todo momento. Tschüssi!
 
 ---
