@@ -65,7 +65,7 @@ Para lograr una conexión cableada estable entre el sistema de visión y el cere
 ### Versión 4:
 En último lugar, con la finalidad de perfeccionar la comunicación y evitar problemas como el reinicio de los componentes al no distribuirse correctamente la energía cuando los motores exigían mucha fuerza, se incluyeron en el circuito unas Baterías de Litio 18650 recargables con su respectivo Módulo de Carga de Baterías de Litio (TP4056 / HW-373) y un Módulo Elevador de Voltaje StepUp HW-045 (MT3608). Esto estabilizó la comunicación entre componentes y eliminó cualquier problema de bajas de voltaje a futuro. Cada modificación se realizó con un resultado único y compacto en mente, llegando así al diseño final que se presenta en la competencia.
 
-![](v-photos/v-designs/moti-v3.jpg)
+![](v-photos/v-designs/moti-v4.jpg)
 
 ## Proceso de Ensamblaje
 
@@ -168,10 +168,10 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Conectividad:** Murata 1DX (CYW4343W) — Wi-Fi / BLE 4.2, USB-C (high-speed 500 Mbps)
 - **Memoria:** 2 MB Flash / 1 MB RAM + 16 MB QSPI Flash
 - **Seguridad:** NXP SE050C2 Crypto chip
-- **Alimentación:** 3.7 V Li-Po (cargador MAX17262 integrado) o USB-C 5 V
+- **Alimentación:** 3.7 V Li-Po (cargador MAX17262 integrado) o MicroUSB 5 V
 - **Dimensiones:** 22.86 × 22.86 mm | **Temp. operación:** -20 °C a +70 °C
 - **Interfaces:** I2C (conector ESLOV), SPI, UART, GPIO, ADC, JTAG, castellated pins
-- **Función en el robot:** Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado USB-C protegido, ángulo fijo 10
+- **Función en el robot:** Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado MicroUSB protegido, ángulo fijo 10
 
 ### Control de Motores
 
