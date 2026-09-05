@@ -111,7 +111,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
   - **Actuadores:** Motor DC Nezha, Servomotor Nezha
   - **Construcción:** +400 piezas de bloques compatibles LEGO/Fischer, ruedas, engranajes, ejes
   - **Programación:** MakeCode, JavaScript, Python, C++
-- **Especificaciones de la Expansion Board:** 60×82×28 mm, carcasa ABS ignífuga, protocolos IIC/UART/SPI
+- **Especificaciones de la Expansion Board:** 60×82×28 mm, carcasa ABS, protocolos IIC/UART/SPI
 - **Uso en el robot (versión inicial):** Chasis base (Case 26 Obstacle Avoidance Car),  Expansion Board para micro:bit, sensores Nezha. **En versión final:** Solo se conservan piezas estructurales (vigas, brackets, ruedas, engranajes) y electrónicas del kit (motor DC y servomotor); toda la electrónica Nezha fue reemplazada.
 
 ![](other/battery-vex.webp)
@@ -130,16 +130,16 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 
 ![](other/baterias-lit.jpg)
 ### Baterías de Iones de Litio (Li-Ion) 18650 — Flycat 3.7 V (2 Unidades en el Sistema)
-- **Formato / Tamaño**: 18650 (Cilíndrica, $18\text{ mm}$ de diámetro $\times 65\text{ mm}$ de longitud)
+- **Formato / Tamaño**: 18650 (Cilíndrica, 18 mm de diámetro/65 mm de longitud)
 - **Química**: Iones de Litio (Li-Ion)
-- **Voltaje nominal**: $3.7\text{ V}$ por celda ($7.4\text{ V}$ nominal total en configuración en serie / $3.7\text{ V}$ en paralelo)
-- **Voltaje de carga máxima**: $4.2\text{ V}$ por celda
-- **Voltaje de corte por descarga**: $2.75\text{ V}$ - $3.0\text{ V}$ por celda (mínimo seguro)
-- **Capacidad nominal declarada**: Marca Flycat $7800\text{ mAh}$ (Capacidad comercial/etiqueta)
-- **Corriente máxima de descarga**: $1\text{C}$ – $2\text{C}$ en descarga continua habitual para celdas estándar de robótica
-- **Vida útil**: ~500 ciclos de carga/descarga completa
+- **Voltaje nominal**: 3.7 V por celda (7.4 V nominal total en configuración en serie / 3.7 V en paralelo)
+- **Voltaje de carga máxima**: 4.2 V por celda
+- **Voltaje de corte por descarga**: 2.75 V - 3.0 V por celda (mínimo seguro)
+- **Capacidad nominal declarada**: Marca Flycat 7800 mAh (Capacidad comercial/etiqueta)
+- **Corriente máxima de descarga**: 1 C – 2 C en descarga continua habitual para celdas estándar de robótica
+- **Vida útil**: 500 ciclos de carga/descarga completa
 - **Polaridad**: Terminal positivo plano/convexo (+) y terminal negativo plano (-)
-- **Peso aprox.**: ~$45\text{ g}$ por celda
+- **Peso aprox.**: 45 g por celda
 - **Función en el robot**: Fuente principal de almacenamiento de energía recargable del robot. Proveen la corriente requerida por el driver de motores L298N (potencia) y el módulo elevador MT3608 (lógica) para garantizar total autonomía.
 
 ## Electrónica
@@ -156,7 +156,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **USB:** USB-C (hasta 21 V PD input, HID support)
 - **I/O:** 14 pines digitales, 6 entradas analógicas (14-bit ADC), 6 PWM, 1 DAC (12-bit), CAN Bus, I2C (Qwiic), SPI, UART
 - **Extras:** Matriz LED 12×8, RTC, VRTC pin (batería backup), pin OFF
-- **Función en el robot:** Controlador principal — fusión de sensores, control PWM de motores (L298N), comunicación serie UART con Nicla Vision @ 115200 baudios, telemetría WiFi/BLE, bucle de control 50 Hz
+- **Función en el robot:** Controlador principal — fusión de sensores, control PWM de motores (L298N), comunicación serie UART con Nicla Vision @ 115200 baudios, bucle de control 50 Hz
 
 ### Visión Artificial
 
@@ -171,7 +171,7 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 - **Alimentación:** 3.7 V Li-Po (cargador MAX17262 integrado) o USB-C 5 V
 - **Dimensiones:** 22.86 × 22.86 mm | **Temp. operación:** -20 °C a +70 °C
 - **Interfaces:** I2C (conector ESLOV), SPI, UART, GPIO, ADC, JTAG, castellated pins
-- **Función en el robot:** Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado USB-C protegido, ángulo fijo 22°.
+- **Función en el robot:** Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado USB-C protegido, ángulo fijo 10
 
 ### Control de Motores
 
