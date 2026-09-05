@@ -15,19 +15,22 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
  - [Elementos](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#elementos)
    - [Piezas Estructurales (Kits)](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#piezas-estructurales-kits)
    - [Electrónica](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#electr%C3%B3nica)
-- [Diseño de Software](https)
- - [Procesamiento de Imagen y Color](https)
-    - [Captura de Imagen](https)
-	- [Creación de Máscaras Roja y Verde](https)
-	- [Imagen Final](https)
-	- [Distancia a los Conos](https)
- - [Movimiento del Robot](https)
-   - [Configuración Smart Robot Servo](https)
-   - [Orientación del Robot](https)
-   - [Determinación de Ruta](https)
-  - [Envío de Datos](https)
-- [Impacto](https)
-- [Nuestro Recorrido](https)
+- [Diseño del Software](https)
+ - [Arquitectura del Sistema](https)
+ - [Adquisición de Datos de los Sensores](https)
+   - [Medición de Distancia con Sensores Ultrasónicos](https)
+ - [Comunicación con la IMU y Módulos Externos](https)
+ - [Estimación de Estado mediante un Filtro de Kalman](https)
+ - [Control del Robot](https)
+   - [Controlador LQR para la Dirección](https)
+ - [Control de la Misión](https)
+   - [Máquina de Estados Finitos](https)
+ - [Control del Motor y la Dirección](https)
+   - [Control del Motor](https)
+   - [Control del Servo de Dirección](https)
+ - [Telemetría y Depuración](https)
+ - [Impacto](https)
+ - [Nuestro Recorrido](https)
 
 ---
 # *Integrantes del Equipo*
@@ -81,7 +84,7 @@ Y luego, al añadir las baterías de Litio para mayor estabilidad de comunicaci�
 
 La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LEGO Technic/Nezha junto con cinta 3M VHB 5952 (1,1 mm) para la fijación de PCBs, reguladores y módulos sin orificios de tornillo, resistente a vibración, ciclos térmicos y manipulación repetida. Este enfoque modular permitió iterar independientemente en cada nivel, lo que permitió realizar los cambios antes mencionados, y el cual puede representarse en el siguiente esquema:
 
-![Esquema de conexiones](schemes/wiringdiagram.png)
+![Esquema de conexiones](schemes/wiring-diagramm.jpg)
 
 # Elementos
 
@@ -285,8 +288,196 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 
 - **Cinta 3M VHB 5952 (1.1 mm, acrílico de alta cohesión):** Fijación de PCBs (Arduino, L298N, sensores, protoboard), módulos sin orificios roscados. Resistente a vibración, ciclos térmicos (-40 a +90 °C), manipulación repetida. Área de contacto dimensionada >4× peso del módulo.
 ---
-# Diseño de Software
-## Procesamiento de Imagen y Color
+# Diseño del Software
+
+## Arquitectura del Sistema
+
+El software del robot fue desarrollado utilizando una arquitectura modular basada en componentes independientes para la adquisición de datos, estimación, control y actuación. El controlador principal es un **Arduino UNO R4 WiFi**, encargado de ejecutar el algoritmo de navegación, procesar la información de los sensores y generar los comandos para el motor y el servo de dirección.
+
+El software está dividido en varios módulos:
+
+* **Módulo de sensores:** Gestiona los sensores ultrasónicos HC-SR04.
+* **Módulo de comunicación con la IMU:** Recibe información sobre la orientación y los colores desde la Nicla Vision mediante comunicación UART.
+* **Módulo de estimación de estado:** Utiliza un Filtro de Kalman para reducir el ruido de los sensores y estimar el error de posición del robot.
+* **Módulo de control:** Utiliza un controlador LQR para calcular la corrección necesaria en la dirección.
+* **Módulo de misión:** Implementa el comportamiento general del robot mediante una máquina de estados finitos.
+* **Módulo de actuación:** Controla el motor de corriente continua mediante un controlador L298N y el servo encargado de la dirección.
+
+Esta estructura modular facilita la depuración, calibración y mejora de cada sistema de forma independiente sin afectar el funcionamiento general del robot.
+
+---
+
+# Adquisición de Datos de los Sensores
+
+## Medición de Distancia con Sensores Ultrasónicos
+
+El robot utiliza tres sensores ultrasónicos HC-SR04 ubicados en la parte izquierda, frontal y derecha del chasis.
+
+Estos sensores miden la distancia hasta las paredes enviando un pulso ultrasónico y calculando el tiempo que tarda el eco en regresar. El tiempo medido se convierte en distancia utilizando la velocidad del sonido:
+
+$$
+Distancia = \frac{Tiempo \times 343}{2}
+$$
+
+Los sensores laterales se utilizan principalmente para mantener el robot alineado dentro de la pista, mientras que el sensor frontal permite detectar obstáculos o esquinas e iniciar las maniobras correspondientes.
+
+Las mediciones inválidas, causadas por ecos ausentes o distancias fuera del rango útil del sensor, son descartadas para evitar que datos incorrectos afecten la navegación.
+
+---
+
+# Comunicación con la IMU y Módulos Externos
+
+El robot se comunica con un módulo **Nicla Vision** mediante comunicación serial UART.
+
+La IMU proporciona información sobre la orientación del robot, permitiendo al controlador conocer su dirección durante el recorrido. La información se transmite utilizando un formato como:
+
+```text
+G,<ángulo>
+```
+
+donde el ángulo representa la orientación o *yaw* actual del robot.
+
+El módulo también puede enviar información relacionada con los colores detectados:
+
+```text
+Y, R, B, W
+```
+
+Estos datos son utilizados por la lógica de navegación cuando es necesario identificar elementos de diferentes colores.
+
+En caso de que la señal de la IMU no esté disponible temporalmente, el robot puede utilizar un modo alternativo basado en su estimación interna, evitando una pérdida total del control.
+
+---
+
+# Estimación de Estado mediante un Filtro de Kalman
+
+Para obtener una estimación más estable y precisa de la posición del robot, se implementó un **Filtro de Kalman**.
+
+El filtro estima principalmente dos variables:
+
+* **Error lateral (\(e_y\)):** Representa la desviación del robot con respecto a la trayectoria deseada.
+* **Error de orientación (\(e_\psi\)):** Representa la diferencia entre la orientación actual del robot y la dirección deseada.
+
+El error lateral puede calcularse utilizando la información de los sensores laterales:
+
+$$
+e_y = \frac{d_{derecha} - d_{izquierda}}{2}
+$$
+
+El Filtro de Kalman combina las mediciones obtenidas por los sensores con un modelo del movimiento del robot para reducir el ruido y obtener valores más estables para el sistema de control.
+
+Además, el sistema puede rechazar mediciones anormales mediante un límite de innovación, evitando que lecturas incorrectas de los sensores provoquen correcciones inesperadas en la trayectoria.
+
+---
+
+# Control del Robot
+
+## Controlador LQR para la Dirección
+
+El robot utiliza un controlador **LQR (Linear Quadratic Regulator)** para calcular la corrección necesaria en la dirección.
+
+La ley de control utilizada puede representarse como:
+
+$$
+u = -Kx
+$$
+
+donde:
+
+* \(u\) representa la corrección aplicada a la dirección.
+* \(K\) representa las ganancias calculadas para el controlador.
+* \(x\) contiene los errores estimados de posición y orientación.
+
+El controlador utiliza principalmente:
+
+* El error lateral estimado.
+* El error de orientación.
+* La velocidad actual del robot.
+
+Los valores de control pueden ajustarse según la velocidad mediante una estrategia conocida como **gain scheduling**, permitiendo mantener un comportamiento estable bajo diferentes condiciones de movimiento.
+
+Finalmente, la corrección calculada se transforma en un ángulo para el servo y se limita dentro del rango mecánico permitido por el sistema de dirección.
+
+---
+
+# Control de la Misión
+
+## Máquina de Estados Finitos
+
+El comportamiento general del robot está organizado mediante una **máquina de estados finitos**, la cual divide la misión en diferentes modos de funcionamiento.
+
+### IDLE
+
+En este estado, el robot permanece detenido y espera la señal de inicio antes de comenzar la misión autónoma.
+
+### FOLLOW
+
+Es el modo principal de navegación. El robot sigue la trayectoria utilizando:
+
+* Mediciones de los sensores ultrasónicos.
+* La estimación obtenida mediante el Filtro de Kalman.
+* El controlador LQR para realizar correcciones en la dirección.
+
+### CORNER_TURN
+
+Cuando el sistema detecta una esquina, el robot realiza una maniobra de giro controlada, utilizando la información de orientación proporcionada por la IMU y una lógica específica para completar el giro.
+
+### RECOVERY
+
+Es un modo de seguridad que se activa cuando el robot detecta una situación anormal o una posible colisión. El robot puede retroceder y realizar una maniobra para recuperar su trayectoria.
+
+### STOP
+
+Este estado detiene completamente el robot una vez que la misión ha sido completada.
+
+## Control del Motor y la Dirección
+
+### Control del Motor
+
+El motor de corriente continua es controlado mediante un controlador **L298N**.
+
+El software controla:
+
+* La dirección de giro mediante pines digitales.
+* La velocidad utilizando modulación por ancho de pulso o **PWM**.
+
+Las acciones principales disponibles son:
+
+* Movimiento hacia adelante.
+* Movimiento hacia atrás.
+* Frenado o detención.
+
+El valor de PWM determina la velocidad del motor de acuerdo con el estado actual de la misión.
+
+### Control del Servo de Dirección
+
+El servo de dirección recibe el ángulo calculado por el controlador LQR.
+
+La salida del controlador se convierte desde la corrección matemática obtenida a una posición física para el servo mediante una función de calibración:
+
+$$
+Servo = Centro + Corrección
+$$
+
+El ángulo final se mantiene dentro de límites establecidos para proteger los componentes mecánicos y asegurar un funcionamiento estable.
+
+---
+
+# Telemetría y Depuración
+
+Durante el desarrollo se implementó un sistema de telemetría mediante comunicación serial.
+
+El sistema permite visualizar información como:
+
+* Distancias medidas por los sensores.
+* Estado actual del robot.
+* Error lateral estimado.
+* Error de orientación estimado.
+* Orientación obtenida desde la IMU.
+* Colores detectados.
+* Contadores relacionados con giros y recuperación.
+
+Esta información fue utilizada durante las pruebas para facilitar la depuración del programa, calibrar los sensores y ajustar los parámetros del sistema de control.
 
 ---
 # Impacto
@@ -294,11 +485,15 @@ El objetivo central de nuestro proyecto fue desarrollar e implementar un sistema
 A lo largo de este desafío, hemos experimentado un crecimiento significativo en múltiples áreas clave para nuestra formación como futuros ingenieros. Por un lado, nos enfrentamos a constantes desafíos, especialmente durante las pruebas y alteraciones en el diseño mecánico. Esto nos obligó a desarrollar una mentalidad fuerte y analítica; en lugar de frustrarnos, aprendimos a abordar los infortunios de manera calmada y decidida, diagnosticando la causa raíz e implementando soluciones prácticas y continuas basadas en la experiencia.
 Asimismo, para lograr la estabilidad del sistema, tuvimos que profundizar en conceptos avanzados. Esto incluyó la integración de algoritmos de visión por computador para el procesamiento de imágenes en tiempo real y la comunicación paralela eficiente entre la unidad de procesamiento principal y el microcontrolador Arduino, lo que amplió drásticamente nuestro conocimiento en programación, control y electrónica. De igual forma, cada componente del robot fue estructurado y adaptado por nosotros utilizando piezas y sistemas de bloques de construcción tipo "legos", lo que nos impulsó a potenciar nuestra creatividad e imaginación. No solo resolvimos problemas de manera funcional, sino que mediante este ensamblaje modular conceptualizamos soluciones físicas que optimizaron el rendimiento, la robustez y el mantenimiento de nuestro robot.
 En conclusión, el desarrollo de este proyecto para la categoría Future Engineers ha sido un viaje transformador que nos ha permitido aplicar la teoría a la práctica, aprender de cada fracaso y consolidarnos como un equipo capaz de afrontar problemas complejos. Independientemente del resultado final en la competencia, el aprendizaje y el crecimiento experimentado han sentado las bases para nuestro futuro profesional en la ingeniería.
+
 ---
+
 # Nuestro Recorrido
 El inicio de esta aventura estuvo marcado por la participación en la competencia “Copa Ka’i 2024”, un evento que representó el primer acercamiento de nuestro Colegio Alemán de Maracaibo al mundo de la robótica. En este proceso inicial fuimos seleccionados un grupo específico de estudiantes, entre quienes nos encontramos nosotros, Isaac y Fernanda. Nos esforzamos día y noche por comprender los conceptos técnicos que aún nos generaban dudas, perfeccionar nuestro robot y dar lo mejor en este nuevo camino. Aunque no alcanzamos una premiación en dicha competencia, las experiencias vividas fueron determinantes y nos motivaron a afrontar un nuevo desafío: la WRO 2025.
 En dicha edición, participamos en distintas modalidades dentro de las Regionales del Estado Zulia, donde uno de nuestros integrantes compitió en Misiones Robóticas y el otro en Futuros Innovadores. Tras un gran trabajo, dedicación y un crecimiento constante de nuestra pasión por la robótica, y a pesar de no haber clasificado a la instancia nacional, decidimos no rendirnos. Por el contrario, unimos fuerzas para consolidar un equipo de dos personas donde la comunicación y la pasión se complementan a la perfección. Esto nos ha permitido llegar hasta el día de hoy participando en las competencias regionales de Nueva Esparta y del Zulia, siempre listos para nuevos retos y aprendizajes que forjarán nuestro futuro.
 A lo largo de los años, en conjunto con otros jóvenes con alta destreza en la robótica, hemos desarrollado una profunda pasión y un sólido conjunto de conocimientos en el área, los cuales impulsan nuestros planes a futuro y nos permiten ser parte activa del progreso tecnológico. Durante nuestra preparación para la Copa Ka’i 2024, mantuvimos una participación dinámica que incluyó diversas labores sociales, tales como charlas y demostraciones de nuestro proyecto en escuelas interesadas en integrar la robótica en sus programas académicos, fomentando así el aprendizaje y la innovación en la comunidad.
 Del mismo modo, realizamos entrevistas en programas de radio, televisión y medios digitales para compartir nuestra visión sobre las soluciones robóticas ante los retos cotidianos. Esta trayectoria también nos ha brindado la oportunidad de crear lazos imborrables con compañeros de otros equipos tanto en la Copa Ka’i como en la WRO 2025. A pesar de haber pertenecido a distintas categorías, lo que nos fortalece e inspira a soñar en grande es el mismo amor y entusiasmo por la robótica que compartimos como equipo.
-# Nuestro Recorrido
 
+---
+¡Muchísimas Gracias!
+Team Eule Tech WRO FE 2026
