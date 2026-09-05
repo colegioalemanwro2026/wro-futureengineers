@@ -36,7 +36,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 # *Integrantes del Equipo*
 
 - Isaac Camargo (Programador)
-![Isaac Camargo](t-photos/personal/isaac-pic.jpg)
+![t-photos/personal/isaac-pic.jpg](t-photos/personal/isaac-pic.jpg)
 > Guten Tag! Soy Isaac Camargo, tengo 16 años y junto a mi compañera Fer estoy muy feliz de poder participar en esta competencia. Todo nuestro trayevto ha sido pura diversión y aprendizaje y estoy seguro de que gracias a esto, daremos lo mejor de nosotros en cada encuentro de la WRO. Bis bald!
 
 
