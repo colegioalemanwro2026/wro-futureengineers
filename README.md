@@ -27,18 +27,18 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
    - [Determinación de Ruta](https)
   - [Envío de Datos](https)
 - [Impacto](https)
-- [Nuestro Recorrido](https))
+- [Nuestro Recorrido](https)
 
 ---
 # *Integrantes del Equipo*
 - Isaac Camargo
 ![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/775a4106-e3e2-4c4f-919d-1946a50a8b13.jpg)
-> Mi chiquito pechocho
+> Programador
 
 
 - Fernanda León
 ![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/e168a51f-258d-4fb5-9f0c-e48285d9942f.jpg)
-> Bebetita de su bebetito y solo de bebetito
+> Mecánica
 ---
 # *Diseño de Hardware*
 ## *Proceso de Diseño*
