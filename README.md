@@ -34,14 +34,16 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
 
 ---
 # *Integrantes del Equipo*
-- Isaac Camargo
-![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/775a4106-e3e2-4c4f-919d-1946a50a8b13.jpg)
-> Programador
+
+- Isaac Camargo (Programador)
+![](isaac-pic.jpg)
+> Guten Tag! Soy Isaac Camargo, tengo 16 años y junto a mi compañera Fer estoy muy feliz de poder participar en esta competencia. Todo nuestro trayevto ha sido pura diversión y aprendizaje y estoy seguro de que gracias a esto, daremos lo mejor de nosotros en cada encuentro de la WRO. Bis bald!
 
 
-- Fernanda León
-![](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/e168a51f-258d-4fb5-9f0c-e48285d9942f.jpg)
-> Mecánica
+- Fernanda León (Mecánica)
+![](fer-pic.jpg)
+> Hallo! Soy Fernanda León, tengo 17 años y me emociona tener la oportunidad de participar junto a Isaac en esta competencia. Nuestro esfuerzo durante tanto tiempo finalmente valdrá la pena y daremos lo mejor de nosotros en todo momento. Tschüssi!
+
 ---
 # *Diseño de Hardware*
 ## *Proceso de Diseño*
