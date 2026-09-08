@@ -172,20 +172,42 @@ Lo seleccionamos como controlador principal porque necesitábamos una plataforma
 
 ### Visión Artificial
 
-![](other/nicla-vision.webp)
-**Arduino Nicla Vision (ABX00051)**
-- **MCU:** STM32H747AII6 — Dual core: Cortex-M7 @ 480 MHz + Cortex-M4 @ 240 MHz
-- **Cámara:** GC2145 / OV5640 — 2 MP color, 30 FPS @ resolución completa, soporte TinyML
-- **Sensores integrados:** LSM6DSOX (IMU 6-ejes), MP34DT05 (micrófono MEMS), VL53L1CBV0FY (ToF distancia)
-- **Conectividad:** Murata 1DX (CYW4343W) — Wi-Fi / BLE 4.2, USB-C (high-speed 500 Mbps)
-- **Memoria:** 2 MB Flash / 1 MB RAM + 16 MB QSPI Flash
-- **Seguridad:** NXP SE050C2 Crypto chip
-- **Alimentación:** 3.7 V Li-Po (cargador MAX17262 integrado) o MicroUSB 5 V
-- **Dimensiones:** 22.86 × 22.86 mm | **Temp. operación:** -20 °C a +70 °C
-- **Interfaces:** I2C (conector ESLOV), SPI, UART, GPIO, ADC, JTAG, castellated pins
-- **Función en el robot: Detección de pista en tiempo real (conos rojos/verdes), clasificación, envío de datos de posición/orientación vía UART serie directo a Arduino Uno R4 WiFi. Cableado MicroUSB protegido, ángulo fijo 10°.**
+**Arduino Nicla Vision**
 
-### Control de Motores
+![](other/nicla-vision.webp)
+
+Es el módulo encargado de la visión artificial y orientación. Captura imágenes, identifica los colores relevantes de la pista y proporciona información de orientación mediante su IMU.
+
+**Características:**
+Procesador STM32H747 de doble núcleo.
+Cámara de 2 MP.
+IMU LSM6DSOX.
+Comunicación UART.
+Capacidad para procesamiento de imágenes y TinyML.
+Formato extremadamente compacto.
+
+**¿Por qué lo usamos?**
+La elegimos porque necesitábamos un sistema de visión capaz de procesar imágenes directamente en el robot sin depender de un computador externo. Su tamaño reducido también permitió colocarla en la parte superior del robot sin afectar significativamente su estructura. Durante las primeras investigaciones también evaluamos la visión proporcionada por otros componentes, pero la Nicla Vision ofreció una solución más adecuada para reconocer los elementos de la pista desde el inicio de la construcción. La Nicla Vision permite separar las tareas: la cámara se concentra en interpretar el entorno, mientras que el Arduino se concentra en tomar decisiones de control.
+
+### Movilidad
+
+Motor DC de tracción
+
+
+
+Proporciona la fuerza necesaria para mover el robot.
+
+**Características:**
+Motor de corriente continua.
+Transmite el movimiento al sistema de ruedas traseras.
+Es controlado mediante PWM a través del L298N.
+
+**¿Por qué lo usamos?**
+Fue seleccionado porque proporciona una solución compacta y sencilla para generar la tracción del robot y es compatible con el sistema mecánico proveniente del kit Nezha. El motor debía proporcionar un equilibrio entre velocidad y torque. Para WRO no basta con alcanzar una velocidad elevada: el robot debe poder mantener esa velocidad mientras realiza correcciones y giros.
+
+Aquí les recomiendo agregar posteriormente datos reales: RPM, torque, velocidad máxima y comportamiento bajo carga.
+
+### Control de Motor
 
 ![](other/puente-h.webp)
 
