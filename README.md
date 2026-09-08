@@ -151,17 +151,24 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 
 ### Control Principal
 
+**Arduino UNO R4 WiFi**
+
 ![](other/arduino-uno-r4.jpg)
-**Arduino Uno R4 WiFi (ABX00087)**
-- **MCU principal:** Renesas RA4M1 (R7FA4M1AB3CFM) — Arm Cortex-M4 @ 48 MHz con FPU
-- **Coprocesador inalámbrico:** ESP32-S3-MINI-1-N8 — Xtensa dual-core LX7, Wi-Fi 4 (2.4 GHz), Bluetooth 5 LE
-- **Memoria (RA4M1):** 256 KB Flash / 32 KB SRAM / 8 KB EEPROM
-- **Memoria (ESP32-S3):** 384 KB ROM / 512 KB SRAM
-- **Voltaje de operación:** 5 V (RA4M1) / 3.3 V (ESP32-S3) — traductor de nivel TXB0108 interno
-- **USB:** USB-C (hasta 21 V PD input, HID support)
-- **I/O:** 14 pines digitales, 6 entradas analógicas (14-bit ADC), 6 PWM, 1 DAC (12-bit), CAN Bus, I2C (Qwiic), SPI, UART
-- **Extras:** Matriz LED 12×8, RTC, VRTC pin (batería backup), pin OFF
-- **Función en el robot: Controlador principal — fusión de sensores, control PWM de motores (L298N), comunicación serie UART con Nicla Vision @ 115200 baudios, bucle de control 50 Hz**
+
+Es el controlador principal del robot. Recibe información de los sensores y de la Nicla Vision, ejecuta la lógica de navegación y envía las órdenes al motor y al sistema de dirección.
+
+**Características:**
+Microcontrolador Renesas RA4M1.
+ARM Cortex-M4 a 48 MHz.
+256 KB de Flash y 32 KB de SRAM.
+5 V de operación para la lógica principal.
+Entradas/salidas digitales y analógicas.
+PWM para el control del motor.
+UART para comunicación con la Nicla Vision.
+I²C y SPI disponibles para futuras expansiones.
+
+**¿Por qué lo usamos?**
+Lo seleccionamos como controlador principal porque necesitábamos una plataforma que trabajara de forma estable a 5 V, tuviera suficientes interfaces de comunicación y pudiera controlar simultáneamente los sensores, el motor, el servo y la comunicación con la Nicla Vision. Además, durante el desarrollo comprobamos que las alternativas anteriores, como el ESP32 y la electrónica Nezha, presentaban limitaciones relacionadas con alimentación e integración con el resto del sistema. Por eso migramos finalmente al UNO R4 WiFi. La elección del Arduino no fue solamente por potencia de procesamiento, sino por compatibilidad eléctrica, disponibilidad de interfaces y estabilidad del sistema completo.
 
 ### Visión Artificial
 
