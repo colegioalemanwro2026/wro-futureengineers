@@ -15,6 +15,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
  - [Elementos](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#elementos)
    - [Piezas Estructurales (Kits)](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#piezas-estructurales-kits)
    - [Electrónica](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#electr%C3%B3nica)
+- [Mecánica y Sistema de Transmisión]()
 - [Diseño del Software](https://github.com/colegioalemanwro2026/wro-futureengineers#dise%C3%B1o-del-software)
  - [Arquitectura del Sistema](https://github.com/colegioalemanwro2026/wro-futureengineers#arquitectura-del-sistema)
  - [Adquisición de Datos de los Sensores](https://github.com/colegioalemanwro2026/wro-futureengineers#adquisici%C3%B3n-de-datos-de-los-sensores)
@@ -319,6 +320,440 @@ Aquí les recomiendo agregar posteriormente datos reales: RPM, torque, velocidad
 ![](other/cinta.jpg)
 
 - **Cinta 3M VHB 5952 (1.1 mm, acrílico de alta cohesión):** Fijación de PCBs (Arduino, L298N, sensores, protoboard), módulos sin orificios roscados. Resistente a vibración, ciclos térmicos (-40 a +90 °C), manipulación repetida. Área de contacto dimensionada >4× peso del módulo.
+---
+## Mecánica y Sistema de Transmisión
+
+Nuestro robot es un vehículo compacto de cuatro ruedas diseñado buscando un equilibrio entre **estabilidad, tracción, maniobrabilidad y velocidad**.
+
+Las dimensiones finales del robot son:
+
+| Parámetro | Valor |
+|---|---:|
+| Longitud | **195 mm** |
+| Anchura | **100 mm** |
+| Altura | **170 mm** |
+| Diámetro de las ruedas | **35 mm** |
+| Radio de las ruedas | **17,5 mm** |
+| Número de ruedas | **4** |
+| Tracción | **Trasera** |
+| Dirección | **Delantera** |
+
+El chasis está construido principalmente con elementos estructurales de **LEGO SPIKE Prime/Technic** y piezas mecánicas de Nezha. Elegimos esta construcción porque permite modificar rápidamente la posición del motor, los sensores, la dirección y los componentes electrónicos durante las diferentes etapas de desarrollo.
+
+Nuestro objetivo principal no fue únicamente conseguir que el robot se desplazara, sino conseguir un movimiento **estable, repetible y controlable**.
+
+---
+
+### 2. Diseño del chasis
+
+El chasis tiene unas dimensiones finales de **195 × 100 × 170 mm**.
+
+Su reducido ancho permite que el robot sea compacto y maniobrable, mientras que la estructura proporciona espacio suficiente para integrar:
+
+- Motor de tracción.
+- Sistema de transmisión.
+- Dirección delantera.
+- Sensores ultrasónicos.
+- Arduino UNO R4 WiFi.
+- Nicla Vision.
+- Driver L298N.
+- Baterías y sistema de alimentación.
+
+Utilizamos piezas LEGO/Technic porque durante el desarrollo necesitábamos modificar frecuentemente la estructura.
+
+Sus principales ventajas fueron:
+
+- Facilidad de montaje.
+- Posibilidad de modificar rápidamente el diseño.
+- Reutilización de piezas entre versiones.
+- Posicionamiento preciso de ejes y componentes.
+- Facilidad para realizar prototipos.
+
+Una de nuestras prioridades fue aumentar la rigidez de las zonas donde se encuentran el **motor, el eje trasero y el sistema de dirección**.
+
+Esto es importante porque una estructura demasiado flexible puede provocar que el movimiento real de las ruedas no coincida con el movimiento esperado por el sistema de control.
+
+---
+
+### 3. Sistema de transmisión
+
+El robot utiliza **tracción trasera**.
+
+El motor transmite el movimiento al eje trasero mediante dos engranajes:
+
+- Engranaje pequeño: **12 dientes**
+- Engranaje grande: **20 dientes**
+
+El engranaje de 12 dientes es el **conductor**, conectado al motor, mientras que el engranaje de 20 dientes es el **conducido**, conectado al eje de las ruedas.
+
+La relación de transmisión es:
+
+$$
+i = \frac{20}{12} = 1.67:1
+$$
+
+Por lo tanto, tenemos una **reducción de velocidad de 1,67:1**.
+
+Esto significa que el eje de las ruedas gira aproximadamente al:
+
+$$
+\frac{12}{20} = 0.60
+$$
+
+es decir, al **60 % de la velocidad del motor**.
+
+A cambio, idealmente el torque disponible en el eje aumenta aproximadamente:
+
+$$
+\frac{20}{12} = 1.67
+$$
+
+veces.
+
+En la práctica, el aumento real de torque es menor debido a las pérdidas por fricción y a la eficiencia de los engranajes.
+
+---
+
+### 4. ¿Por qué elegimos una relación 12:20?
+
+Esta fue una decisión importante del diseño mecánico.
+
+No buscábamos simplemente conseguir la mayor velocidad posible. Necesitábamos encontrar un equilibrio entre:
+
+**velocidad → torque → tracción → estabilidad → control**
+
+Una transmisión con una reducción menor permitiría que las ruedas giraran más rápido, pero reduciría el torque disponible en ellas.
+
+Por el contrario, una reducción mayor aumentaría el torque, pero reduciría demasiado la velocidad máxima.
+
+Por eso seleccionamos la relación **12:20 = 1,67:1**.
+
+Esta configuración nos permite disponer de mayor torque en las ruedas, lo que ayuda especialmente durante:
+
+- Aceleraciones.
+- Cambios de dirección.
+- Curvas.
+- Situaciones en las que aumenta la resistencia al movimiento.
+- Recuperaciones después de una trayectoria incorrecta.
+
+La decisión busca que el robot sea **rápido, pero también controlable**.
+
+---
+
+### 5. Diseño de las ruedas
+
+El robot utiliza cuatro ruedas de **35 mm de diámetro**.
+
+El radio de cada rueda es:
+
+$$
+r = \frac{35}{2} = 17.5\text{ mm}
+$$
+
+La distancia teórica recorrida en una revolución es:
+
+$$
+C = \pi d
+$$
+
+$$
+C = \pi(0.035)
+$$
+
+$$
+C \approx 0.110\text{ m}
+$$
+
+Por lo tanto, cada revolución de la rueda representa aproximadamente **110 mm de desplazamiento**, suponiendo que no existe deslizamiento.
+
+El diámetro relativamente pequeño de las ruedas ayuda a mantener el robot compacto y proporciona una ventaja mecánica mayor que una rueda de mayor diámetro.
+
+La elección del diámetro también afecta directamente a la relación entre las RPM del motor y la velocidad lineal del robot.
+
+---
+
+### 6. Relación entre motor, transmisión y velocidad
+
+La transmisión permite calcular la velocidad teórica de las ruedas a partir de las RPM del motor.
+
+Como utilizamos una relación 12:20:
+
+$$
+RPM_{rueda} = RPM_{motor} \times \frac{12}{20}
+$$
+
+Por lo tanto:
+
+$$
+RPM_{rueda} = 0.6 \times RPM_{motor}
+$$
+
+La velocidad lineal puede calcularse mediante:
+
+$$
+v = \frac{RPM_{rueda} \times 0.110}{60}
+$$
+
+Combinando ambas ecuaciones:
+
+$$
+v = \frac{RPM_{motor} \times 0.6 \times 0.110}{60}
+$$
+
+Esto nos permite relacionar directamente la velocidad del motor con la velocidad teórica del robot.
+
+Por ejemplo, si el motor girara a aproximadamente **260 RPM**:
+
+$$
+RPM_{rueda} = 260 \times 0.6 = 156\ RPM
+$$
+
+y la velocidad teórica sería aproximadamente:
+
+$$
+v \approx 0.286\ m/s
+$$
+
+Este valor es cercano a la velocidad de crucero objetivo utilizada por nuestro sistema de control.
+
+> **Nota:** este cálculo representa una velocidad teórica. La velocidad real puede ser menor debido a pérdidas mecánicas, fricción, variaciones de batería y deslizamiento de las ruedas.
+
+---
+
+### 7. Torque y tracción
+
+El torque fue uno de los factores considerados al seleccionar la transmisión.
+
+El motor necesita proporcionar suficiente torque para:
+
+- Acelerar el robot.
+- Mantener el movimiento.
+- Superar la resistencia de las ruedas.
+- Realizar cambios de dirección.
+- Mantener la tracción durante las curvas.
+
+La transmisión 12:20 proporciona una multiplicación teórica del torque de:
+
+$$
+T_{salida} = T_{motor} \times 1.67
+$$
+
+aunque el torque real será menor debido a las pérdidas del sistema.
+
+Esta reducción supone un intercambio:
+
+> **Perdemos velocidad de giro para obtener mayor torque en las ruedas.**
+
+Para nuestro robot consideramos que este intercambio era beneficioso porque la estabilidad y la capacidad de controlar el robot son más importantes que alcanzar únicamente la máxima velocidad posible.
+
+---
+
+### 8. Sistema de dirección
+
+El robot utiliza **dirección en las ruedas delanteras**.
+
+El servomotor controla las ruedas delanteras mediante un mecanismo mecánico tipo **cremallera y piñón**.
+
+El servo transforma su movimiento rotacional en un desplazamiento lateral de la dirección.
+
+Este sistema nos permite conseguir:
+
+- Movimiento de dirección hacia ambos lados.
+- Posición central definida.
+- Movimiento relativamente preciso.
+- Buena capacidad de giro.
+- Integración compacta dentro del chasis.
+
+La posición central del servo es especialmente importante porque representa la posición en la que el robot debe desplazarse aproximadamente en línea recta.
+
+---
+
+### 9. Dirección y estabilidad
+
+El sistema de dirección fue diseñado conjuntamente con el sistema de transmisión.
+
+El robot debe ser capaz de realizar giros relativamente cerrados sin perder estabilidad ni tracción.
+
+Durante el funcionamiento normal, el controlador modifica continuamente el ángulo de dirección para corregir la posición del robot.
+
+Por esta razón, el sistema mecánico debe tener **el menor juego posible**.
+
+Prestamos especial atención a:
+
+- Holgura de la dirección.
+- Rigidez de los soportes.
+- Alineación de las ruedas delanteras.
+- Movimiento del eje delantero.
+- Fricción del mecanismo.
+
+Una dirección con demasiado juego provocaría que una misma orden del servo produjera diferentes comportamientos en el robot.
+
+Por eso, la precisión mecánica es fundamental para que el controlador pueda funcionar correctamente.
+
+---
+
+### 10. Distribución de los componentes
+
+La posición de los componentes también fue considerada durante el diseño.
+
+El robot incorpora elementos relativamente pesados, como:
+
+- Baterías.
+- Motor.
+- L298N.
+- Arduino.
+- Nicla Vision.
+
+Intentamos mantener estos componentes dentro de la estructura del chasis y evitar grandes voladizos.
+
+La distribución de los componentes busca mantener:
+
+- Una estructura compacta.
+- Un comportamiento estable.
+- Menores vibraciones.
+- Buena tracción.
+- Espacio suficiente para la dirección y los sensores.
+
+También tuvimos que encontrar un equilibrio entre colocar los componentes en posiciones accesibles para realizar modificaciones y mantener una distribución mecánica adecuada.
+
+---
+
+### 11. Montaje de los sensores
+
+Los tres sensores ultrasónicos están montados en la parte delantera y lateral del robot:
+
+- **Sensor izquierdo:** mide la distancia respecto a la pared izquierda.
+- **Sensor frontal:** detecta obstáculos y ayuda a detectar las aproximaciones a las esquinas.
+- **Sensor derecho:** mide la distancia respecto a la pared derecha.
+
+La posición de los sensores se mantiene fija durante el funcionamiento.
+
+Esto es importante porque el software interpreta cada medición suponiendo que el sensor está orientado en una dirección determinada.
+
+Si un sensor se moviera durante la ejecución, las mediciones podrían cambiar aunque el entorno permaneciera igual.
+
+Por ello, consideramos el montaje de los sensores como parte del **diseño mecánico y no solamente como una cuestión electrónica**.
+
+---
+
+### 12. Integración de la electrónica
+
+La electrónica está integrada directamente en la estructura del robot.
+
+Los principales componentes electrónicos son:
+
+- Arduino UNO R4 WiFi.
+- Nicla Vision.
+- L298N.
+- Tres HC-SR04.
+- Sistema de baterías.
+- Regulación de tensión.
+
+La estructura proporciona soporte físico para estos componentes y permite acceder a ellos durante las pruebas.
+
+También prestamos atención al recorrido de los cables, especialmente cerca de:
+
+- La dirección.
+- Los engranajes.
+- Los ejes.
+- Las ruedas.
+
+Esto evita que los cables interfieran con los elementos móviles.
+
+---
+
+### 13. Evolución del diseño mecánico
+
+El robot pasó por diferentes versiones durante el proceso de desarrollo.
+
+#### Primera versión
+
+La primera versión se utilizó principalmente para conseguir una plataforma funcional.
+
+El objetivo inicial era comprobar que el robot pudiera desplazarse y que los diferentes componentes pudieran integrarse en el chasis.
+
+#### Segunda etapa
+
+A medida que cambiaron los componentes electrónicos y el sistema de control, también tuvimos que modificar el diseño mecánico.
+
+Esto nos llevó a utilizar una estructura modular que permitiera cambiar la posición de:
+
+- Motor.
+- Baterías.
+- Sensores.
+- Electrónica.
+- Sistema de dirección.
+
+#### Diseño de la transmisión
+
+Posteriormente establecimos la transmisión definitiva mediante los engranajes de **12 y 20 dientes**.
+
+La decisión se tomó buscando un equilibrio entre velocidad y torque.
+
+#### Configuración final
+
+La configuración final tiene:
+
+**195 mm de longitud × 100 mm de anchura × 170 mm de altura**
+
+y utiliza ruedas de **35 mm**.
+
+En esta etapa, nuestra prioridad dejó de ser simplemente conseguir que el robot funcionara y pasó a ser conseguir un movimiento **estable, repetible y predecible**.
+
+---
+
+### 14. Compromisos del diseño mecánico
+
+| Decisión | Ventaja | Desventaja |
+|---|---|---|
+| Ruedas de 35 mm | Robot compacto y buena ventaja mecánica | Menor velocidad máxima |
+| Engranajes 12:20 | Mayor torque y tracción | Menor velocidad de las ruedas |
+| Tracción trasera | Sistema sencillo y compacto | Hay que cuidar la distribución del peso |
+| Dirección delantera | Buena maniobrabilidad | Requiere una alineación precisa |
+| Estructura LEGO/Technic | Fácil de modificar | Hay que controlar la holgura |
+| Chasis compacto | Buena maniobrabilidad | Menor espacio para componentes |
+| Sensores fijados | Mediciones más consistentes | Menos flexibilidad para cambiar su posición |
+
+---
+
+### 15. Diseño mecánico final
+
+El diseño final es el resultado de buscar un equilibrio entre **velocidad, torque, tracción, estabilidad y precisión de dirección**.
+
+Una de las decisiones mecánicas más importantes fue utilizar un engranaje de **12 dientes como conductor** y uno de **20 dientes como conducido**, obteniendo una relación de reducción de **1,67:1**.
+
+Junto con las ruedas de **35 mm**, esta transmisión proporciona una combinación adecuada entre velocidad y torque para nuestro robot.
+
+La mecánica y el software fueron considerados como un único sistema:
+
+**Transmisión → movimiento → sensores → estimación de posición → dirección → corrección de trayectoria.**
+
+Por ello, no diseñamos cada componente de forma independiente. Las decisiones sobre el chasis, la transmisión, las ruedas, la dirección y la colocación de los sensores se tomaron teniendo en cuenta cómo afectarían al comportamiento completo del robot.
+
+---
+
+### 16. Validación experimental pendiente
+
+Para validar experimentalmente las decisiones mecánicas, queremos comparar diferentes valores de PWM con la velocidad real del robot.
+
+La prueba propuesta consiste en medir el tiempo necesario para recorrer **1 metro**:
+
+| PWM | Tiempo en 1 m | Velocidad real |
+|---:|---:|---:|
+| 120 | — | — |
+| 150 | — | — |
+| 180 | — | — |
+| 200 | — | — |
+
+La velocidad real se calculará mediante:
+
+$$
+v = \frac{distancia}{tiempo}
+$$
+
+Estos datos permitirán comparar la velocidad teórica con la velocidad real y determinar qué configuración proporciona el mejor equilibrio entre **velocidad, tracción y estabilidad**.
+
+Esta validación nos permitirá justificar nuestras decisiones mecánicas mediante datos obtenidos directamente del robot.
 ---
 # Diseño del Software
 
