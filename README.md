@@ -15,7 +15,7 @@ En el presente repositorio podrán encontrar toda la construcción y ensamblaje 
  - [Elementos](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#elementos)
    - [Piezas Estructurales (Kits)](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#piezas-estructurales-kits)
    - [Electrónica](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#electr%C3%B3nica)
-- [Mecánica y Sistema de Transmisión]()
+- [Mecánica y Sistema de Transmisión](https://github.com/colegioalemanwro2026/wro-futureengineers/blob/main/README.md#mec%C3%A1nica-y-sistema-de-transmisi%C3%B3n)
 - [Diseño del Software](https://github.com/colegioalemanwro2026/wro-futureengineers#dise%C3%B1o-del-software)
  - [Arquitectura del Sistema](https://github.com/colegioalemanwro2026/wro-futureengineers#arquitectura-del-sistema)
  - [Adquisición de Datos de los Sensores](https://github.com/colegioalemanwro2026/wro-futureengineers#adquisici%C3%B3n-de-datos-de-los-sensores)
