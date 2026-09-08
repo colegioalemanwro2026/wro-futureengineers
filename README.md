@@ -193,7 +193,7 @@ La elegimos porque necesitábamos un sistema de visión capaz de procesar imáge
 
 Motor DC de tracción
 
-
+![](o)
 
 Proporciona la fuerza necesaria para mover el robot.
 
@@ -203,7 +203,7 @@ Transmite el movimiento al sistema de ruedas traseras.
 Es controlado mediante PWM a través del L298N.
 
 **¿Por qué lo usamos?**
-Fue seleccionado porque proporciona una solución compacta y sencilla para generar la tracción del robot y es compatible con el sistema mecánico proveniente del kit Nezha. El motor debía proporcionar un equilibrio entre velocidad y torque. Para WRO no basta con alcanzar una velocidad elevada: el robot debe poder mantener esa velocidad mientras realiza correcciones y giros.
+Fue seleccionado porque proporciona una solución compacta y sencilla para generar la tracción del robot y es compatible con el sistema mecánico proveniente del kit Nezha. El motor debía proporcionar un equilibrio entre velocidad y torque. Nuestro objetivo no sólo era alcanzar una velocidad elevada sino que nuestro robot pudiera mantener esa velocidad mientras realiza correcciones y giros.
 
 Aquí les recomiendo agregar posteriormente datos reales: RPM, torque, velocidad máxima y comportamiento bajo carga.
 
