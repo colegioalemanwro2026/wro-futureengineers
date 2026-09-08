@@ -1,0 +1,45 @@
+# Giroscopio Nicla Vision Pro (LSM6DSOX) - Yaw integrado
+import imu
+import time
+from pyb import UART
+
+# --- CONFIGURACIÓN ---
+AXIS = 0              # 0=X, 1=Y, 2=Z  (vertical = X o Y según montaje)
+YAW_SIGN = 1.0        # 1.0 o -1.0 para invertir sentido
+CALIB_MS = 3000       # ms quietos al arrancar para calibrar bias
+SEND_MS = 50          # envío UART cada 50 ms (20 Hz)
+
+uart = UART("LP1", 115200, timeout_char=100)
+
+# --- CALIBRACIÓN BIAS (placa QUIETA) ---
+print("Calibrando bias... no mover la placa")
+N = CALIB_MS // 10
+s = 0.0
+for _ in range(N):
+    s += imu.angular_rate_mdps()[AXIS] / 1000.0  # mdps -> dps
+    time.sleep_ms(10)
+bias = s / N
+print("Bias = %.4f dps" % bias)
+
+yaw = 0.0
+last_us = time.ticks_us()
+last_tx = time.ticks_ms()
+
+while True:
+    # Leer velocidad angular (dps)
+    rate = YAW_SIGN * (imu.angular_rate_mdps()[AXIS] / 1000.0 - bias)
+
+    # Integrar
+    now = time.ticks_us()
+    dt = time.ticks_diff(now, last_us) * 1e-6
+    yaw += rate * dt
+    last_us = now
+
+    # Enviar por UART cada 50 ms (formato: G,<centésimas_de_grado>\n)
+    if time.ticks_diff(time.ticks_ms(), last_tx) >= SEND_MS:
+        last_tx = time.ticks_ms()
+        uart.write("G,%d\n" % int(yaw * 100))
+
+    # Debug en consola OpenMV
+    print("yaw = %7.2f deg   rate = %6.2f dps" % (yaw, rate))
+    time.sleep_ms(20)

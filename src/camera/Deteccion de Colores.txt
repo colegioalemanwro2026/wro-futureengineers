@@ -1,0 +1,38 @@
+import sensor
+import pyb
+from pyb import UART
+
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QQVGA)
+
+ROJO = (25, 75, 20, 60, 5, 50)
+VERDE = (25, 80, -60, -15, -15, 40)
+AMARILLO = (30, 80, -10, 30, 30, 70)
+
+# UART hacia el Arduino. "LP1" es el UART que va al conector
+uart = UART("LP1", 115200, timeout_char=100)
+
+led_rojo = pyb.LED(1)
+led_verde = pyb.LED(2)
+led_amarillo = pyb.LED(3)
+
+while True:
+    img = sensor.snapshot()
+
+    r = len(img.find_blobs([ROJO], pixels_threshold=200, area_threshold=200))
+    v = len(img.find_blobs([VERDE], pixels_threshold=200, area_threshold=200))
+    a = len(img.find_blobs([AMARILLO], pixels_threshold=200, area_threshold=200))
+
+    if r:
+        led_rojo.on(); led_verde.off(); led_amarillo.off()
+        uart.write("R\n")
+    elif v:
+        led_rojo.off(); led_verde.on(); led_amarillo.off()
+        uart.write("G\n")
+    elif a:
+        led_rojo.off(); led_verde.off(); led_amarillo.on()
+        uart.write("Y\n")
+    else:
+        led_rojo.off(); led_verde.off(); led_amarillo.off()
+        uart.write(".\n")
