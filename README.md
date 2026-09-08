@@ -450,7 +450,7 @@ En este estado, el robot permanece detenido y espera la señal de inicio antes d
 
 ### FOLLOW
 
-Es el modo principal de navegación. El robot sigue la trayectoria utilizando:
+Es el modo principal de navegación. El robot sigue la trayectoria en línea recta utilizando:
 
 * Mediciones de los sensores ultrasónicos.
 * La estimación obtenida mediante el Filtro de Kalman.
