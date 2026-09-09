@@ -1,4 +1,4 @@
-# Documentación de Ingeniería - Team Eule Tech
+<img width="1200" height="1200" alt="image" src="https://github.com/user-attachments/assets/8e1f8df2-34ca-409a-83eb-a8254bb9833f" /># Documentación de Ingeniería - Team Eule Tech
 ![](assets/engineeringdoc.png)
 
 
@@ -1065,6 +1065,8 @@ El software está dividido en varios módulos:
 * **Módulo de control:** Utiliza un controlador LQR para calcular la corrección necesaria en la dirección.
 * **Módulo de misión:** Implementa el comportamiento general del robot mediante una máquina de estados finitos.
 * **Módulo de actuación:** Controla el motor de corriente continua mediante un controlador L298N y el servo encargado de la dirección.
+* **Módulo de giroscopio:** Calcula continuamente el ángulo de giro (yaw) del robot.
+* **Módulo de detección de colores:** identifica objetos o marcadores de color mediante visión artificial.
 
 Esta estructura modular facilita la depuración, calibración y mejora de cada sistema de forma independiente sin afectar el funcionamiento general del robot.
 
