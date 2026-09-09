@@ -1248,6 +1248,294 @@ El sistema permite visualizar información como:
 * Colores detectados.
 * Contadores relacionados con giros y recuperación.
 
+# Diseño del Software
+
+El software del robot está diseñado de forma modular, separando las tareas de **percepción**, **estimación de orientación** y **comunicación con el controlador principal**.
+
+La Nicla Vision se encarga principalmente de obtener información del entorno y del movimiento del robot. Para esto utiliza su cámara y el sensor inercial LSM6DSOX. La información procesada se envía mediante comunicación UART al Arduino, que utiliza estos datos dentro de la lógica general de navegación.
+
+Los dos módulos principales explicados en esta sección son el **giroscopio**, encargado de estimar el giro del robot, y la **detección de colores**, encargada de identificar determinados elementos visuales de la pista.
+
+---
+
+## Giroscopio
+
+El objetivo del módulo de giroscopio es conocer cuánto ha girado el robot respecto a su orientación de referencia.
+
+Para conseguirlo se utiliza el sensor inercial **LSM6DSOX**, integrado en la Nicla Vision. Este sensor proporciona la velocidad angular del robot, expresada en grados por segundo. A partir de esta información se calcula el ángulo acumulado de giro, conocido como **yaw**.
+
+El funcionamiento general del módulo puede representarse como:
+
+**Giroscopio → velocidad angular → integración → yaw → UART**
+
+### Configuración del sensor
+
+El programa selecciona el eje del sensor que corresponde al giro principal del robot mediante la variable `AXIS`. También se utiliza `YAW_SIGN` para establecer el sentido positivo del giro dependiendo de la orientación física de la Nicla Vision.
+
+AXIS = 0
+YAW_SIGN = 1.0
+
+La comunicación con el controlador se realiza mediante el puerto UART LP1, utilizando una velocidad de 115200 baudios.
+
+Lectura de la velocidad angular
+
+Durante la ejecución, el programa obtiene continuamente la velocidad angular del eje seleccionado:
+
+imu.angular_rate_mdps()[AXIS]
+
+La medición proporcionada por el sensor está expresada en miligrados por segundo (mdps). Por ello, se convierte a grados por segundo (dps) dividiendo el valor entre 1000.
+
+rate = imu.angular_rate_mdps()[AXIS] / 1000.0
+
+El resultado representa la velocidad con la que está girando el robot en cada instante.
+
+Cálculo del yaw
+
+Para obtener el ángulo de giro a partir de la velocidad angular, el programa realiza una integración en el tiempo.
+
+Primero calcula cuánto tiempo ha transcurrido desde la medición anterior mediante time.ticks_us():
+
+now = time.ticks_us()
+dt = time.ticks_diff(now, last_us) * 1e-6
+
+Después actualiza el ángulo:
+
+yaw += rate * dt
+
+Conceptualmente:
+
+yaw = yaw anterior + velocidad angular × tiempo transcurrido
+
+De manera matemática:
+
+$$ yaw(t)=yaw(t-\Delta t)+\omega(t)\Delta t $$
+
+donde:
+
+yaw representa el ángulo acumulado del robot.
+ω representa la velocidad angular.
+Δt representa el tiempo transcurrido entre dos mediciones.
+
+Este proceso permite mantener una estimación continua de la orientación del robot durante su movimiento.
+
+Comunicación mediante UART
+
+El valor del yaw se transmite al Arduino mediante UART cada 50 milisegundos, lo que corresponde aproximadamente a una frecuencia de 20 Hz.
+
+El formato utilizado para enviar la información es:
+
+G,<centésimas_de_grado>
+
+Por ejemplo:
+
+G,9025
+
+representa aproximadamente un giro de 90.25°.
+
+El uso de centésimas de grado permite transmitir el valor como un número entero manteniendo una resolución suficiente para que el controlador pueda utilizar la información.
+
+Además, durante las pruebas el programa muestra en la consola el valor actual del yaw y de la velocidad angular. Esto permite observar el comportamiento del sensor y comprobar que la estimación del giro se está realizando correctamente.
+
+Detección de colores
+
+El módulo de detección de colores utiliza la cámara de la Nicla Vision para identificar determinados colores presentes en el entorno del robot.
+
+La finalidad es transformar la información visual capturada por la cámara en una señal sencilla que pueda ser interpretada por el Arduino.
+
+El flujo general del sistema es:
+
+Cámara → imagen → búsqueda de regiones de color → identificación → UART
+
+Configuración de la cámara
+
+Al iniciar el programa se configura la cámara:
+
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QQVGA)
+
+Se utiliza el formato RGB565 y una resolución QQVGA.
+
+La resolución utilizada permite reducir la cantidad de información que debe procesarse en cada imagen y facilita una ejecución rápida del algoritmo de detección.
+
+Definición de los colores
+
+El programa utiliza tres conjuntos de parámetros para reconocer los colores:
+
+ROJO = (25, 75, 20, 60, 5, 50)
+VERDE = (25, 80, -60, -15, -15, 40)
+AMARILLO = (30, 80, -10, 30, 30, 70)
+
+Estos valores representan rangos utilizados por el sistema de visión para determinar qué píxeles pueden pertenecer a cada color.
+
+De esta forma, la cámara no busca una coincidencia exacta de color, sino regiones cuyos valores se encuentran dentro de los rangos establecidos.
+
+Detección de regiones
+
+En cada ciclo se captura una nueva imagen:
+
+img = sensor.snapshot()
+
+Después se utiliza find_blobs() para buscar regiones de la imagen que coincidan con los parámetros establecidos para cada color.
+
+r = len(img.find_blobs(
+    [ROJO],
+    pixels_threshold=200,
+    area_threshold=200
+))
+
+v = len(img.find_blobs(
+    [VERDE],
+    pixels_threshold=200,
+    area_threshold=200
+))
+
+a = len(img.find_blobs(
+    [AMARILLO],
+    pixels_threshold=200,
+    area_threshold=200
+))
+
+Los parámetros pixels_threshold y area_threshold establecen un tamaño mínimo para aceptar una región como detección válida.
+
+Esto permite descartar regiones demasiado pequeñas que podrían producirse por ruido visual o pequeñas variaciones en la imagen.
+
+Selección del color detectado
+
+Una vez procesada la imagen, el programa comprueba qué colores fueron detectados.
+
+La prioridad de decisión es:
+
+Rojo → Verde → Amarillo → Ningún color
+
+El programa utiliza una estructura condicional:
+
+if r:
+    ...
+elif v:
+    ...
+elif a:
+    ...
+else:
+    ...
+
+Esto significa que, si se detectan varios colores simultáneamente, se selecciona el primero según el orden establecido.
+
+Además de enviar la información al Arduino, la Nicla Vision activa el LED correspondiente al color detectado. Esto permite comprobar visualmente durante las pruebas qué está identificando la cámara.
+
+Comunicación de la detección
+
+La información de color se transmite mediante UART utilizando mensajes simples:
+
+Color detectado	Señal enviada
+Rojo	R
+Verde	G
+Amarillo	Y
+Ningún color	.
+
+Por ejemplo, si la cámara detecta rojo, transmite:
+
+R
+
+Si detecta verde:
+
+G
+
+Si detecta amarillo:
+
+Y
+
+Mientras que si no encuentra ninguno de los colores definidos:
+
+.
+
+De esta manera, la Nicla Vision realiza el procesamiento necesario de la imagen y el Arduino recibe únicamente el resultado de la detección.
+
+Integración entre los módulos
+
+El giroscopio y la cámara proporcionan información diferente, pero ambos forman parte del sistema de percepción de la Nicla Vision.
+
+El giroscopio proporciona información relacionada con el movimiento y la orientación del robot, mientras que la cámara proporciona información sobre determinados elementos visuales de la pista.
+
+La arquitectura puede representarse de la siguiente manera:
+
+                 NICLA VISION
+                       │
+             ┌─────────┴─────────┐
+             │                   │
+        Giroscopio             Cámara
+             │                   │
+             ▼                   ▼
+            Yaw          Color detectado
+             │                   │
+             └─────────┬─────────┘
+                       │
+                      UART
+                       │
+                       ▼
+               ARDUINO UNO R4
+                       │
+                Lógica de control
+                       │
+                 ┌─────┴─────┐
+                 ▼           ▼
+               Motor       Servo
+
+El Arduino recibe la información procedente de la Nicla Vision y puede combinarla con las mediciones obtenidas por los demás sensores del robot.
+
+De esta manera, el software sigue una estructura de:
+
+Percepción → procesamiento → información del estado → toma de decisiones → control → actuadores
+
+Esta separación permite distribuir el procesamiento entre los diferentes microcontroladores y mantener cada parte del programa enfocada en una función específica.
+
+Comunicación
+
+La comunicación entre la Nicla Vision y el Arduino se realiza mediante UART a 115200 baudios.
+
+Los mensajes enviados son intencionalmente simples para facilitar su interpretación en el controlador:
+
+G,<yaw>
+R
+G
+Y
+.
+
+El mensaje que comienza con G contiene información relacionada con el giroscopio, mientras que las letras individuales representan las detecciones de color.
+
+Esta estructura permite que el Arduino pueda identificar rápidamente qué tipo de información está recibiendo y utilizarla dentro de su lógica de navegación.
+
+Funcionamiento general
+
+Durante la ejecución autónoma, la Nicla Vision obtiene continuamente información de sus sensores.
+
+El giroscopio proporciona la velocidad angular, que es procesada para mantener una estimación del yaw. Paralelamente, la cámara captura imágenes y busca regiones que coincidan con los colores definidos.
+
+Los resultados de ambos procesos son enviados al Arduino mediante UART. El controlador principal utiliza esta información junto con los demás sensores del robot para determinar las acciones necesarias durante la navegación.
+
+En conjunto, el sistema permite que el robot conozca tanto cómo está orientado como qué elementos visuales está detectando, proporcionando información que puede ser utilizada por los algoritmos de control y navegación.
+
+Arquitectura general del software
+
+El sistema está dividido en diferentes responsabilidades para evitar que toda la lógica dependa de un único programa.
+
+La Nicla Vision se encarga principalmente de:
+
+Procesamiento de imágenes.
+Detección de colores.
+Lectura del sensor inercial.
+Estimación del ángulo de giro.
+Comunicación de información mediante UART.
+
+El Arduino UNO R4 se encarga de recibir estos datos y combinarlos con la información de los demás sensores para ejecutar la lógica de navegación y control del robot.
+
+Por tanto, la arquitectura general sigue el siguiente esquema:
+
+Percepción → procesamiento → estimación del estado → toma de decisiones → control → actuación
+
+Esta separación permite que el robot procese diferentes tipos de información y utilice los resultados para tomar decisiones durante la navegación autónoma.
+
+
 Esta información fue utilizada durante las pruebas para facilitar la depuración del programa, calibrar los sensores y ajustar los parámetros del sistema de control.
 
 ---
