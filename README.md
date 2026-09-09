@@ -88,238 +88,688 @@ Y luego, al añadir las baterías de Litio para mayor estabilidad de comunicaci�
 La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LEGO Technic/Nezha junto con cinta 3M VHB 5952 (1,1 mm) para la fijación de PCBs, reguladores y módulos sin orificios de tornillo, resistente a vibración, ciclos térmicos y manipulación repetida. Este enfoque modular permitió modificar independientemente en cada nivel, lo que permitió realizar los cambios antes mencionados, y el cual puede representarse en el siguiente esquema:
 
 ![Esquema de conexiones](schemes/wiring-diagramm.jpg)
+---
+# Elementos del robot
 
-# Elementos
+## 1. Piezas estructurales y mecánicas
 
-## Piezas Estructurales (Kits)
+> **Nota:** Las piezas estructurales utilizadas en el robot provienen de kits comerciales. No fabricamos piezas estructurales personalizadas mediante impresión 3D.
 
-> **Nota:** Todas las piezas estructurales provienen de los kits indicados; no se fabricaron piezas personalizadas mediante impresión 3D.
+---
+
+### LEGO SPIKE Prime Set — 45678
 
 ![](other/lego-spike-kit.png)
-### LEGO SPIKE Prime Set (45678)
-- **Referencia:** LEGO Education SPIKE™ Prime Set — Set 45678
-- **Año de lanzamiento:** 2020 | **Piezas:** 528 (oficial) / 532 (inventario real)
-- **Componentes electrónicos incluidos en el kit:**
-  -- **Hub programable (Large Hub)** — 6 puertos I/O, matriz LED 5×5, giroscopio de 6 ejes, altavoz, Bluetooth, batería recargable integrada
-  - **Motores:** 1 × Large Angular Motor + 2 × Medium Angular Motors (con encoder absoluto, control de posición/velocidad)
-  - **Sensores:** Distance Sensor (ultrasónico), Force Sensor, Color Sensor
-  - **Conectividad:** Bluetooth LE, USB-C (en Hub), cables inteligentes
-- **Elementos estructurales:** +500 piezas LEGO Technic™ (vigas, ángulos, ejes, pasadores, engranajes, ruedas, neumáticos, plates, frames) en paleta de colores fresca
-- **Almacenamiento:** Caja resistente con bandejas de clasificación
-- **Uso en el robot: Chasis principal, estructura de soporte de batería, ejes pasadores para unión de módulos**
+
+El **LEGO SPIKE Prime Set 45678** proporciona la mayor parte de los elementos estructurales utilizados para construir el chasis y los diferentes soportes mecánicos del robot.
+
+#### Elementos utilizados
+
+- Vigas LEGO Technic.
+- Frames y elementos estructurales.
+- Ejes y pasadores.
+- Engranajes.
+- Ruedas y neumáticos.
+- Elementos de unión.
+
+#### Uso en nuestro robot
+
+Utilizamos estas piezas principalmente para:
+
+- Construcción del **chasis principal**.
+- Soporte de los componentes electrónicos.
+- Soporte de la batería.
+- Construcción de los ejes.
+- Unión entre módulos.
+- Construcción del sistema de dirección.
+- Construcción de la transmisión mediante engranajes.
+
+#### ¿Por qué lo usamos?
+
+Elegimos utilizar la estructura LEGO Technic porque durante el desarrollo necesitábamos modificar constantemente la posición de diferentes componentes.
+
+Su sistema modular nos permitió cambiar rápidamente:
+
+- La posición del motor.
+- La ubicación de los sensores.
+- La posición de la batería.
+- El sistema de dirección.
+- La distribución de la electrónica.
+
+Esto redujo el tiempo necesario para construir y probar diferentes versiones del robot.
+
+---
+
+### ELECFREAKS Nezha 48 in 1 Inventor's Kit
 
 ![](other/nezha-kit.webp)
-### Nezha 48 in 1 Inventor's Kit (ELECFREAKS micro:bit)
-- **Referencia:** ELECFREAKS micro:bit Nezha 48 IN 1 Inventor's Kit (sin micro:bit)
-- **Componentes electrónicos incluidos:**
-  - **Nezha Expansion Board** — Placa base FR4 epoxy 94VO, batería Li-Ion 900 mAh integrada, puertos RJ11 con código de color (IIC, UART, SPI), entrada 5 V, carga 1 A
-  - **Sensores/módulos (Planet X):** LED rojo/verde/amarillo, sensor de impacto, sensor de seguimiento de línea, sensor ultrasónico, potenciómetro, sensor de humedad de suelo, bocina, etc. (hasta 40+ sensores soportados)
-  - **Actuadores:** Motor DC Nezha, Servomotor Nezha
-  - **Construcción:** +400 piezas de bloques compatibles LEGO/Fischer, ruedas, engranajes, ejes
-  - **Programación:** MakeCode, JavaScript, Python, C++
-- **Especificaciones de la Expansion Board:** 60×82×28 mm, carcasa ABS, protocolos IIC/UART/SPI
-- **Uso en el robot (versión inicial): Chasis base (Case 26 Obstacle Avoidance Car),  Expansion Board para micro:bit, sensores Nezha. **En versión final:** Solo se conservan piezas estructurales (vigas, brackets, ruedas, engranajes) y electrónicas del kit (motor DC y servomotor); toda la electrónica Nezha fue reemplazada.**
 
-![](other/battery-vex.webp)
-### VEX IQ Education Kit (2ª Generación) — Solo Batería
-- **Referencia:** VEX IQ Robot Battery (Li-Ion, 2000 mAh) — Part 228-7045
-- **Especificaciones:**
-  - **Química:** Li-Ion (iones de litio) — 5× mayor retención de voltaje vs NiMH
-  - **Voltaje nominal:** 7.2 V (7.4 V pico)
-  - **Capacidad:** 2000 mAh
-  - **Corriente máxima continua:** 8 A (limitada por temperatura)
-  - **Carga:** Puerto USB-C integrado, tiempo ~2 horas
-  - **Indicador:** 4 LEDs verdes (barra de carga) + botón de estado
-  - **Dimensiones/peso:** ~0.23 kg
-  - **Compatibilidad:** Funciona con IQ Robot Brain 1ª y 2ª gen
-- **Uso en el robot: Fuente de energía principal para motores (vía L298N) e interruptor (5 V para lógica)**
+El **Nezha 48 in 1 Inventor's Kit** fue utilizado principalmente durante las primeras etapas del desarrollo.
 
-![](other/baterias-lit.jpg)
-### Baterías de Iones de Litio (Li-Ion) 18650 — Flycat 3.7 V (2 Unidades en el Sistema)
-- **Formato / Tamaño**: 18650 (Cilíndrica, 18 mm de diámetro/65 mm de longitud)
-- **Química**: Iones de Litio (Li-Ion)
-- **Voltaje nominal**: 3.7 V por celda (7.4 V nominal total en configuración en serie / 3.7 V en paralelo)
-- **Voltaje de carga máxima**: 4.2 V por celda
-- **Voltaje de corte por descarga**: 2.75 V - 3.0 V por celda (mínimo seguro)
-- **Capacidad nominal declarada**: Marca Flycat 7800 mAh (Capacidad comercial/etiqueta)
-- **Corriente máxima de descarga**: 1 C – 2 C en descarga continua habitual para celdas estándar de robótica
-- **Vida útil**: 500 ciclos de carga/descarga completa
-- **Polaridad**: Terminal positivo plano/convexo (+) y terminal negativo plano (-)
-- **Peso aprox.**: 45 g por celda
-- **Función en el robot: Fuente principal de almacenamiento de energía recargable del robot. Proveen la corriente requerida por el driver de motores L298N (potencia) y el módulo elevador MT3608 (lógica) para garantizar total autonomía.**
+#### Elementos utilizados en la versión final
 
-## Electrónica
+Del kit Nezha conservamos principalmente elementos mecánicos:
 
-### Control Principal
+- Vigas.
+- Brackets.
+- Ejes.
+- Pasadores.
+- Engranajes.
+- Ruedas.
+- Elementos de unión.
+- Motor DC.
+- Servomotor.
 
-**Arduino UNO R4 WiFi**
+#### Uso en nuestro robot
 
-![](other/arduino-uno-r4.jpg)
+Las piezas estructurales de Nezha se integraron con las piezas LEGO SPIKE Prime/Technic para construir el chasis y los mecanismos de movilidad.
 
-Es el controlador principal del robot. Recibe información de los sensores y de la Nicla Vision, ejecuta la lógica de navegación y envía las órdenes al motor y al sistema de dirección.
+El **motor DC** y el **servomotor** también forman parte del sistema de movilidad y dirección.
 
-**Características:**
-Microcontrolador Renesas RA4M1.
-ARM Cortex-M4 a 48 MHz.
-256 KB de Flash y 32 KB de SRAM.
-5 V de operación para la lógica principal.
-Entradas/salidas digitales y analógicas.
-PWM para el control del motor.
-UART para comunicación con la Nicla Vision.
-I²C y SPI disponibles para futuras expansiones.
+> **Importante:** La electrónica Nezha no forma parte de la arquitectura electrónica final del robot. La Expansion Board y los sensores Nezha fueron utilizados durante versiones anteriores y posteriormente fueron reemplazados.
 
-**¿Por qué lo usamos?**
-Lo seleccionamos como controlador principal porque necesitábamos una plataforma que trabajara de forma estable a 5 V, tuviera suficientes interfaces de comunicación y pudiera controlar simultáneamente los sensores, el motor, el servo y la comunicación con la Nicla Vision. Además, durante el desarrollo comprobamos que las alternativas anteriores, como el ESP32 y la electrónica Nezha, presentaban limitaciones relacionadas con alimentación e integración con el resto del sistema. Por eso migramos finalmente al UNO R4 WiFi. La elección del Arduino no fue solamente por potencia de procesamiento, sino por compatibilidad eléctrica, disponibilidad de interfaces y estabilidad del sistema completo.
+#### ¿Por qué lo usamos?
 
-### Visión Artificial
+El principal beneficio fue poder reutilizar piezas mecánicas compatibles con nuestra estructura LEGO.
 
-**Arduino Nicla Vision**
+Esto permitió desarrollar diferentes prototipos sin tener que fabricar piezas nuevas.
 
-![](other/nicla-vision.webp)
+---
 
-Es el módulo encargado de la visión artificial y orientación. Captura imágenes, identifica los colores relevantes de la pista y proporciona información de orientación mediante su IMU.
-
-**Características:**
-Procesador STM32H747 de doble núcleo.
-Cámara de 2 MP.
-IMU LSM6DSOX.
-Comunicación UART.
-Capacidad para procesamiento de imágenes y TinyML.
-Formato extremadamente compacto.
-
-**¿Por qué lo usamos?**
-La elegimos porque necesitábamos un sistema de visión capaz de procesar imágenes directamente en el robot sin depender de un computador externo. Su tamaño reducido también permitió colocarla en la parte superior del robot sin afectar significativamente su estructura. Durante las primeras investigaciones también evaluamos la visión proporcionada por otros componentes, pero la Nicla Vision ofreció una solución más adecuada para reconocer los elementos de la pista desde el inicio de la construcción. La Nicla Vision permite separar las tareas: la cámara se concentra en interpretar el entorno, mientras que el Arduino se concentra en tomar decisiones de control.
-
-### Movilidad
-
-Motor DC de tracción
-
-![](o)
-
-Proporciona la fuerza necesaria para mover el robot.
-
-**Características:**
-Motor de corriente continua.
-Transmite el movimiento al sistema de ruedas traseras.
-Es controlado mediante PWM a través del L298N.
-
-**¿Por qué lo usamos?**
-Fue seleccionado porque proporciona una solución compacta y sencilla para generar la tracción del robot y es compatible con el sistema mecánico proveniente del kit Nezha. El motor debía proporcionar un equilibrio entre velocidad y torque. Nuestro objetivo no sólo era alcanzar una velocidad elevada sino que nuestro robot pudiera mantener esa velocidad mientras realiza correcciones y giros.
-
-Aquí les recomiendo agregar posteriormente datos reales: RPM, torque, velocidad máxima y comportamiento bajo carga.
-
-### Control de Motor
-
-![](other/puente-h.webp)
-
-**L298N Dual H-Bridge Motor Driver (HW-095 / MDU-1049)**
-- **Chip:** STMicroelectronics L298N (Monolithic IC, Multiwatt15 / PowerSO-20)
-- **Topología:** Puente H dual (2 canales independientes)
-- **Voltaje motor (VCC):** 5–35 V (máx. 46 V chip)
-- **Voltaje lógica:** 5 V (4.5–7 V)
-- **Corriente continua:** 2 A por canal
-- **Corriente pico:** 3–4 A (no repetitivo, con disipador adecuado)
-- **Potencia máxima:** 25 W
-- **Protecciones:** Térmica (apagado ~130 °C), sobrecorriente, diodos de flyback internos
-- **Regulador 5 V integrado:** 78M05 (activo con jumper si VCC ≤ 12 V; provee 5 V @ 1 A para lógica/MCU)
-- **Pines de control:** IN1–IN4 (dirección), ENA/ENB (PWM velocidad)
-- **Dimensiones módulo:** 43×43×27 mm | **Peso:** ~25–33 g
-- **Función en el robot: Acciona motor DC de tracción (canal A) y servomotor de dirección (canal B) desde PWM del Arduino. Alimentado desde batería VEX 7.4 V.**
-
-### Sensores
-
-![](other/sensor-hc-sr04.webp)
-
-**HC-SR04 Ultrasonic Distance Sensor**
-- **Principio:** Sonar ultrasónico 40 kHz (time-of-flight)
-- **Rango teórico:** 2 cm – 400 cm (práctico: 2–80 cm óptimo)
-- **Precisión:** ±3 mm
-- **Ángulo de haz:** <15° (cono efectivo ~30°)
-- **Voltaje:** 5 V DC (4.5–5.5 V)
-- **Corriente:** <15 mA activa, <2 mA reposo
-- **Pines:** VCC, Trig (input, pulso 10 µs), Echo (output, pulso ancho = tiempo vuelo), GND
-- **Dimensiones:** 45×20×15 mm | **Peso:** 9 g
-- **Función en el robot: Detección frontal de paredes/obstáculos, montado en parachoques con ángulo fijo.**
-
-### Conversión y Distribución de Potencia
-
-![](other/protoboard.jpg)
-
-**Protoboard / Protoboard compacta** (placa de pruebas de 400/830 puntos o PCB perforada)
-- **Uso en el robot: Distribución de líneas de potencia (5 V, 7.4 V, GND), conexiones de señales PWM, I2C, UART, capacitores de desacoplo (100 µF electrolítico + 0.1 µF cerámico por rail)**
-
-![](other/cap-electrolit.jpg)
-
-**Capacitor Electrolítico de Aluminio | 100 µF / 25 V (105 °C, Low ESR)**
-- **Capacitancia nominal**: 100 µF (±20 % estándar)
-- **Voltaje nominal**: 25 V (mínimo 16 V; 25 V recomendado para rails de 5 V y 7.4 V con margen 2×)
-- **Tipo**: Radial through-hole, diámetro 6.3–8 mm × altura 11–12 mm, paso 2.5–3.5 mm
-- **ESR**: 0.3–0.8 Ω a 100 kHz, 25 °C (series Low ESR: FC, FM, YXF, UPW)
-- **Corriente de rizado**: 200–400 mA rms a 100 kHz, 105 °C
-- **Temperatura de operación**: -40 °C a +105 °C
-- **Vida útil**: 1000–2000 horas a 105 °C con voltaje nominal
-- **Polaridad**: Polarizado — terminal largo = positivo (+), banda blanca = negativo (-)
-- **Montaje**: Through-hole (PTH)
-- **Función en el robot: Reservorio de carga en cada rail de potencia (7.4 V, 5 V, 3.3 V). Se encuentra en la entrada de potencia de cada módulo (bornes VCC del L298N). Provee reserva durante picos de arranque de motor.**
-
-![](other/cap-ceramico.jpg)
-
-**Capacitor Cerámico Multicapa (MLCC) — 0.1 µF (100 nF) / 25 V / X7R / 0805**
-- **Capacitancia nominal**: 0.1 µF = 100 nF (código 104)
-- **Tolerancia**: ±10 % (K) o ±20 % (M)
-- **Voltaje nominal**: 25 V (mínimo 16 V; 25 V da margen para rails de 5 V y 7.4 V)
-- **Dieléctrico**: X7R (variación ±15 % de -55 °C a +125 °C)
-- **Caja / Footprint**: 0805 (2.0 × 1.25 mm) preferido para soldadura manual; 0603 (1.6 × 0.8 mm) si hay restricción de espacio
-- **ESR**: < 0.05 Ω a 1 MHz
-- **ESL**: ~0.5–1 nH (muy bajo)
-- **Frecuencia efectiva**: > 1 MHz hasta 100+ MHz — filtra ruido de conmutación (buck, PWM, MCU)
-- **Corriente de rizado**: > 500 mA (limitada por calentamiento dieléctrico)
-- **Temperatura de operación**: -55 °C a +125 °C
-- **Polaridad**: No polarizado
-- **Montaje**: SMD (0805/0603)
-- **Función en el robot: High-frequency decoupling en cada rail (5 V, 3.3 V) junto a cada circuito integrado. Se coloca **uno por pin de alimentación** (VCC-GND) del IC: Arduino Uno R4 WiFi, Nicla Vision, lógica del L298N, HC-SR04**
-
-![](other/elevador.jpg)
-
-**Módulo Elevador de Voltaje Step-Up — MT3608 (HW-045)**
-- **Módulo / IC**: MT3608 (HW-045)
-- **Voltaje de entrada**: 2.0 V a 24 V (para 2 celdas Li-Ion en serie/paralelo o individuales)
-- **Voltaje de salida**: 2.0 V a 28 V (regulable mediante potenciómetro de precisión 3296)
-- **Corriente máxima de salida**: 2 A (máxima pico; corriente continua recomendada 1.2 A - 1.5 A)
-- **Frecuencia de conmutación**: 1.2\ MHz (permite alta eficiencia y filtrado compacto)
-- **Eficiencia máxima**: Hasta 93 %
-- **Protección integrada**: Protección contra sobrecalentamiento térmico y límite de corriente ciclo a ciclo
-- **Ajuste**: Potenciómetro de multivueltas (girar en sentido antihorario para elevar voltaje)
-- **Dimensiones / Tamaño**: 36 mm \ 17 mm \ 14 mm
-- **Montaje / Conexión**: Pines de soldadura mediante terminales VIN+ / VIN- (Entrada) y VOUT+ / VOUT- (Salida)
-- **Función en el robot: Eleva y regula el voltaje entregado por las baterías de litio a un nivel estable (5 V - 9 V) para alimentar la línea de lógica y evitar reinicios del Arduino Uno R4 WiFi y la Nicla Vision cuando los motores consumen picos de corriente.**
-
-### Encendido/Apagado
-
-![](other/pulsador.jpg)
-
-**Pulsador táctil negro (Tactile Pushbutton, 6×6 mm o 12×12 mm, through-hole / SMD)**
-- **Tipo:** Momentáneo (SPST-NO), 50 mA @ 12 V DC
-- **Fuerza de accionamiento:** ~160–250 gf
-- **Vida útil:** 100,000–1,000,000 ciclos
-- **Función en el robot: Reset de software / inicio de rutina autónoma**
-
-![](other/switch.webp)
-
-**Interruptor deslizante / toggle negro (Slide Switch / Toggle Switch, SPDT o DPDT, panel mount o PCB)**
-- **Rating típico:** 3–6 A @ 120 V AC / 28 V DC
-- **Función en el robot: Encendido/apagado principal del robot. Corta línea o realiza conexión entre batería VEX y Puente H**
-
-
-### Fijación Mecánica
+### Ejes y pasadores LEGO Technic / Nezha
 
 ![](other/piezas-axl.jpg)
 
-- **Ejes pasadores LEGO Technic / Nezha (Axle pins, 3L/5L/7L, gris/negro):** Uniones estructurales rígidas, desmontables, alineadas por diseño entre los 3 módulos
+Los ejes y pasadores se utilizan para unir y posicionar los diferentes elementos mecánicos del robot.
+
+#### Uso en nuestro robot
+
+- Fijación de vigas.
+- Montaje de los ejes de las ruedas.
+- Unión de módulos estructurales.
+- Construcción de la dirección.
+- Montaje de engranajes.
+
+#### ¿Por qué los usamos?
+
+Necesitábamos conexiones suficientemente rígidas para evitar movimientos no deseados, pero que al mismo tiempo pudieran desmontarse durante las iteraciones del diseño.
+
+El sistema de ejes y pasadores permite modificar la estructura sin destruir las piezas.
+
+---
+
+## 2. Sistema de movilidad
+
+### Motor DC de tracción
+
+![](other/motor-dc.jpg)
+
+El motor DC proporciona la fuerza necesaria para desplazar el robot.
+
+#### Características relevantes
+
+- Motor de corriente continua.
+- Control mediante PWM.
+- Transmisión hacia el eje trasero.
+- Tracción mediante las ruedas traseras.
+
+#### Uso en nuestro robot
+
+El motor está conectado al sistema de transmisión mediante un engranaje de **12 dientes**, que transmite el movimiento a un engranaje de **20 dientes** conectado al eje trasero.
+
+#### ¿Por qué lo usamos?
+
+Seleccionamos este motor porque proporciona una solución compacta y compatible con nuestra estructura mecánica.
+
+Además, necesitábamos un motor capaz de proporcionar suficiente velocidad y torque para que el robot pudiera desplazarse y realizar correcciones de trayectoria.
+
+Nuestro objetivo no era maximizar únicamente la velocidad del motor, sino conseguir un equilibrio entre:
+
+**velocidad + torque + tracción + estabilidad.**
+
+> **Datos que queremos validar experimentalmente:** RPM reales, velocidad máxima, torque bajo carga y comportamiento con diferentes valores de PWM.
+
+---
+
+### Sistema de ruedas
+
+![](other/ruedas.jpg)
+
+El robot utiliza cuatro ruedas con un diámetro de **35 mm**.
+
+#### Características
+
+- Diámetro: **35 mm**
+- Radio: **17,5 mm**
+- Número de ruedas: **4**
+- Tracción: **trasera**
+- Dirección: **delantera**
+
+La circunferencia teórica de cada rueda es:
+
+$$
+C = \pi d
+$$
+
+$$
+C = \pi(0.035) \approx 0.110\ m
+$$
+
+Por lo tanto, una revolución de la rueda representa aproximadamente **110 mm de desplazamiento**, suponiendo que no existe deslizamiento.
+
+#### ¿Por qué usamos estas ruedas?
+
+El diámetro de 35 mm nos permite mantener el robot compacto y proporciona una ventaja mecánica adecuada para el sistema de transmisión.
+
+Una rueda más grande permitiría recorrer una mayor distancia por revolución, pero requeriría más torque para producir la misma fuerza en el suelo.
+
+Por eso seleccionamos un diámetro relativamente pequeño para priorizar **control, tracción y estabilidad**.
+
+---
+
+## 3. Transmisión
+
+### Engranajes 12:20
+
+![](other/engranajes.jpg)
+
+El movimiento del motor se transmite al eje trasero mediante dos engranajes:
+
+- Engranaje conductor: **12 dientes**
+- Engranaje conducido: **20 dientes**
+
+La relación de transmisión es:
+
+$$
+i = \frac{20}{12} = 1.67:1
+$$
+
+Esto representa una **reducción de velocidad de 1,67:1**.
+
+La velocidad del eje de las ruedas es aproximadamente:
+
+$$
+RPM_{rueda} = RPM_{motor} \times \frac{12}{20}
+$$
+
+$$
+RPM_{rueda} = 0.6 \times RPM_{motor}
+$$
+
+Por otro lado, el torque teórico aumenta:
+
+$$
+T_{salida} \approx T_{motor} \times 1.67
+$$
+
+En un sistema real el aumento de torque es menor debido a las pérdidas mecánicas.
+
+#### ¿Por qué usamos esta relación?
+
+Elegimos esta relación porque no queríamos obtener únicamente la mayor velocidad posible.
+
+Una reducción menor aumentaría la velocidad de las ruedas, pero disminuiría el torque disponible.
+
+Una reducción mayor proporcionaría más torque, pero reduciría demasiado la velocidad.
+
+La relación **12:20** representa un compromiso entre:
+
+- Velocidad.
+- Torque.
+- Tracción.
+- Aceleración.
+- Estabilidad en curvas.
+
+Esta decisión es especialmente importante porque el robot debe mantener un movimiento controlado mientras realiza correcciones de dirección.
+
+---
+
+## 4. Sistema de dirección
+
+### Servomotor de dirección
+
+![](other/servo.jpg)
+
+El servomotor controla la dirección de las ruedas delanteras.
+
+#### Características relevantes
+
+- Servomotor controlado mediante señal PWM.
+- Movimiento bidireccional.
+- Posición central definida.
+- Conectado mecánicamente al sistema de dirección delantero.
+
+#### Uso en nuestro robot
+
+El servo mueve el mecanismo de dirección mediante una transmisión mecánica tipo **cremallera y piñón**.
+
+Esto convierte el movimiento rotacional del servo en un desplazamiento lateral que modifica el ángulo de las ruedas delanteras.
+
+#### ¿Por qué lo usamos?
+
+Necesitábamos controlar con precisión el ángulo de las ruedas delanteras.
+
+El servomotor permite establecer una posición central y realizar correcciones pequeñas hacia ambos lados.
+
+Esto es fundamental porque el sistema de control calcula continuamente el ángulo de dirección necesario para corregir la trayectoria.
+
+---
+
+### Mecanismo de dirección
+
+![](other/direccion.jpg)
+
+El sistema de dirección está situado en el eje delantero y utiliza una configuración mecánica tipo **cremallera y piñón**.
+
+#### Objetivos del diseño
+
+- Mantener una posición central estable.
+- Reducir la holgura.
+- Conseguir movimientos repetibles.
+- Permitir giros cerrados.
+- Mantener el sistema compacto.
+
+#### ¿Por qué es importante?
+
+Una holgura excesiva en la dirección provocaría que el mismo comando del servo produjera diferentes ángulos reales de las ruedas.
+
+Esto afectaría directamente a la estabilidad del robot y al funcionamiento del controlador.
+
+Por esta razón, la rigidez y alineación del mecanismo de dirección fueron aspectos importantes durante el montaje.
+
+---
+
+## 5. Alimentación
+
+### Batería VEX IQ 2ª generación
+
+![](other/battery-vex.webp)
+
+La batería VEX IQ de segunda generación fue utilizada como fuente de alimentación durante una de las configuraciones del sistema.
+
+#### Características relevantes
+
+- Tecnología: Li-Ion.
+- Voltaje nominal: **7,2 V**.
+- Capacidad: **2000 mAh**.
+- Corriente continua disponible: adecuada para la alimentación del sistema de movilidad.
+- Puerto USB-C integrado para carga.
+
+#### Uso en nuestro robot
+
+La batería proporciona alimentación al sistema de potencia, principalmente al **driver L298N y al motor de tracción**.
+
+#### ¿Por qué la usamos?
+
+La batería VEX IQ proporciona una fuente de alimentación compacta y recargable, adecuada para un robot móvil.
+
+Su tensión es compatible con la etapa de potencia utilizada para controlar el motor.
+
+---
+
+### Baterías Li-Ion 18650
+
+![](other/baterias-lit.jpg)
+
+Utilizamos dos celdas de Li-Ion formato **18650** como parte del sistema de almacenamiento de energía.
+
+#### Características
+
+- Formato: **18650**.
+- Química: **Li-Ion**.
+- Voltaje nominal: **3,7 V por celda**.
+- Voltaje nominal en serie: **7,4 V**.
+- Voltaje máximo de carga: **4,2 V por celda**.
+
+#### Uso en nuestro robot
+
+Las baterías proporcionan energía al sistema de alimentación y permiten alimentar tanto la etapa de potencia como el sistema de regulación utilizado para la electrónica.
+
+#### ¿Por qué las usamos?
+
+Durante las pruebas observamos que los motores podían producir caídas de tensión cuando demandaban corriente durante la aceleración.
+
+La utilización de un sistema de baterías separado y regulado permitió mejorar la estabilidad de la alimentación de la electrónica.
+
+> **Nota:** La capacidad nominal indicada en algunas etiquetas de celdas 18650 puede no representar su capacidad real. Para la documentación final debemos utilizar únicamente la capacidad medida o una especificación fiable del fabricante.
+
+---
+
+### MT3608 — Convertidor Step-Up
+
+![](other/elevador.jpg)
+
+El **MT3608** es un convertidor DC-DC elevador utilizado para obtener una tensión estable para la electrónica.
+
+#### Características relevantes
+
+- Tipo: convertidor Step-Up.
+- Entrada: aproximadamente **2–24 V**.
+- Salida regulable.
+- Frecuencia de conmutación: aproximadamente **1,2 MHz**.
+- Eficiencia máxima teórica: aproximadamente **93 %**.
+
+#### Uso en nuestro robot
+
+El MT3608 eleva y regula la tensión procedente de las baterías para proporcionar una alimentación adecuada a la electrónica.
+
+#### ¿Por qué lo usamos?
+
+Durante las pruebas observamos que los cambios de consumo del motor podían provocar variaciones de tensión.
+
+Estas variaciones podían producir reinicios o comportamiento inestable en los sistemas electrónicos.
+
+Por ello, utilizamos regulación de tensión para separar, en la medida de lo posible, las variaciones de la etapa de potencia de la alimentación de la lógica.
+
+---
+
+## 6. Control de motores
+
+### L298N Dual H-Bridge
+
+![](other/puente-h.webp)
+
+El **L298N** es el driver utilizado para controlar el motor de tracción.
+
+#### Características relevantes
+
+- Tipo: doble puente H.
+- Tensión de alimentación del motor: hasta aproximadamente **35 V** en el módulo utilizado.
+- Corriente nominal aproximada: **2 A por canal**.
+- Entradas de control digital.
+- Control de velocidad mediante PWM.
+- Control de dirección mediante las entradas del puente H.
+
+#### Uso en nuestro robot
+
+El Arduino UNO R4 WiFi envía las señales de control al L298N.
+
+El driver se encarga de entregar la corriente necesaria al motor y permite controlar:
+
+- Dirección de giro.
+- Velocidad.
+- Frenado.
+
+#### ¿Por qué lo usamos?
+
+Necesitábamos separar la corriente de control del Arduino de la corriente necesaria para el motor.
+
+El Arduino genera las señales de control, mientras que el L298N actúa como etapa de potencia.
+
+Además, su funcionamiento con motores DC y su compatibilidad con nuestra alimentación lo hicieron adecuado para nuestro prototipo.
+
+---
+
+## 7. Sensores
+
+### HC-SR04 — Sensores ultrasónicos
+
+![](other/sensor-hc-sr04.webp)
+
+Utilizamos **tres sensores ultrasónicos HC-SR04** para medir las distancias respecto a las paredes y obstáculos.
+
+#### Características relevantes
+
+- Tecnología: ultrasonido.
+- Frecuencia: **40 kHz**.
+- Alimentación: **5 V**.
+- Rango teórico: aproximadamente **2–400 cm**.
+- Comunicación mediante señales `TRIG` y `ECHO`.
+
+#### Distribución en el robot
+
+| Sensor | Función |
+|---|---|
+| Izquierdo | Medición de la pared izquierda |
+| Frontal | Detección de obstáculos y aproximación a esquinas |
+| Derecho | Medición de la pared derecha |
+
+#### ¿Por qué usamos tres sensores?
+
+Un único sensor no proporciona suficiente información para conocer la posición lateral del robot dentro del recorrido.
+
+Con dos sensores laterales podemos comparar las distancias:
+
+$$
+e_y \approx \frac{d_R-d_L}{2}
+$$
+
+Esto permite estimar si el robot está desplazado hacia un lado.
+
+El sensor frontal proporciona información adicional para detectar obstáculos y aproximaciones a las esquinas.
+
+De esta manera, los sensores no funcionan de forma aislada, sino que sus mediciones se utilizan conjuntamente para tomar decisiones de navegación.
+
+---
+
+## 8. Visión artificial
+
+### Arduino Nicla Vision
+
+![](other/nicla-vision.webp)
+
+La **Arduino Nicla Vision** se utiliza para procesar la información visual y proporcionar información de orientación al controlador principal.
+
+#### Características relevantes
+
+- Microcontrolador STM32H747.
+- Procesador de doble núcleo.
+- Cámara de 2 MP.
+- IMU LSM6DSOX.
+- Comunicación UART.
+- Capacidad para procesamiento de imágenes.
+- Formato compacto.
+
+#### Uso en nuestro robot
+
+La Nicla Vision realiza principalmente dos tareas:
+
+1. **Procesamiento de imagen.**
+2. **Estimación de orientación mediante la IMU.**
+
+La cámara identifica los colores relevantes de la pista y transmite la información al Arduino UNO R4 WiFi.
+
+La IMU proporciona información de orientación que también se envía al controlador principal.
+
+#### ¿Por qué la usamos?
+
+Necesitábamos realizar procesamiento de visión directamente sobre el robot, sin depender de un computador externo.
+
+El tamaño compacto de la Nicla Vision permitió colocarla en la parte superior del robot sin ocupar demasiado espacio.
+
+También nos permitió dividir las responsabilidades del sistema:
+
+**Nicla Vision → percepción**
+
+**Arduino UNO R4 WiFi → control y navegación**
+
+Esta separación simplifica la arquitectura general del robot.
+
+---
+
+## 9. Distribución eléctrica
+
+### Protoboard / placa de conexiones
+
+![](other/protoboard.jpg)
+
+La protoboard se utiliza para organizar las conexiones eléctricas del sistema.
+
+#### Uso en nuestro robot
+
+Permite distribuir:
+
+- Alimentación.
+- GND.
+- Señales de control.
+- Conexiones de sensores.
+- Conexiones entre módulos.
+- Capacitores de desacoplo.
+
+#### ¿Por qué la usamos?
+
+Durante el desarrollo necesitábamos cambiar conexiones con frecuencia.
+
+La protoboard permitió realizar modificaciones rápidamente sin tener que fabricar una PCB específica.
+
+Esto fue especialmente útil durante las primeras iteraciones del robot.
+
+---
+
+### Capacitor electrolítico — 100 µF
+
+![](other/cap-electrolit.jpg)
+
+Utilizamos capacitores electrolíticos de **100 µF** como reserva de energía para reducir variaciones rápidas de tensión.
+
+#### Uso en nuestro robot
+
+Se colocan en las líneas de alimentación para ayudar a estabilizar la tensión cuando se producen cambios rápidos en el consumo.
+
+Esto es especialmente relevante durante:
+
+- Arranque del motor.
+- Aceleraciones.
+- Cambios bruscos de carga.
+
+#### ¿Por qué lo usamos?
+
+Los motores pueden producir cambios rápidos en la demanda de corriente.
+
+El capacitor actúa como un pequeño reservorio de energía y ayuda a reducir las variaciones de tensión en la alimentación.
+
+---
+
+### Capacitor cerámico — 100 nF
+
+![](other/cap-ceramico.jpg)
+
+Los capacitores cerámicos de **100 nF** se utilizan para desacoplar las líneas de alimentación de los circuitos electrónicos.
+
+#### Uso en nuestro robot
+
+Se colocan cerca de los circuitos electrónicos para filtrar ruido eléctrico de alta frecuencia.
+
+#### ¿Por qué lo usamos?
+
+Los motores, PWM y convertidores DC-DC pueden generar ruido eléctrico.
+
+El capacitor cerámico ayuda a reducir este ruido y mejora la estabilidad de la alimentación de los circuitos electrónicos.
+
+---
+
+## 10. Control de encendido y funcionamiento
+
+### Pulsador
+
+![](other/pulsador.jpg)
+
+El pulsador se utiliza como entrada de usuario para iniciar o controlar determinadas funciones del robot.
+
+#### Uso en nuestro robot
+
+Principalmente:
+
+- Inicio de la rutina autónoma.
+- Control de estados de funcionamiento.
+- Interacción con el sistema antes de comenzar una prueba.
+
+#### ¿Por qué lo usamos?
+
+Necesitábamos una forma sencilla y accesible de iniciar la ejecución del robot sin tener que utilizar un computador durante la prueba.
+
+---
+
+### Interruptor principal
+
+![](other/switch.webp)
+
+El interruptor controla el encendido y apagado general del sistema.
+
+#### Uso en nuestro robot
+
+Permite conectar o desconectar la alimentación principal.
+
+#### ¿Por qué lo usamos?
+
+Un interruptor físico permite apagar rápidamente el robot durante una prueba y proporciona un método sencillo para controlar la alimentación antes de cada ejecución.
+
+---
+
+## 11. Fijación de componentes
+
+### Cinta 3M VHB 5952
 
 ![](other/cinta.jpg)
 
-- **Cinta 3M VHB 5952 (1.1 mm, acrílico de alta cohesión):** Fijación de PCBs (Arduino, L298N, sensores, protoboard), módulos sin orificios roscados. Resistente a vibración, ciclos térmicos (-40 a +90 °C), manipulación repetida. Área de contacto dimensionada >4× peso del módulo.
+La cinta 3M VHB se utiliza para fijar diferentes componentes electrónicos y módulos al chasis.
+
+#### Uso en nuestro robot
+
+Se utiliza principalmente para fijar:
+
+- Arduino.
+- L298N.
+- Sensores.
+- Protoboard.
+- Módulos electrónicos.
+
+#### ¿Por qué la usamos?
+
+Algunos componentes no disponen de orificios de montaje compatibles con nuestra estructura.
+
+La cinta VHB permite fijarlos sin modificar las piezas estructurales y absorbe parte de las vibraciones producidas por el robot.
+
+La fijación también permite desmontar y reposicionar componentes durante las diferentes iteraciones del diseño.
+
+---
+
+# 12. Resumen de componentes
+
+| Componente | Función principal | Razón de uso |
+|---|---|---|
+| LEGO SPIKE Prime | Estructura | Modularidad y facilidad de prototipado |
+| Piezas Nezha | Estructura y movilidad | Compatibilidad mecánica y reutilización |
+| Motor DC | Tracción | Generación del movimiento |
+| Engranaje 12T | Transmisión | Conduce el movimiento del motor |
+| Engranaje 20T | Transmisión | Aumenta torque y reduce velocidad |
+| Ruedas 35 mm | Movimiento | Compacidad y ventaja mecánica |
+| Servomotor | Dirección | Control preciso del ángulo |
+| L298N | Potencia del motor | Permite controlar el motor desde el Arduino |
+| Arduino UNO R4 WiFi | Control principal | Control, comunicación y estabilidad a 5 V |
+| Nicla Vision | Visión e IMU | Procesamiento de imagen y orientación |
+| HC-SR04 ×3 | Distancia | Medición de paredes y obstáculos |
+| Batería VEX IQ | Alimentación | Fuente recargable para el sistema de potencia |
+| Li-Ion 18650 ×2 | Almacenamiento de energía | Fuente de energía recargable |
+| MT3608 | Regulación | Estabilización/elevación de tensión |
+| Protoboard | Distribución | Facilita modificaciones durante pruebas |
+| Capacitor 100 µF | Filtrado | Reduce variaciones de tensión |
+| Capacitor 100 nF | Desacoplo | Reduce ruido de alta frecuencia |
+| Pulsador | Entrada | Inicio/control de la rutina |
+| Interruptor | Alimentación | Encendido y apagado |
+| Ejes/pasadores | Construcción | Uniones estructurales |
+| Cinta VHB | Fijación | Montaje de electrónica y módulos |
+
+---
+
+# 13. Filosofía de selección de componentes
+
+La selección de componentes no se realizó únicamente en función de sus especificaciones individuales.
+
+Cada componente fue evaluado considerando cómo afectaba al **sistema completo del robot**.
+
+Por ejemplo:
+
+- El diámetro de las ruedas afecta a la velocidad y al torque.
+- La relación de engranajes afecta a la velocidad y a la tracción.
+- La rigidez del chasis afecta a la precisión de la dirección.
+- La posición de los sensores afecta a la calidad de las mediciones.
+- La alimentación afecta a la estabilidad de la electrónica.
+- El sistema de dirección afecta directamente al comportamiento del controlador.
+
+Por esta razón, nuestras decisiones de hardware se basaron en el siguiente principio:
+
+> **No buscamos el componente con las mejores especificaciones individuales, sino la combinación de componentes que produzca el comportamiento más estable y predecible del robot.**
 ---
 ## Mecánica y Sistema de Transmisión
 
