@@ -500,7 +500,7 @@ Además, su funcionamiento con motores DC y su compatibilidad con nuestra alimen
 
 ---
 
-## 7. Sensores
+## Sensores
 
 ### HC-SR04 — Sensores ultrasónicos
 
@@ -508,7 +508,7 @@ Además, su funcionamiento con motores DC y su compatibilidad con nuestra alimen
 
 Utilizamos **tres sensores ultrasónicos HC-SR04** para medir las distancias respecto a las paredes y obstáculos.
 
-#### Características relevantes
+#### Características:
 
 - Tecnología: ultrasonido.
 - Frecuencia: **40 kHz**.
@@ -526,23 +526,15 @@ Utilizamos **tres sensores ultrasónicos HC-SR04** para medir las distancias res
 
 #### ¿Por qué usamos tres sensores?
 
-Un único sensor no proporciona suficiente información para conocer la posición lateral del robot dentro del recorrido.
-
-Con dos sensores laterales podemos comparar las distancias:
+Un único sensor no proporciona suficiente información para conocer la posición lateral del robot dentro del recorrido. Sin embargo con dos sensores laterales podemos comparar las distancias de manera exitosa:
 
 $$
 e_y \approx \frac{d_R-d_L}{2}
 $$
 
-Esto permite estimar si el robot está desplazado hacia un lado.
+Esto permite estimar si el robot está desplazado hacia un lado, ya que el sensor frontal proporciona información adicional para detectar obstáculos y aproximaciones a las esquinas. De esta manera, los sensores no funcionan de forma aislada, sino que sus mediciones se utilizan conjuntamente para tomar decisiones de navegación.
 
-El sensor frontal proporciona información adicional para detectar obstáculos y aproximaciones a las esquinas.
-
-De esta manera, los sensores no funcionan de forma aislada, sino que sus mediciones se utilizan conjuntamente para tomar decisiones de navegación.
-
----
-
-## 8. Visión artificial
+## Visión artificial
 
 ### Arduino Nicla Vision
 
@@ -550,7 +542,7 @@ De esta manera, los sensores no funcionan de forma aislada, sino que sus medicio
 
 La **Arduino Nicla Vision** se utiliza para procesar la información visual y proporcionar información de orientación al controlador principal.
 
-#### Características relevantes
+#### Características:
 
 - Microcontrolador STM32H747.
 - Procesador de doble núcleo.
@@ -567,27 +559,19 @@ La Nicla Vision realiza principalmente dos tareas:
 1. **Procesamiento de imagen.**
 2. **Estimación de orientación mediante la IMU.**
 
-La cámara identifica los colores relevantes de la pista y transmite la información al Arduino UNO R4 WiFi.
-
-La IMU proporciona información de orientación que también se envía al controlador principal.
+La cámara identifica los colores relevantes de la pista y transmite la información al Arduino UNO R4 WiFi y la IMU proporciona información de orientación que también se envía al controlador principal.
 
 #### ¿Por qué la usamos?
 
-Necesitábamos realizar procesamiento de visión directamente sobre el robot, sin depender de un computador externo.
+Necesitábamos realizar procesamiento de visión directamente sobre el robot, sin depender de un computador externo. El tamaño compacto de la Nicla Vision permitió colocarla en la parte superior del robot sin ocupar demasiado espacio. También nos permitió dividir las responsabilidades del sistema:
 
-El tamaño compacto de la Nicla Vision permitió colocarla en la parte superior del robot sin ocupar demasiado espacio.
-
-También nos permitió dividir las responsabilidades del sistema:
-
-**Nicla Vision → percepción**
+**Nicla Vision → percepción** , mientras que
 
 **Arduino UNO R4 WiFi → control y navegación**
 
 Esta separación simplifica la arquitectura general del robot.
 
----
-
-## 9. Distribución eléctrica
+## Distribución eléctrica
 
 ### Protoboard / placa de conexiones
 
@@ -597,7 +581,7 @@ La protoboard se utiliza para organizar las conexiones eléctricas del sistema.
 
 #### Uso en nuestro robot
 
-Permite distribuir:
+Nos permitió distribuir:
 
 - Alimentación.
 - GND.
@@ -608,13 +592,7 @@ Permite distribuir:
 
 #### ¿Por qué la usamos?
 
-Durante el desarrollo necesitábamos cambiar conexiones con frecuencia.
-
-La protoboard permitió realizar modificaciones rápidamente sin tener que fabricar una PCB específica.
-
-Esto fue especialmente útil durante las primeras iteraciones del robot.
-
----
+Durante el desarrollo necesitábamos cambiar conexiones con frecuencia y gracias a la protoboard logramos realizar modificaciones rápidamente sin tener que fabricar una PCB específica.
 
 ### Capacitor electrolítico — 100 µF
 
@@ -634,11 +612,7 @@ Esto es especialmente relevante durante:
 
 #### ¿Por qué lo usamos?
 
-Los motores pueden producir cambios rápidos en la demanda de corriente.
-
-El capacitor actúa como un pequeño reservorio de energía y ayuda a reducir las variaciones de tensión en la alimentación.
-
----
+Los motores pueden producir cambios rápidos en la demanda de corriente, y el capacitor actúa como un pequeño reservorio de energía y ayuda a reducir las variaciones de tensión en la alimentación.
 
 ### Capacitor cerámico — 100 nF
 
@@ -652,13 +626,9 @@ Se colocan cerca de los circuitos electrónicos para filtrar ruido eléctrico de
 
 #### ¿Por qué lo usamos?
 
-Los motores, PWM y convertidores DC-DC pueden generar ruido eléctrico.
+Los motores, PWM y convertidores DC-DC pueden generar ruido eléctrico, y el capacitor cerámico ayuda a reducir este ruido y mejora la estabilidad de la alimentación de los circuitos electrónicos.
 
-El capacitor cerámico ayuda a reducir este ruido y mejora la estabilidad de la alimentación de los circuitos electrónicos.
-
----
-
-## 10. Control de encendido y funcionamiento
+## Control de encendido y funcionamiento
 
 ### Pulsador
 
@@ -668,8 +638,6 @@ El pulsador se utiliza como entrada de usuario para iniciar o controlar determin
 
 #### Uso en nuestro robot
 
-Principalmente:
-
 - Inicio de la rutina autónoma.
 - Control de estados de funcionamiento.
 - Interacción con el sistema antes de comenzar una prueba.
@@ -678,13 +646,11 @@ Principalmente:
 
 Necesitábamos una forma sencilla y accesible de iniciar la ejecución del robot sin tener que utilizar un computador durante la prueba.
 
----
-
-### Interruptor principal
+### Interruptores
 
 ![](other/switch.webp)
 
-El interruptor controla el encendido y apagado general del sistema.
+El interruptor principal de color negro controla el encendido general del sistema, el cual siempre se mantiene en el mismo estado, mientras que el interruptor plateado es el que se coloca e
 
 #### Uso en nuestro robot
 
@@ -694,9 +660,7 @@ Permite conectar o desconectar la alimentación principal.
 
 Un interruptor físico permite apagar rápidamente el robot durante una prueba y proporciona un método sencillo para controlar la alimentación antes de cada ejecución.
 
----
-
-## 11. Fijación de componentes
+## Fijación de componentes
 
 ### Cinta 3M VHB 5952
 
@@ -716,61 +680,10 @@ Se utiliza principalmente para fijar:
 
 #### ¿Por qué la usamos?
 
-Algunos componentes no disponen de orificios de montaje compatibles con nuestra estructura.
-
-La cinta VHB permite fijarlos sin modificar las piezas estructurales y absorbe parte de las vibraciones producidas por el robot.
-
-La fijación también permite desmontar y reposicionar componentes durante las diferentes iteraciones del diseño.
+Algunos componentes no disponen de orificios de montaje compatibles con nuestra estructura, por lo tanto, la cinta VHB permite fijarlos sin modificar las piezas estructurales y absorbe mayor parte de las vibraciones producidas por el robot. La fijación también permite desmontar y reposicionar componentes durante las diferentes variaciones del diseño.
 
 ---
 
-# 12. Resumen de componentes
-
-| Componente | Función principal | Razón de uso |
-|---|---|---|
-| LEGO SPIKE Prime | Estructura | Modularidad y facilidad de prototipado |
-| Piezas Nezha | Estructura y movilidad | Compatibilidad mecánica y reutilización |
-| Motor DC | Tracción | Generación del movimiento |
-| Engranaje 12T | Transmisión | Conduce el movimiento del motor |
-| Engranaje 20T | Transmisión | Aumenta torque y reduce velocidad |
-| Ruedas 35 mm | Movimiento | Compacidad y ventaja mecánica |
-| Servomotor | Dirección | Control preciso del ángulo |
-| L298N | Potencia del motor | Permite controlar el motor desde el Arduino |
-| Arduino UNO R4 WiFi | Control principal | Control, comunicación y estabilidad a 5 V |
-| Nicla Vision | Visión e IMU | Procesamiento de imagen y orientación |
-| HC-SR04 ×3 | Distancia | Medición de paredes y obstáculos |
-| Batería VEX IQ | Alimentación | Fuente recargable para el sistema de potencia |
-| Li-Ion 18650 ×2 | Almacenamiento de energía | Fuente de energía recargable |
-| MT3608 | Regulación | Estabilización/elevación de tensión |
-| Protoboard | Distribución | Facilita modificaciones durante pruebas |
-| Capacitor 100 µF | Filtrado | Reduce variaciones de tensión |
-| Capacitor 100 nF | Desacoplo | Reduce ruido de alta frecuencia |
-| Pulsador | Entrada | Inicio/control de la rutina |
-| Interruptor | Alimentación | Encendido y apagado |
-| Ejes/pasadores | Construcción | Uniones estructurales |
-| Cinta VHB | Fijación | Montaje de electrónica y módulos |
-
----
-
-# 13. Filosofía de selección de componentes
-
-La selección de componentes no se realizó únicamente en función de sus especificaciones individuales.
-
-Cada componente fue evaluado considerando cómo afectaba al **sistema completo del robot**.
-
-Por ejemplo:
-
-- El diámetro de las ruedas afecta a la velocidad y al torque.
-- La relación de engranajes afecta a la velocidad y a la tracción.
-- La rigidez del chasis afecta a la precisión de la dirección.
-- La posición de los sensores afecta a la calidad de las mediciones.
-- La alimentación afecta a la estabilidad de la electrónica.
-- El sistema de dirección afecta directamente al comportamiento del controlador.
-
-Por esta razón, nuestras decisiones de hardware se basaron en el siguiente principio:
-
-> **No buscamos el componente con las mejores especificaciones individuales, sino la combinación de componentes que produzca el comportamiento más estable y predecible del robot.**
----
 ## Mecánica y Sistema de Transmisión
 
 Nuestro robot es un vehículo compacto de cuatro ruedas diseñado buscando un equilibrio entre **estabilidad, tracción, maniobrabilidad y velocidad**.
