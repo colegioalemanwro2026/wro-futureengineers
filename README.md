@@ -1268,7 +1268,7 @@ El funcionamiento general del módulo puede representarse como:
 
 **Giroscopio → velocidad angular → integración → yaw → UART**
 
-### Configuración del sensor
+## Configuración del sensor
 
 El programa selecciona el eje del sensor que corresponde al giro principal del robot mediante la variable `AXIS`. También se utiliza `YAW_SIGN` para establecer el sentido positivo del giro dependiendo de la orientación física de la Nicla Vision.
 
@@ -1277,7 +1277,7 @@ YAW_SIGN = 1.0
 
 La comunicación con el controlador se realiza mediante el puerto UART LP1, utilizando una velocidad de 115200 baudios.
 
-Lectura de la velocidad angular
+### Lectura de la velocidad angular
 
 Durante la ejecución, el programa obtiene continuamente la velocidad angular del eje seleccionado:
 
@@ -1289,7 +1289,7 @@ rate = imu.angular_rate_mdps()[AXIS] / 1000.0
 
 El resultado representa la velocidad con la que está girando el robot en cada instante.
 
-Cálculo del yaw
+### Cálculo del yaw
 
 Para obtener el ángulo de giro a partir de la velocidad angular, el programa realiza una integración en el tiempo.
 
@@ -1302,7 +1302,7 @@ Después actualiza el ángulo:
 
 yaw += rate * dt
 
-Conceptualmente:
+## Conceptualmente:
 
 yaw = yaw anterior + velocidad angular × tiempo transcurrido
 
@@ -1318,7 +1318,7 @@ yaw representa el ángulo acumulado del robot.
 
 Este proceso permite mantener una estimación continua de la orientación del robot durante su movimiento.
 
-Comunicación mediante UART
+## Comunicación mediante UART
 
 El valor del yaw se transmite al Arduino mediante UART cada 50 milisegundos, lo que corresponde aproximadamente a una frecuencia de 20 Hz.
 
@@ -1336,7 +1336,7 @@ El uso de centésimas de grado permite transmitir el valor como un número enter
 
 Además, durante las pruebas el programa muestra en la consola el valor actual del yaw y de la velocidad angular. Esto permite observar el comportamiento del sensor y comprobar que la estimación del giro se está realizando correctamente.
 
-Detección de colores
+## Detección de colores
 
 El módulo de detección de colores utiliza la cámara de la Nicla Vision para identificar determinados colores presentes en el entorno del robot.
 
@@ -1358,7 +1358,7 @@ Se utiliza el formato RGB565 y una resolución QQVGA.
 
 La resolución utilizada permite reducir la cantidad de información que debe procesarse en cada imagen y facilita una ejecución rápida del algoritmo de detección.
 
-Definición de los colores
+### Definición de los colores
 
 El programa utiliza tres conjuntos de parámetros para reconocer los colores:
 
@@ -1370,7 +1370,7 @@ Estos valores representan rangos utilizados por el sistema de visión para deter
 
 De esta forma, la cámara no busca una coincidencia exacta de color, sino regiones cuyos valores se encuentran dentro de los rangos establecidos.
 
-Detección de regiones
+### Detección de regiones
 
 En cada ciclo se captura una nueva imagen:
 
@@ -1400,7 +1400,7 @@ Los parámetros pixels_threshold y area_threshold establecen un tamaño mínimo 
 
 Esto permite descartar regiones demasiado pequeñas que podrían producirse por ruido visual o pequeñas variaciones en la imagen.
 
-Selección del color detectado
+### Selección del color detectado
 
 Una vez procesada la imagen, el programa comprueba qué colores fueron detectados.
 
@@ -1423,7 +1423,7 @@ Esto significa que, si se detectan varios colores simultáneamente, se seleccion
 
 Además de enviar la información al Arduino, la Nicla Vision activa el LED correspondiente al color detectado. Esto permite comprobar visualmente durante las pruebas qué está identificando la cámara.
 
-Comunicación de la detección
+### Comunicación de la detección
 
 La información de color se transmite mediante UART utilizando mensajes simples:
 
@@ -1451,7 +1451,7 @@ Mientras que si no encuentra ninguno de los colores definidos:
 
 De esta manera, la Nicla Vision realiza el procesamiento necesario de la imagen y el Arduino recibe únicamente el resultado de la detección.
 
-Integración entre los módulos
+### Integración entre los módulos
 
 El giroscopio y la cámara proporcionan información diferente, pero ambos forman parte del sistema de percepción de la Nicla Vision.
 
@@ -1489,7 +1489,7 @@ Percepción → procesamiento → información del estado → toma de decisiones
 
 Esta separación permite distribuir el procesamiento entre los diferentes microcontroladores y mantener cada parte del programa enfocada en una función específica.
 
-Comunicación
+## Comunicación
 
 La comunicación entre la Nicla Vision y el Arduino se realiza mediante UART a 115200 baudios.
 
@@ -1505,7 +1505,7 @@ El mensaje que comienza con G contiene información relacionada con el giroscopi
 
 Esta estructura permite que el Arduino pueda identificar rápidamente qué tipo de información está recibiendo y utilizarla dentro de su lógica de navegación.
 
-Funcionamiento general
+### Funcionamiento general
 
 Durante la ejecución autónoma, la Nicla Vision obtiene continuamente información de sus sensores.
 
@@ -1515,7 +1515,7 @@ Los resultados de ambos procesos son enviados al Arduino mediante UART. El contr
 
 En conjunto, el sistema permite que el robot conozca tanto cómo está orientado como qué elementos visuales está detectando, proporcionando información que puede ser utilizada por los algoritmos de control y navegación.
 
-Arquitectura general del software
+### Arquitectura general del software
 
 El sistema está dividido en diferentes responsabilidades para evitar que toda la lógica dependa de un único programa.
 
