@@ -95,8 +95,6 @@ La unificación de los módulos se logró mediante ejes pasadores (Axle pins) LE
 
 > **Nota:** Las piezas estructurales utilizadas en el robot provienen de kits comerciales. No fabricamos piezas estructurales personalizadas mediante impresión 3D.
 
----
-
 ### LEGO SPIKE Prime Set — 45678
 
 ![](other/lego-spike-kit.png)
@@ -138,8 +136,6 @@ Su sistema modular nos permitió cambiar rápidamente:
 
 Esto redujo el tiempo necesario para construir y probar diferentes versiones del robot.
 
----
-
 ### ELECFREAKS Nezha 48 in 1 Inventor's Kit
 
 ![](other/nezha-kit.webp)
@@ -166,15 +162,11 @@ Las piezas estructurales de Nezha se integraron con las piezas LEGO SPIKE Prime/
 
 El **motor DC** y el **servomotor** también forman parte del sistema de movilidad y dirección.
 
-> **Importante:** La electrónica Nezha no forma parte de la arquitectura electrónica final del robot. La Expansion Board y los sensores Nezha fueron utilizados durante versiones anteriores y posteriormente fueron reemplazados.
+> La electrónica Nezha no forma parte de la arquitectura electrónica final del robot. La Expansion Board y los sensores Nezha fueron utilizados durante versiones anteriores y posteriormente fueron reemplazados.
 
 #### ¿Por qué lo usamos?
 
-El principal beneficio fue poder reutilizar piezas mecánicas compatibles con nuestra estructura LEGO.
-
-Esto permitió desarrollar diferentes prototipos sin tener que fabricar piezas nuevas.
-
----
+El principal beneficio fue poder reutilizar piezas mecánicas compatibles con nuestra estructura LEGO. Esto permitió desarrollar diferentes prototipos sin tener que fabricar piezas nuevas.
 
 ### Ejes y pasadores LEGO Technic / Nezha
 
@@ -192,13 +184,9 @@ Los ejes y pasadores se utilizan para unir y posicionar los diferentes elementos
 
 #### ¿Por qué los usamos?
 
-Necesitábamos conexiones suficientemente rígidas para evitar movimientos no deseados, pero que al mismo tiempo pudieran desmontarse durante las iteraciones del diseño.
+Necesitábamos conexiones suficientemente rígidas para evitar movimientos no deseados, pero que al mismo tiempo pudieran desmontarse durante los cambios del diseño, y el sistema de ejes y pasadores permite modificar la estructura sin destruir las piezas.
 
-El sistema de ejes y pasadores permite modificar la estructura sin destruir las piezas.
-
----
-
-## 2. Sistema de movilidad
+## Sistema de movilidad
 
 ### Motor DC de tracción
 
@@ -206,7 +194,7 @@ El sistema de ejes y pasadores permite modificar la estructura sin destruir las 
 
 El motor DC proporciona la fuerza necesaria para desplazar el robot.
 
-#### Características relevantes
+#### Características:
 
 - Motor de corriente continua.
 - Control mediante PWM.
@@ -219,17 +207,11 @@ El motor está conectado al sistema de transmisión mediante un engranaje de **1
 
 #### ¿Por qué lo usamos?
 
-Seleccionamos este motor porque proporciona una solución compacta y compatible con nuestra estructura mecánica.
-
-Además, necesitábamos un motor capaz de proporcionar suficiente velocidad y torque para que el robot pudiera desplazarse y realizar correcciones de trayectoria.
-
-Nuestro objetivo no era maximizar únicamente la velocidad del motor, sino conseguir un equilibrio entre:
+Seleccionamos este motor porque proporciona una solución compacta y compatible con nuestra estructura mecánica. Además, necesitábamos un motor capaz de proporcionar suficiente velocidad y torque para que el robot pudiera desplazarse y realizar correcciones de trayectoria, debido a que nuestro objetivo no era maximizar únicamente la velocidad del motor, sino conseguir un equilibrio entre:
 
 **velocidad + torque + tracción + estabilidad.**
 
 > **Datos que queremos validar experimentalmente:** RPM reales, velocidad máxima, torque bajo carga y comportamiento con diferentes valores de PWM.
-
----
 
 ### Sistema de ruedas
 
@@ -237,7 +219,7 @@ Nuestro objetivo no era maximizar únicamente la velocidad del motor, sino conse
 
 El robot utiliza cuatro ruedas con un diámetro de **35 mm**.
 
-#### Características
+#### Características:
 
 - Diámetro: **35 mm**
 - Radio: **17,5 mm**
@@ -260,14 +242,9 @@ Por lo tanto, una revolución de la rueda representa aproximadamente **110 mm de
 #### ¿Por qué usamos estas ruedas?
 
 El diámetro de 35 mm nos permite mantener el robot compacto y proporciona una ventaja mecánica adecuada para el sistema de transmisión.
+Una rueda más grande permitiría recorrer una mayor distancia por revolución, pero requeriría más torque para producir la misma fuerza en el suelo, al igual que supondría arriesgarse a llegar al límite de ancho. Por eso seleccionamos un diámetro relativamente pequeño para priorizar control, tracción y estabilidad.
 
-Una rueda más grande permitiría recorrer una mayor distancia por revolución, pero requeriría más torque para producir la misma fuerza en el suelo.
-
-Por eso seleccionamos un diámetro relativamente pequeño para priorizar **control, tracción y estabilidad**.
-
----
-
-## 3. Transmisión
+## Transmisión
 
 ### Engranajes 12:20
 
@@ -306,11 +283,7 @@ En un sistema real el aumento de torque es menor debido a las pérdidas mecánic
 
 #### ¿Por qué usamos esta relación?
 
-Elegimos esta relación porque no queríamos obtener únicamente la mayor velocidad posible.
-
-Una reducción menor aumentaría la velocidad de las ruedas, pero disminuiría el torque disponible.
-
-Una reducción mayor proporcionaría más torque, pero reduciría demasiado la velocidad.
+Elegimos esta relación porque no queríamos obtener únicamente la mayor velocidad posible, es decir, una reducción menor aumentaría la velocidad de las ruedas, pero disminuiría el torque disponible. Por el contrario una reducción mayor proporcionaría más torque, y al mismo tiempo reduciría demasiado la velocidad.
 
 La relación **12:20** representa un compromiso entre:
 
@@ -320,11 +293,9 @@ La relación **12:20** representa un compromiso entre:
 - Aceleración.
 - Estabilidad en curvas.
 
-Esta decisión es especialmente importante porque el robot debe mantener un movimiento controlado mientras realiza correcciones de dirección.
+Esta decisión fue especialmente importante porque el robot debe mantener un movimiento controlado mientras realiza correcciones de dirección.
 
----
-
-## 4. Sistema de dirección
+## Sistema de dirección
 
 ### Servomotor de dirección
 
@@ -332,7 +303,7 @@ Esta decisión es especialmente importante porque el robot debe mantener un movi
 
 El servomotor controla la dirección de las ruedas delanteras.
 
-#### Características relevantes
+#### Características:
 
 - Servomotor controlado mediante señal PWM.
 - Movimiento bidireccional.
@@ -341,19 +312,11 @@ El servomotor controla la dirección de las ruedas delanteras.
 
 #### Uso en nuestro robot
 
-El servo mueve el mecanismo de dirección mediante una transmisión mecánica tipo **cremallera y piñón**.
-
-Esto convierte el movimiento rotacional del servo en un desplazamiento lateral que modifica el ángulo de las ruedas delanteras.
+El servo mueve el mecanismo de dirección mediante una transmisión mecánica tipo **cremallera y piñón**. Lo que convierte el movimiento rotacional del servo en un desplazamiento lateral que modifica el ángulo de las ruedas delanteras.
 
 #### ¿Por qué lo usamos?
 
-Necesitábamos controlar con precisión el ángulo de las ruedas delanteras.
-
-El servomotor permite establecer una posición central y realizar correcciones pequeñas hacia ambos lados.
-
-Esto es fundamental porque el sistema de control calcula continuamente el ángulo de dirección necesario para corregir la trayectoria.
-
----
+Necesitábamos controlar con precisión el ángulo de las ruedas delanteras, y el servomotor permite establecer una posición central y realizar correcciones pequeñas hacia ambos lados. Esto es fundamental porque el sistema de control calcula continuamente el ángulo de dirección necesario para corregir la trayectoria.
 
 ### Mecanismo de dirección
 
@@ -371,15 +334,9 @@ El sistema de dirección está situado en el eje delantero y utiliza una configu
 
 #### ¿Por qué es importante?
 
-Una holgura excesiva en la dirección provocaría que el mismo comando del servo produjera diferentes ángulos reales de las ruedas.
+Una holgura excesiva en la dirección provocaría que el mismo comando del servo produjera diferentes ángulos reales de las ruedas. Esto afectaría directamente a la estabilidad del robot y al funcionamiento del controlador. Por esta razón, la rigidez y alineación del mecanismo de dirección fueron aspectos importantes durante el montaje.
 
-Esto afectaría directamente a la estabilidad del robot y al funcionamiento del controlador.
-
-Por esta razón, la rigidez y alineación del mecanismo de dirección fueron aspectos importantes durante el montaje.
-
----
-
-## 5. Alimentación
+## Alimentación
 
 ### Batería VEX IQ 2ª generación
 
@@ -387,7 +344,7 @@ Por esta razón, la rigidez y alineación del mecanismo de dirección fueron asp
 
 La batería VEX IQ de segunda generación fue utilizada como fuente de alimentación durante una de las configuraciones del sistema.
 
-#### Características relevantes
+#### Características:
 
 - Tecnología: Li-Ion.
 - Voltaje nominal: **7,2 V**.
@@ -401,11 +358,7 @@ La batería proporciona alimentación al sistema de potencia, principalmente al 
 
 #### ¿Por qué la usamos?
 
-La batería VEX IQ proporciona una fuente de alimentación compacta y recargable, adecuada para un robot móvil.
-
-Su tensión es compatible con la etapa de potencia utilizada para controlar el motor.
-
----
+La batería VEX IQ proporciona una fuente de alimentación compacta y recargable, adecuada para un robot móvil. Su tensión es compatible con la etapa de potencia utilizada para controlar el motor.
 
 ### Baterías Li-Ion 18650
 
@@ -413,7 +366,7 @@ Su tensión es compatible con la etapa de potencia utilizada para controlar el m
 
 Utilizamos dos celdas de Li-Ion formato **18650** como parte del sistema de almacenamiento de energía.
 
-#### Características
+#### Características:
 
 - Formato: **18650**.
 - Química: **Li-Ion**.
@@ -427,13 +380,7 @@ Las baterías proporcionan energía al sistema de alimentación y permiten alime
 
 #### ¿Por qué las usamos?
 
-Durante las pruebas observamos que los motores podían producir caídas de tensión cuando demandaban corriente durante la aceleración.
-
-La utilización de un sistema de baterías separado y regulado permitió mejorar la estabilidad de la alimentación de la electrónica.
-
-> **Nota:** La capacidad nominal indicada en algunas etiquetas de celdas 18650 puede no representar su capacidad real. Para la documentación final debemos utilizar únicamente la capacidad medida o una especificación fiable del fabricante.
-
----
+Durante las pruebas observamos que los motores podían producir caídas de tensión cuando demandaban corriente durante la aceleración. La utilización de un sistema de baterías separado y regulado permitió mejorar la estabilidad de la alimentación de la electrónica.
 
 ### MT3608 — Convertidor Step-Up
 
@@ -441,7 +388,7 @@ La utilización de un sistema de baterías separado y regulado permitió mejorar
 
 El **MT3608** es un convertidor DC-DC elevador utilizado para obtener una tensión estable para la electrónica.
 
-#### Características relevantes
+#### Características:
 
 - Tipo: convertidor Step-Up.
 - Entrada: aproximadamente **2–24 V**.
@@ -455,15 +402,9 @@ El MT3608 eleva y regula la tensión procedente de las baterías para proporcion
 
 #### ¿Por qué lo usamos?
 
-Durante las pruebas observamos que los cambios de consumo del motor podían provocar variaciones de tensión.
+Durante las pruebas observamos que los cambios de consumo del motor podían provocar variaciones de tensión. Estas variaciones podían producir reinicios o comportamiento inestable en los sistemas electrónicos, por ello, utilizamos regulación de tensión para separar, en la medida de lo posible, las variaciones de la etapa de potencia de la alimentación de la lógica.
 
-Estas variaciones podían producir reinicios o comportamiento inestable en los sistemas electrónicos.
-
-Por ello, utilizamos regulación de tensión para separar, en la medida de lo posible, las variaciones de la etapa de potencia de la alimentación de la lógica.
-
----
-
-## 6. Control de motores
+## Control de motores
 
 ### L298N Dual H-Bridge
 
@@ -471,7 +412,7 @@ Por ello, utilizamos regulación de tensión para separar, en la medida de lo po
 
 El **L298N** es el driver utilizado para controlar el motor de tracción.
 
-#### Características relevantes
+#### Características:
 
 - Tipo: doble puente H.
 - Tensión de alimentación del motor: hasta aproximadamente **35 V** en el módulo utilizado.
@@ -482,9 +423,7 @@ El **L298N** es el driver utilizado para controlar el motor de tracción.
 
 #### Uso en nuestro robot
 
-El Arduino UNO R4 WiFi envía las señales de control al L298N.
-
-El driver se encarga de entregar la corriente necesaria al motor y permite controlar:
+El Arduino UNO R4 WiFi envía las señales de control al L298N. El driver se encarga de entregar la corriente necesaria al motor y permite controlar:
 
 - Dirección de giro.
 - Velocidad.
@@ -492,13 +431,7 @@ El driver se encarga de entregar la corriente necesaria al motor y permite contr
 
 #### ¿Por qué lo usamos?
 
-Necesitábamos separar la corriente de control del Arduino de la corriente necesaria para el motor.
-
-El Arduino genera las señales de control, mientras que el L298N actúa como etapa de potencia.
-
-Además, su funcionamiento con motores DC y su compatibilidad con nuestra alimentación lo hicieron adecuado para nuestro prototipo.
-
----
+Necesitábamos separar la corriente de control del Arduino de la corriente necesaria para el motor. El Arduino genera las señales de control, mientras que el L298N actúa como etapa de potencia. Además, su funcionamiento con motores DC y su compatibilidad con nuestra alimentación lo hicieron adecuado para nuestro prototipo.
 
 ## Sensores
 
@@ -650,11 +583,11 @@ Necesitábamos una forma sencilla y accesible de iniciar la ejecución del robot
 
 ![](other/switch.webp)
 
-El interruptor principal de color negro controla el encendido general del sistema, el cual siempre se mantiene en el mismo estado, mientras que el interruptor plateado es el que se coloca e
+El interruptor principal de color negro controla el encendido general del sistema, el cual siempre se mantiene activado, mientras que el interruptor plateado es el que se enciende al momento de realizar el recorrido y luego se apaga al finalizar.
 
 #### Uso en nuestro robot
 
-Permite conectar o desconectar la alimentación principal.
+Permiten conectar o desconectar la alimentación principal, con el fin de ahorrar nivel de batería.
 
 #### ¿Por qué lo usamos?
 
